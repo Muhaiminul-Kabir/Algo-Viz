@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="642.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="login.MainC">
+  <children>
+    <Button fx:id="lgb" layoutX="192.0" layoutY="437.0" mnemonicParsing="false" onAction="#login" prefHeight="58.0" text="login" />
+    <TextField id="txtUsername" fx:id="txtUserName" layoutX="200.0" layoutY="234.0" prefWidth="200.0" promptText="ussername" />
+    <PasswordField fx:id="txtPassword" layoutX="200.0" layoutY="291.0" prefWidth="200.0" promptText="password" />
+    <Label fx:id="lblStatus" layoutX="200.0" layoutY="349.0" prefWidth="200.0" text="" textFill="RED" />
+    <Button id="lgb" layoutX="329.0" layoutY="437.0" mnemonicParsing="false" onAction="#signUp" prefHeight="58.0" text="signup" />
+    <Text layoutX="275.0" layoutY="123.0" scaleX="3.8007764249161813" scaleY="3.2972752052723684" strokeType="OUTSIDE" strokeWidth="0.0" text="OurApp" />
+  </children>
+</AnchorPane>
