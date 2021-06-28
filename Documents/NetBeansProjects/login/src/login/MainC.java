@@ -79,25 +79,26 @@ public class MainC {
      
      
     
-    public void login(ActionEvent event) throws IOException{
+    public void login(ActionEvent event) throws IOException, Exception{
         
         
-        
-        
-        if(txtUserName.getText().equals("Nirjon") && txtPassword.getText().equals("sala")){
-             lblStatus.setText("Succeuss!");
-             closeButtonAction();
-             Stage stage = new Stage();
-             
-             Parent root = FXMLLoader.load(getClass().getResource("/login/FXML.fxml"));
-			
-             
-             Scene scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
+        GetData wUser = new GetData();
+        String user = txtUserName.getText();
+        String pass = wUser.getPass(user);
+        if(txtPassword.getText().equals(pass)){
+            lblStatus.setText("Succeuss!");
+            closeButtonAction();
+            Stage stage = new Stage();
+            
+            Parent root = FXMLLoader.load(getClass().getResource("/login/FXML.fxml"));
+            
+            
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
         else{
-             lblStatus.setText("ERROR");
+            lblStatus.setText("Incorrect password!");
         }
             
     }
