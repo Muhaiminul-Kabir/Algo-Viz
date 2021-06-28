@@ -22,6 +22,14 @@ import javafx.stage.Stage;
  *
  * @author ASUS
  */
+
+
+
+/////
+/////////
+/////////////////////
+//////////////////////////////////
+///////////////////////
 public class MainC {
     @FXML
     private Label lblStatus;
