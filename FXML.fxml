@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
@@ -15,6 +16,10 @@
       </font>
     </Label>
     <Button layoutX="25.0" layoutY="37.0" mnemonicParsing="false" onAction="#siddeMenu" prefHeight="46.0" prefWidth="55.0" text="Menu" />
-    <Button fx:id="newUser" layoutX="615.0" layoutY="416.0" mnemonicParsing="false" onAction="#signUp" prefHeight="46.0" prefWidth="146.0" text="New User" />
+    <Button fx:id="newUser" layoutX="615.0" layoutY="416.0" mnemonicParsing="false" onAction="#signUp" prefHeight="46.0" prefWidth="146.0" styleClass="loginB" text="New User">
+      <stylesheets>
+        <URL value="@style.css" />
+      </stylesheets>
+    </Button>
   </children>
 </AnchorPane>
