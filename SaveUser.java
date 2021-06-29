@@ -27,7 +27,7 @@ public class SaveUser {
     
     public  void makeDir() {
         File f1 = new File("C:/Appdata");
-        //Creating a folder using mkdir() method  
+        
         boolean bool = f1.mkdir();        
         if (bool) {            
             System.out.println("Folder is created successfully");            
