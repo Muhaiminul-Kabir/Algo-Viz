@@ -1,0 +1,45 @@
+
+.pane2{
+     -fx-background-color: transparent;
+     -fx-background-radius:4;
+     -fx-border-width: 5;
+     -fx-border-color: linear-gradient(gray,gray);
+
+}
+
+.loginB{
+
+    -fx-background-color: transparent;
+    
+    -fx-font-weight: bold;
+    
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+}
+
+.loginB:hover {
+    -fx-background-color:transparent;
+    -fx-background-radius:0;
+    -fx-border-color:black;
+    -fx-border-width: 3 3 3 3;
+    -fx-background-insets: 0;
+}
+.label{
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+}
+.text-field{
+    -fx-prompt-text-fill: black;
+    -fx-background-color: transparent;
+    -fx-border-width: 3;
+    -fx-text-fill: cyan;
+   
+    
+}
+.text-field:hover{
+    -fx-border-style: solid;
+    -fx-border-color: cyan;
+
+    
+      
+}
