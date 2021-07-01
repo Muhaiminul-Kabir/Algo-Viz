@@ -36,6 +36,8 @@ public class MainC {
     private Button logInButton;
     @FXML
     private Button newUser;
+    @FXML
+    private Button x;
 
     private boolean lt = false;
 
@@ -49,7 +51,7 @@ public class MainC {
         return lt;
     }
 
-    private void closeButtonAction(Button b) {
+    private void closeWindowOnButton(Button b) {
         // get a handle to the stage
         Stage stage = (Stage) b.getScene().getWindow();
         // do what you have to do
@@ -72,26 +74,42 @@ public class MainC {
 
     }
 
+    public void logInInit() {
+        try {
+            closeWindowOnButton(x);
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/login/login.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setX(50);
+            stage.setY(50);
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void login(ActionEvent event) throws IOException, Exception {
 
         GetData wUser = new GetData();
         String user = txtUserName.getText();
         String pass = wUser.getPass(user);
-       
+
         if (txtPassword.getText().equals(pass)) {
             lblStatus.setText("Succeuss!");
-            closeButtonAction(logInButton);
+            closeWindowOnButton(logInButton);
             System.out.println(user);
-            
+
             Stage stage = new Stage();
 
             Parent root = FXMLLoader.load(getClass().getResource("/login/FXML.fxml"));
 
             Scene scene = new Scene(root);
-            
+
             stage.setScene(scene);
             stage.show();
-            
+
         } else if (pass.equals("err")) {
             lblStatus.setText("Invalid Username!");
         } else {
@@ -101,7 +119,7 @@ public class MainC {
     }
 
     public void signUp(ActionEvent event) throws IOException {
-        closeButtonAction(newUser);
+        closeWindowOnButton(newUser);
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/login/signUp.fxml"));
         Scene scene = new Scene(root);

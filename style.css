@@ -1,35 +1,55 @@
 
 .pane2{
-     -fx-background-color: transparent;
-     -fx-background-radius:4;
+     -fx-background-color: #a8ccd780;
+     -fx-border-radius:4px;
      -fx-border-width: 5;
      -fx-border-color: linear-gradient(gray,gray);
 
 }
 
+
+
+
+
 .loginB{
 
     -fx-background-color: transparent;
-    
+    -fx-border-radius:5px;
     -fx-font-weight: bold;
     
     -fx-text-fill: white;
-    -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+   
 }
 
 .loginB:hover {
-    -fx-background-color:transparent;
-    -fx-background-radius:0;
-    -fx-border-color:black;
-    -fx-border-width: 3 3 3 3;
+    -fx-background-color:#a8ccd780;
+    -fx-background-radius: 10px;
+   
+    
     -fx-background-insets: 0;
 }
+
+
+.introB{
+
+    -fx-background-color: transparent;   
+    -fx-font-weight: bold;   
+    -fx-text-fill: white;
+   
+}
+
+.introB:hover {
+    -fx-background-color:#a8ccd780;
+    -fx-background-insets: 0;
+}
+
 .label{
     -fx-font-weight: bold;
     -fx-font-size: 20;
 }
 .text-field{
-    -fx-prompt-text-fill: black;
+    -fx-font-size: 15;
+    -fx-prompt-text-fill: white;
     -fx-background-color: transparent;
     -fx-border-width: 3;
     -fx-text-fill: cyan;
@@ -37,8 +57,10 @@
     
 }
 .text-field:hover{
+    -fx-font-size: 20;
     -fx-border-style: solid;
-    -fx-border-color: cyan;
+    -fx-border-color: white;
+    -fx-border-width: 0 0 3 0;
 
     
       

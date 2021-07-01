@@ -21,5 +21,10 @@
         <URL value="@style.css" />
       </stylesheets>
     </Button>
+    <ScrollPane layoutX="382.0" layoutY="0.0" prefHeight="612.0" prefWidth="562.0">
+      <content>
+        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+      </content>
+    </ScrollPane>
   </children>
 </AnchorPane>

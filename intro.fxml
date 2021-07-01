@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="854.3333129882812" styleClass="pane2" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="login.MainC">
+  <children>
+    <Button fx:id="x" layoutX="256.0" layoutY="443.0" mnemonicParsing="false" onAction="#logInInit" prefHeight="59.0" prefWidth="157.0" styleClass="introB" text="LOG IN" />
+    <Button id="x" fx:id="newUser" layoutX="439.0" layoutY="443.0" mnemonicParsing="false" onAction="#signUp" prefHeight="59.0" prefWidth="157.0" styleClass="introB" text="SIGN UP" />
+  </children>
+  <stylesheets>
+    <URL value="@style.css" />
+  </stylesheets>
+</AnchorPane>
