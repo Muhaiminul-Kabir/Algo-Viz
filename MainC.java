@@ -5,6 +5,7 @@
  */
 package login;
 
+
 import java.io.IOException;
 import static javafx.application.ConditionalFeature.FXML;
 import javafx.event.ActionEvent;
@@ -38,7 +39,8 @@ public class MainC {
     private Button newUser;
     @FXML
     private Button x;
-
+      @FXML
+    private Button n;
     private boolean lt = false;
 
     private void setLt() {
@@ -50,16 +52,16 @@ public class MainC {
 
         return lt;
     }
-
-    private void closeWindowOnButton(Button b) {
+    
+    public void closeWindowOnButton(Button b) {
         // get a handle to the stage
         Stage stage = (Stage) b.getScene().getWindow();
         // do what you have to do
         stage.close();
     }
 
-    public void wlcTtl(String user) throws IOException {
-
+    public void wlcTtl() {
+           closeWindowOnButton(n);
     }
 
     public void siddeMenu(ActionEvent event) throws IOException {
@@ -106,7 +108,7 @@ public class MainC {
             Parent root = FXMLLoader.load(getClass().getResource("/login/FXML.fxml"));
 
             Scene scene = new Scene(root);
-
+           
             stage.setScene(scene);
             stage.show();
 

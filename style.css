@@ -6,7 +6,9 @@
      -fx-border-color: linear-gradient(gray,gray);
 
 }
-
+.button{
+    -fx-background-radius:100px;
+}
 
 
 
@@ -45,7 +47,7 @@
 
 .label{
     -fx-font-weight: bold;
-    -fx-font-size: 20;
+    -fx-font-size: 10;
 }
 .text-field{
     -fx-font-size: 15;
