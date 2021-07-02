@@ -1,14 +1,21 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto-Regular.ttf');
+}
+
+.text {
+    -fx-font-family: "Roboto";
+    
+}
+
 
 .pane2{
-     -fx-background-color: #a8ccd780;
+   
      -fx-border-radius:4px;
      -fx-border-width: 5;
-     -fx-border-color: linear-gradient(gray,gray);
 
 }
-.button{
-    -fx-background-radius:100px;
-}
+
 
 
 
@@ -19,7 +26,7 @@
     -fx-border-radius:5px;
     -fx-font-weight: bold;
     
-    -fx-text-fill: white;
+    -fx-text-fill: #FDFEFF;
    
 }
 
@@ -33,7 +40,7 @@
 
 
 .introB{
-
+    -fx-font-size: 20;
     -fx-background-color: transparent;   
     -fx-font-weight: bold;   
     -fx-text-fill: white;
@@ -41,20 +48,23 @@
 }
 
 .introB:hover {
-    -fx-background-color:#a8ccd780;
-    -fx-background-insets: 0;
+    -fx-background-color:transparent;
+    -fx-font-size: 20;
+    -fx-border-color: #FDFEFF;
+    -fx-border-width: 0 0 3 0;
 }
 
 .label{
+    fx-text-fill: #e10600;
     -fx-font-weight: bold;
     -fx-font-size: 10;
 }
 .text-field{
     -fx-font-size: 15;
-    -fx-prompt-text-fill: white;
+    -fx-prompt-text-fill: #FDFEFF;
     -fx-background-color: transparent;
     -fx-border-width: 3;
-    -fx-text-fill: cyan;
+    -fx-text-fill: #41fdfe;
    
     
 }

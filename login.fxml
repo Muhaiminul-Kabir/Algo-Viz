@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="854.3333129882812" styleClass="" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="login.MainC">
+<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="854.3333129882812" styleClass="null" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="login.MainC">
   <children>
     <Pane layoutX="0.0" layoutY="0.0" prefHeight="640.0" prefWidth="640.0">
       <children>
@@ -42,7 +42,7 @@
                 <URL value="@style.css" />
               </stylesheets>
             </TextField>
-            <Label fx:id="lblStatus" layoutX="215.0" layoutY="380.0" minHeight="17.0" prefHeight="17.0" prefWidth="292.0" text="" textFill="RED">
+            <Label fx:id="lblStatus" layoutX="186.0" layoutY="235.0" minHeight="17.0" prefHeight="17.0" prefWidth="306.0" text="" textFill="RED">
               <stylesheets>
                 <URL value="@style.css" />
               </stylesheets>
