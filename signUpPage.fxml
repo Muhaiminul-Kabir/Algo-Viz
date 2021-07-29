@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <TextField layoutX="233.0" layoutY="316.0" prefHeight="48.0" prefWidth="293.0" promptText="" styleClass="text">
+    <stylesheets>
+      <URL value="@style.css" />
+    </stylesheets>
+  </TextField>
+  <TextField layoutX="236.0" layoutY="220.0" prefHeight="48.0" prefWidth="293.0" promptText="" styleClass="text">
+    <stylesheets>
+      <URL value="@style.css" />
+    </stylesheets>
+  </TextField>
+  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="233.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+    <image>
+      <Image url="@images/user-outline-people-person-icon-with-png-and-vector-format-137553.png" />
+    </image>
+  </ImageView>
+  <TextField layoutX="233.0" layoutY="402.0" prefHeight="48.0" prefWidth="293.0" promptText="" styleClass="text">
+    <stylesheets>
+      <URL value="@style.css" />
+    </stylesheets>
+  </TextField>
+  <TextField layoutX="233.0" layoutY="488.0" prefHeight="48.0" prefWidth="293.0" promptText="" styleClass="text">
+    <stylesheets>
+      <URL value="@style.css" />
+    </stylesheets>
+  </TextField>
+  <Label layoutX="57.0" layoutY="220.0" prefHeight="48.0" prefWidth="138.0" text="Username" />
+  <Label layoutX="57.0" layoutY="316.0" prefHeight="48.0" prefWidth="138.0" text="Institution" />
+  <Label layoutX="57.0" layoutY="402.0" prefHeight="48.0" prefWidth="138.0" text="Mobile" />
+  <Label layoutX="57.0" layoutY="488.0" prefHeight="48.0" prefWidth="138.0" text="Password" />
+  <Button layoutX="242.0" layoutY="699.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="133.0" styleClass="roundB" text="SIGN UP">
+    <stylesheets>
+      <URL value="@style.css" />
+    </stylesheets>
+  </Button>
+</AnchorPane>

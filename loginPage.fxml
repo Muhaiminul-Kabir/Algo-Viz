@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <BorderPane layoutX="22.0" layoutY="0.0" prefHeight="586.0" prefWidth="501.0">
+      <center>
+        <ImageView fitHeight="427.87394125632653" fitWidth="372.5141906738281" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@images/ysy77ys1.jpg" />
+          </image>
+        </ImageView>
+      </center>
+    </BorderPane>
+    <Button layoutX="555.0" layoutY="395.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="293.0" styleClass="loginB" text="LOG IN">
+      <stylesheets>
+        <URL value="@style.css" />
+      </stylesheets>
+    </Button>
+    <TextField layoutX="555.0" layoutY="177.0" prefHeight="48.0" prefWidth="293.0" promptText="Username" styleClass="text">
+      <stylesheets>
+        <URL value="@style.css" />
+      </stylesheets>
+    </TextField>
+    <PasswordField layoutX="555.0" layoutY="262.0" prefHeight="48.0" prefWidth="293.0" promptText="Password" styleClass="text">
+      <stylesheets>
+        <URL value="@style.css" />
+      </stylesheets>
+    </PasswordField>
+    <Button layoutX="555.0" layoutY="477.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="137.0" styleClass="roundB" text="SIGN UP">
+      <stylesheets>
+        <URL value="@style.css" />
+      </stylesheets>
+    </Button>
+  </children>
+</AnchorPane>
