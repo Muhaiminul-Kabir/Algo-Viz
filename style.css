@@ -1,21 +1,40 @@
-@font-face {
-    font-family: 'Roboto';
-    src: url('Roboto-Regular.ttf');
-}
+
 
 .text {
     -fx-font-family: "Roboto";
-    
+
 }
+
+.anchorP{
+    -fx-background-color: white;
+}
+
 
 
 .pane2{
-   
-     -fx-border-radius:4px;
-     -fx-border-width: 5;
+
+    -fx-border-radius:4px;
+    -fx-border-width: 5;
 
 }
 
+.menu-button > .arrow-button {
+    -fx-padding: 0;
+}
+
+.menu-button > .arrow-button > .arrow {
+    -fx-padding: 0;
+}
+
+.menu-button{
+
+    -fx-background-radius: 5em; 
+    -fx-min-width: 70px;  
+
+    -fx-min-height: 70px; 
+    -fx-max-width: 70px; 
+    -fx-max-height: 70px;
+}
 
 
 
@@ -25,16 +44,38 @@
     -fx-background-color: red;
     -fx-border-radius:5px;
     -fx-font-weight: bold;
-    
+
     -fx-text-fill: #FDFEFF;
-   
+
 }
 
 .loginB:hover {
     -fx-background-color: violet;
     -fx-background-radius: 5px;
-   
+
+
+    -fx-background-insets: 0;
+}
+
+.dashButton{
     
+    
+    -fx-background-color: red;
+    -fx-border-radius:5px;
+    -fx-font-weight: bold;
+
+    -fx-text-fill: #FDFEFF;
+    
+    
+}
+
+
+
+.dashButton:hover {
+    -fx-background-color: violet;
+    -fx-background-radius: 5px;
+
+
     -fx-background-insets: 0;
 }
 
@@ -51,38 +92,69 @@
     -fx-background-color: transparent;
     -fx-border-width: 3;
     -fx-text-fill: black;
-   
-    
+
+
 }
 .text-field:hover{
     -fx-font-size: 20;
     -fx-border-style: solid;
     -fx-border-color: red;
     -fx-border-width: 0 0 3 0;
-        -fx-text-fill: red;
- 
-    
-      
+    -fx-text-fill: red;
+
+
+
 }
 .roundB{
-   -fx-background-color: black;
+    -fx-background-color: black;
     -fx-border-radius:5px;
     -fx-font-weight: bold;
-    
+
     -fx-text-fill: #FDFEFF;
-                
-                -fx-max-width: 100px;  
-                
+
+    -fx-max-width: 100px;  
+
 }
 .roundB:hover {
     -fx-background-color: violet;
     -fx-background-radius: 5px;
-   
-    
+
+
     -fx-background-insets: 0;
 }
 .msgtxt{
     -fx-font-weight: bold;
     -fx-font-size: 20;
 }
+
+
+
+
+.scroll-pane {
+    -fx-background-color: black;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: black;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: black;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: white;
+    -fx-background-radius: 5em;
+}
+
+
 
