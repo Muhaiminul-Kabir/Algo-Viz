@@ -31,13 +31,13 @@ public class LoginCtrl {
     private Scene scene;
     private Parent root;
 
-    String userName = userIn.getText();
-    
     
     
     public void login(ActionEvent event) throws IOException {
+        
+        String userName = userIn.getText();
         closeWindowOnButton(loginB);
-        dashInit(event);
+        dashInit(event,userName);
     }
 
     public void signUP(ActionEvent event) throws IOException {
@@ -50,7 +50,7 @@ public class LoginCtrl {
 
     }
 
-    public void dashInit(ActionEvent event) throws IOException {
+    public void dashInit(ActionEvent event, String user) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/study/dashBoard.fxml"));
         root = loader.load();
 

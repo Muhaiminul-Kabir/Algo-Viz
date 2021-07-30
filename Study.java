@@ -5,6 +5,7 @@
  */
 package study;
 
+import java.io.File;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -24,7 +25,7 @@ public class Study extends Application {
     
     @Override
     public void start(Stage stage) throws IOException {
-        
+                        makeDir();
 			Parent root = FXMLLoader.load(getClass().getResource("/study/loginPage.fxml"));
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
@@ -37,6 +38,16 @@ public class Study extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+    public  void makeDir() {
+        File f1 = new File("C:/AppDataBase");
+        //Creating a folder using mkdir() method  
+        boolean bool = f1.mkdir();        
+        if (bool) {            
+            System.out.println("Folder is created successfully");            
+        } else {            
+            System.out.println("exists");            
+        }        
     }
     
 }

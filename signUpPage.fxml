@@ -8,13 +8,13 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="673.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
-  <TextField layoutX="233.0" layoutY="316.0" prefHeight="48.0" prefWidth="293.0" promptText="" styleClass="text">
+<AnchorPane id="AnchorPane" prefHeight="673.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="study.SignUpCtrl">
+  <TextField fx:id="regInstut" layoutX="233.0" layoutY="316.0" prefHeight="48.0" prefWidth="293.0" promptText="" styleClass="text">
     <stylesheets>
       <URL value="@style.css" />
     </stylesheets>
   </TextField>
-  <TextField layoutX="236.0" layoutY="220.0" prefHeight="48.0" prefWidth="293.0" promptText="" styleClass="text">
+  <TextField fx:id="regUser" layoutX="236.0" layoutY="220.0" prefHeight="48.0" prefWidth="293.0" promptText="" styleClass="text">
     <stylesheets>
       <URL value="@style.css" />
     </stylesheets>
@@ -24,12 +24,12 @@
       <Image url="@images/user-outline-people-person-icon-with-png-and-vector-format-137553.png" />
     </image>
   </ImageView>
-  <TextField layoutX="233.0" layoutY="402.0" prefHeight="48.0" prefWidth="293.0" promptText="" styleClass="text">
+  <TextField fx:id="regMobile" layoutX="233.0" layoutY="402.0" prefHeight="48.0" prefWidth="293.0" promptText="" styleClass="text">
     <stylesheets>
       <URL value="@style.css" />
     </stylesheets>
   </TextField>
-  <TextField layoutX="233.0" layoutY="488.0" prefHeight="48.0" prefWidth="293.0" promptText="" styleClass="text">
+  <TextField fx:id="regPass" layoutX="233.0" layoutY="488.0" prefHeight="48.0" prefWidth="293.0" promptText="" styleClass="text">
     <stylesheets>
       <URL value="@style.css" />
     </stylesheets>
@@ -38,7 +38,7 @@
   <Label layoutX="57.0" layoutY="316.0" prefHeight="48.0" prefWidth="138.0" text="Institution" />
   <Label layoutX="57.0" layoutY="402.0" prefHeight="48.0" prefWidth="138.0" text="Mobile" />
   <Label layoutX="57.0" layoutY="488.0" prefHeight="48.0" prefWidth="138.0" text="Password" />
-  <Button layoutX="236.0" layoutY="578.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="133.0" styleClass="roundB" text="SIGN UP">
+  <Button layoutX="236.0" layoutY="578.0" mnemonicParsing="false" onAction="#saveUser" prefHeight="65.0" prefWidth="133.0" styleClass="roundB" text="SIGN UP">
     <stylesheets>
       <URL value="@style.css" />
     </stylesheets>
