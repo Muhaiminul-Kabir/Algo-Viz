@@ -12,7 +12,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import java.lang.NullPointerException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 //(myStr1 == null || myStr1.length() == 0);
 
 /**
@@ -29,6 +37,14 @@ public class SignUpCtrl {
     TextField regInstut;
     @FXML
     TextField regMobile;
+    @FXML
+    Label userLbl;
+    @FXML
+    Label passLbl;
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     public void saveUser(ActionEvent event) {
         String user;
@@ -46,19 +62,26 @@ public class SignUpCtrl {
         String pathInstut;
         String pathMobile;
 
+        userFolder = "C:/AppDataBase/" + user;
+
         try {
             if (isUser && isPass) {
-                userFolder = "C:/AppDataBase/" + user;
-
+                makeDir(userFolder);
                 path = "C:/AppDataBase/" + user + "/password.txt";
                 pathInstut = "C:/AppDataBase/" + user + "/Institute.txt";
                 pathMobile = "C:/AppDataBase/" + user + "/Mobile.txt";
                 dataIn("password", path, pass);
                 dataIn("institute", pathInstut, instut);
                 dataIn("mobile", pathMobile, mobile);
+                notify(event,"Registration Successfull");
 
             } else {
                 System.out.println("Something went Wrong");
+                if (!isUser || !isPass) {
+                    userLbl.setText("Invalid username");
+
+                    passLbl.setText("Invalid password or username");
+                }
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -76,6 +99,11 @@ public class SignUpCtrl {
             System.out.println("exists");
         }
 
+    }
+
+    public void notify(ActionEvent event,String msg) throws IOException {
+        NotifyFactory notf = new NotifyFactory();
+        notf.notificationInit(event,msg);
     }
 
     public void dataIn(String sl, String path, String temp) throws FileNotFoundException, IOException {
@@ -98,6 +126,14 @@ public class SignUpCtrl {
         } else {
             return false;
         }
+    }
+    
+    
+    public void closeWindowOnButton(Button b) {
+        // get a handle to the stage
+        Stage stage = (Stage) b.getScene().getWindow();
+        // do what you have to do
+        stage.close();
     }
 
 }
