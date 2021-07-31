@@ -18,15 +18,8 @@
 
 }
 
-.menu-button > .arrow-button {
-    -fx-padding: 0;
-}
 
-.menu-button > .arrow-button > .arrow {
-    -fx-padding: 0;
-}
-
-.menu-button{
+.picButton{
 
     -fx-background-radius: 5em; 
     -fx-min-width: 70px;  

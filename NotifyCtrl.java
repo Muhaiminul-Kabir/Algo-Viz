@@ -21,12 +21,15 @@ public class NotifyCtrl {
     @FXML
     Button okB;
      
+    LoginCtrl end;
+    
     public void showMsg(String msg){
         notifyLbl.setText(msg);
         
     }
     public void action(ActionEvent event){
-        LoginCtrl end = new LoginCtrl();
+       
+        end = new LoginCtrl();
         end.closeWindowOnButton(okB);
     }
     

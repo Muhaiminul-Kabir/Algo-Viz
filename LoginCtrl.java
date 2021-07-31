@@ -13,6 +13,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -21,23 +23,42 @@ import javafx.stage.Stage;
  * @author ASUS
  */
 public class LoginCtrl {
-    @FXML 
+
+    @FXML
     Button loginB;
-    @FXML 
+    @FXML
     TextField userIn;
-    
-    
+    @FXML
+    PasswordField passIn;
+     @FXML
+     Label passInLbl;
+    @FXML
+    Label userInLbl;
+
     private Stage stage;
     private Scene scene;
     private Parent root;
 
-    
-    
-    public void login(ActionEvent event) throws IOException {
-        
+    AccessData API;
+
+    public void login(ActionEvent event) throws IOException, Exception {
+        API = new AccessData();
         String userName = userIn.getText();
-        closeWindowOnButton(loginB);
-        dashInit(event,userName);
+
+        
+
+        if (API.matchPass(userName).equals("err")) {
+            System.out.println("Invalid User");
+            userInLbl.setText("Invalid user");
+        } else if (API.matchPass(userName).equals(passIn.getText())) {
+            closeWindowOnButton(loginB);
+            dashInit(event, userName);
+            
+        }
+        else{
+            passInLbl.setText("Incorrect password");
+        }
+
     }
 
     public void signUP(ActionEvent event) throws IOException {
@@ -61,8 +82,11 @@ public class LoginCtrl {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        stage.setX(10);
+        stage.setY(10);
+
     }
-    
+
     public void closeWindowOnButton(Button b) {
         // get a handle to the stage
         Stage stage = (Stage) b.getScene().getWindow();
