@@ -43,7 +43,7 @@
 }
 
 .loginB:hover {
-    -fx-background-color: violet;
+    -fx-background-color: cyan;
     -fx-background-radius: 5px;
 
 

@@ -45,9 +45,10 @@ public class SignUpCtrl {
     private Stage stage;
     private Scene scene;
     private Parent root;
-
+    public String user;
+    
+   
     public void saveUser(ActionEvent event) {
-        String user;
         user = regUser.getText();
         String pass = regPass.getText();
         String instut = regInstut.getText();
@@ -60,7 +61,7 @@ public class SignUpCtrl {
         String userFolder;
         String path;
         String pathInstut;
-        String pathMobile;
+        String pathMobile, pathPicFld, pathPic;
 
         userFolder = "C:/AppDataBase/" + user;
 
@@ -70,10 +71,15 @@ public class SignUpCtrl {
                 path = "C:/AppDataBase/" + user + "/password.txt";
                 pathInstut = "C:/AppDataBase/" + user + "/Institute.txt";
                 pathMobile = "C:/AppDataBase/" + user + "/Mobile.txt";
+                pathPicFld = "C:/AppDataBase/" + user + "/Photos";
+                pathPic = "C:/AppDataBase/" + user + "/Photos" + "/proPic.txt";
+
+                makeDir(pathPicFld);
                 dataIn("password", path, pass);
                 dataIn("institute", pathInstut, instut);
                 dataIn("mobile", pathMobile, mobile);
-                notify(event,"Registration Successfull");
+                //dataIn("mobile", pathPic, "fuid.png");
+                proPicSetter(event,user);
 
             } else {
                 System.out.println("Something went Wrong");
@@ -100,11 +106,11 @@ public class SignUpCtrl {
         }
 
     }
-
-    public void notify(ActionEvent event,String msg) throws IOException {
-        NotifyFactory notf = new NotifyFactory();
-        notf.notificationInit(event,msg);
+    
+    public String getUser(){
+        return user;
     }
+    
 
     public void dataIn(String sl, String path, String temp) throws FileNotFoundException, IOException {
         FileOutputStream fout = new FileOutputStream(path);
@@ -127,13 +133,28 @@ public class SignUpCtrl {
             return false;
         }
     }
-    
-    
+
     public void closeWindowOnButton(Button b) {
         // get a handle to the stage
         Stage stage = (Stage) b.getScene().getWindow();
         // do what you have to do
         stage.close();
+    }
+
+    public void proPicSetter(ActionEvent event , String user) throws IOException{
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/study/setProPic.fxml"));
+         root = loader.load();
+
+        ProPicCtrl p1 = loader.getController();
+       	p1.setUser(user);
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        stage.setX(400);
+        stage.setY(400);
+
     }
 
 }

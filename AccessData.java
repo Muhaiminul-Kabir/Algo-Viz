@@ -6,6 +6,11 @@
 package study;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -14,6 +19,7 @@ import java.nio.file.Paths;
  * @author ASUS
  */
 public class AccessData {
+
     public String readFileAsString(String fileName) throws Exception {
         String data = "";
         data = new String(Files.readAllBytes(Paths.get(fileName)));
@@ -21,18 +27,54 @@ public class AccessData {
     }
 
     public String matchPass(String user) throws Exception {
-         String data;
+        String data;
         String path = "C:/AppDataBase/" + user + "/password.txt";
         File tmpDir = new File(path);
         boolean exists = tmpDir.exists();
-        if(!exists){
+        if (!exists) {
             data = "err";
-        }
-        else{ 
+        } else {
             data = readFileAsString(path);
         }
 
-
         return data;
     }
+    
+    
+    
+    public static void filelist() {
+        File folder = new File("C:/AppDataBase/Afish/Photos");
+        File[] listOfFiles = folder.listFiles();
+
+        for (File file : listOfFiles) {
+            if (file.isFile()) {
+                String[] filename = file.getName().split("\\.(?=[^\\.]+$)"); //split filename from it's extension
+                if (filename[0].equalsIgnoreCase("user")) //matching defined filename
+                {
+                    System.out.println("File exist: " + filename[0] + "." + filename[1]); // match occures.Apply any condition what you need
+                }
+            }
+        }
+    }
+
+    
+    
+    public void rename(String patht , String pathr ){
+        
+        File file = new File(patht);
+  
+        File rename = new File(pathr);
+  
+        boolean flag = file.renameTo(rename);
+  
+        if (flag == true) {
+            System.out.println("File Successfully Rename");
+        }
+        else {
+            System.out.println("Operation Failed");
+        }
+    
+    }
+    
+
 }

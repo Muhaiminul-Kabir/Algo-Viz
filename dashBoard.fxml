@@ -16,7 +16,7 @@
           <children>
             <Button fx:id="DP" layoutX="25.0" minHeight="83.0" minWidth="84.25030517578125" mnemonicParsing="false" prefHeight="87.0" prefWidth="85.0" styleClass="picButton" text="" AnchorPane.bottomAnchor="10.0">
               <graphic>
-                <ImageView fitHeight="83.0" fitWidth="84.25030517578125" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="proPic" fitHeight="83.0" fitWidth="84.25030517578125" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                   <image>
                     <Image url="@images/user.png" />
                   </image>

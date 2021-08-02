@@ -5,6 +5,7 @@
  */
 package study;
 
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -76,7 +77,7 @@ public class LoginCtrl {
         root = loader.load();
 
         DashBoardCtrl myDash = loader.getController();
-        //	myDash.displayName(username);
+        myDash.setUser(user);
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
