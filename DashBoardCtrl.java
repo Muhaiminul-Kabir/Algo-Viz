@@ -10,7 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
+import static study.AccessData.*;
 /**
  *
  * @author ASUS
@@ -23,22 +23,21 @@ class DashBoardCtrl {
     ImageView proPic;
     
     Image pic;
-    private String user;
+    private String ext;
     private String path;
-    
+    String user;
     String imagePath;
-    
-    
-    public void setImage(ActionEvent event){
-        imagePath = "C:/AppDataBase" + user + "/user"+".";
-        proPic.setImage(new Image(imagePath));
-        // EDIT FROM HERE
-    }
-    
+   
+    /*
     void setUser(String user){
         this.user = user;
     }
-    
+    */
+   
+    void setUser(String user) {
+        this.user = user;
+
+    }//bug here
     
     
    

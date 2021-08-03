@@ -5,7 +5,6 @@
  */
 package study;
 
-import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import static study.AccessData.*;
 
 /**
  *
@@ -48,12 +48,13 @@ public class LoginCtrl {
 
         
 
-        if (API.matchPass(userName).equals("err")) {
+        if (matchPassAPI(userName).equals("err")) {
             System.out.println("Invalid User");
             userInLbl.setText("Invalid user");
-        } else if (API.matchPass(userName).equals(passIn.getText())) {
+        } else if (matchPassAPI(userName).equals(passIn.getText())) {
             closeWindowOnButton(loginB);
-            dashInit(event, userName);
+            System.out.println(filelist(userName));
+            dashInit(event,userName);
             
         }
         else{
@@ -74,17 +75,17 @@ public class LoginCtrl {
 
     public void dashInit(ActionEvent event, String user) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/study/dashBoard.fxml"));
-        root = loader.load();
+         root = loader.load();
 
-        DashBoardCtrl myDash = loader.getController();
-        myDash.setUser(user);
+        DashBoardCtrl p1 = loader.getController();
+       	p1.setUser(user);
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        stage.setX(10);
-        stage.setY(10);
+        stage.setX(400);
+        stage.setY(400);
 
     }
 

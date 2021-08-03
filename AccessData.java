@@ -20,13 +20,13 @@ import java.nio.file.Paths;
  */
 public class AccessData {
 
-    public String readFileAsString(String fileName) throws Exception {
+    public static String readFileAsString(String fileName) throws Exception {
         String data = "";
         data = new String(Files.readAllBytes(Paths.get(fileName)));
         return data;
     }
 
-    public String matchPass(String user) throws Exception {
+    public static String matchPassAPI(String user) throws Exception {
         String data;
         String path = "C:/AppDataBase/" + user + "/password.txt";
         File tmpDir = new File(path);
@@ -42,10 +42,10 @@ public class AccessData {
     
     
     
-    public static void filelist() {
-        File folder = new File("C:/AppDataBase/Afish/Photos");
+    public static String filelist(String user) {
+        File folder = new File("C:/AppDataBase/"+user +"/Photos");
         File[] listOfFiles = folder.listFiles();
-
+        String ext = null;
         for (File file : listOfFiles) {
             if (file.isFile()) {
                 String[] filename = file.getName().split("\\.(?=[^\\.]+$)"); //split filename from it's extension
@@ -53,8 +53,10 @@ public class AccessData {
                 {
                     System.out.println("File exist: " + filename[0] + "." + filename[1]); // match occures.Apply any condition what you need
                 }
+                ext = filename[1];
             }
         }
+        return ext;
     }
 
     
