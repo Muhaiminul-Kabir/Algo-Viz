@@ -19,15 +19,31 @@
 }
 
 
-.picButton{
+.picButton:hover{
+    -fx-border-color: black;
 
-    -fx-background-radius: 5em; 
-    -fx-min-width: 70px;  
-
-    -fx-min-height: 70px; 
-    -fx-max-width: 70px; 
-    -fx-max-height: 70px;
 }
+
+.split-pane:horizontal > .split-pane-divider {
+   -fx-background-color: transparent;
+}
+.split-pane:vertical > .split-pane-divider {
+   -fx-background-color: transparent;
+}
+
+
+.menuButton{
+    
+    -fx-background-color: transparent;
+    
+}
+
+.menuButton:hover{
+    
+    -fx-background-color: gray;
+    
+}
+
 
 
 
@@ -98,6 +114,8 @@
 
 
 }
+
+
 .roundB{
     -fx-background-color: black;
     -fx-border-radius:5px;

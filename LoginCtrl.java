@@ -54,7 +54,7 @@ public class LoginCtrl {
         } else if (matchPassAPI(userName).equals(passIn.getText())) {
             closeWindowOnButton(loginB);
             System.out.println(filelist(userName));
-            dashInit(event,userName);
+            mainMenu(event,userName);
             
         }
         else{
@@ -72,22 +72,24 @@ public class LoginCtrl {
         stage.show();
 
     }
+    
+    public void mainMenu(ActionEvent event,String user) throws IOException {
 
-    public void dashInit(ActionEvent event, String user) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/study/dashBoard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/study/main.fxml"));
          root = loader.load();
 
-        DashBoardCtrl p1 = loader.getController();
-       	p1.setUser(user);
+        MainMenuCtrl p2 = loader.getController();
+       	
+        p2.setImg(user);
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        stage.setX(400);
-        stage.setY(400);
-
     }
+    
+
+    
 
     public void closeWindowOnButton(Button b) {
         // get a handle to the stage
