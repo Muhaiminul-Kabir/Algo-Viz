@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -25,19 +26,21 @@ public class ProPicCtrl {
 
     @FXML
     TextField filePath;
+    @FXML
+    Label noProPicAlrt;
 
     NotifyFactory notf;
     SignUpCtrl userIns;
     AccessData API;
 
     String user;
-    String photoPath;
+    String photoPath = "err";
     String pathPic;
 
     public void choosePic(ActionEvent event) {
         userIns = new SignUpCtrl();
         System.out.println(getUser());
-         
+
         pathPic = "C:/AppDataBase/" + getUser() + "/Photos/";
         Stage stage = new Stage();
         FileChooser fileChooser = new FileChooser();
@@ -53,38 +56,53 @@ public class ProPicCtrl {
         File file = fileChooser.showOpenDialog(stage);
 
         if (file != null) {
-            // pickUpPathField it's your TextField fx:id
+
             filePath.setText(file.getPath());
             photoPath = filePath.getText();
         } else {
-            System.out.println("error"); // or something else
+            System.out.println("Error");
+            System.out.println("No Picture File Selected");
+            noProPicAlrt.setText("Please select a picture");
+
         }
 
     }
 
     public void setPic(ActionEvent event) throws IOException {
-        String ext = "";
+        if (photoPath.equals("err")) {
+            noProPicAlrt.setText("Please select a picture");
+        } else {
+            String ext = "";
 
-        int i = photoPath.lastIndexOf('.');
-        if (i >= 0) {
-            ext =  photoPath.substring(i + 1);
+            int i = photoPath.lastIndexOf('.');
+            if (i >= 0) {
+                ext = photoPath.substring(i + 1);
+            }
+
+            String pathDes = pathPic + "user" + "." + ext;
+
+            File source = new File(photoPath);
+            File dest = new File(pathDes);
+
+            copyFileUsingStream(source, dest);
+            System.out.println("Profile picture sat successfully");
+            sendNotification(event);
         }
-        
-        
-        String pathDes = pathPic + "user"+ "." + ext;
-        
-        
+    }
+
+    public void skipped(ActionEvent event) throws IOException {
+        photoPath = "src/study/images/user.png";
+
+        String pathDes = pathPic + "user.png";
+
         File source = new File(photoPath);
         File dest = new File(pathDes);
 
         copyFileUsingStream(source, dest);
-        System.out.println("Profile picture sat successfully");
-        
-        
+        System.out.println("Defualt profile picture sat successfully");
         sendNotification(event);
     }
-    
-    
+
     public void copyFileUsingStream(File source, File dest) throws IOException {
         InputStream is = null;
         OutputStream os = null;
@@ -101,8 +119,6 @@ public class ProPicCtrl {
             os.close();
         }
     }
-    
-    
 
     public void sendNotification(ActionEvent event) throws IOException {
         notify(event, "Registration Successfull");
@@ -110,7 +126,7 @@ public class ProPicCtrl {
 
     public void notify(ActionEvent event, String msg) throws IOException {
         notf = new NotifyFactory();
-        notf.notificationInit(event, msg);
+        notf.notificationInit(event, msg, true);
     }
 
     public String getPhoto() {

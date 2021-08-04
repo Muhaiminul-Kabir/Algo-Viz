@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import static study.AccessData.*;
 //(myStr1 == null || myStr1.length() == 0);
 
 /**
@@ -46,16 +47,15 @@ public class SignUpCtrl {
     private Scene scene;
     private Parent root;
     public String user;
-    
-   
+
     public void saveUser(ActionEvent event) {
         user = regUser.getText();
         String pass = regPass.getText();
         String instut = regInstut.getText();
         String mobile = regMobile.getText();
 
-        boolean isPass = checkUser(pass);
-        boolean isUser = checkUser(user);
+        boolean isPass = checkString(pass);
+        boolean isUser = checkString(user);
         System.out.println(isPass);
 
         String userFolder;
@@ -67,20 +67,35 @@ public class SignUpCtrl {
 
         try {
             if (isUser && isPass) {
-                makeDir(userFolder);
-                path = "C:/AppDataBase/" + user + "/password.txt";
-                pathInstut = "C:/AppDataBase/" + user + "/Institute.txt";
-                pathMobile = "C:/AppDataBase/" + user + "/Mobile.txt";
-                pathPicFld = "C:/AppDataBase/" + user + "/Photos";
-                pathPic = "C:/AppDataBase/" + user + "/Photos" + "/proPic.txt";
+                if (!isUserExists(user)) {
+                    makeDir(userFolder);
+                    path = "C:/AppDataBase/" + user + "/password.txt";
+                    pathInstut = "C:/AppDataBase/" + user + "/Institute.txt";
+                    pathMobile = "C:/AppDataBase/" + user + "/Mobile.txt";
+                    pathPicFld = "C:/AppDataBase/" + user + "/Photos";
+                    pathPic = "C:/AppDataBase/" + user + "/Photos" + "/proPic.txt";
 
-                makeDir(pathPicFld);
-                dataIn("password", path, pass);
-                dataIn("institute", pathInstut, instut);
-                dataIn("mobile", pathMobile, mobile);
-                //dataIn("mobile", pathPic, "fuid.png");
-                proPicSetter(event,user);
+                    makeDir(pathPicFld);
+                    dataIn("password", path, pass);
+                    
+                    if(checkString(instut) && checkString(mobile)){
+                        dataIn("institute", pathInstut, instut);
+                        dataIn("mobile", pathMobile, mobile);
+                    
+                    } else{
+                        dataIn("institute", pathInstut, "Not provided");
+                        dataIn("mobile", pathMobile, "Not provided");
+                    
+                    }
 
+                    //dataIn("mobile", pathPic, "fuid.png");
+                    proPicSetter(event, user);
+
+                }
+                else{
+                    NotifyFactory message = new NotifyFactory();
+                    message.notificationInit(event,user+ " Acoount already created",false);
+                }
             } else {
                 System.out.println("Something went Wrong");
                 if (!isUser || !isPass) {
@@ -106,11 +121,10 @@ public class SignUpCtrl {
         }
 
     }
-    
-    public String getUser(){
+
+    public String getUser() {
         return user;
     }
-    
 
     public void dataIn(String sl, String path, String temp) throws FileNotFoundException, IOException {
         FileOutputStream fout = new FileOutputStream(path);
@@ -126,7 +140,7 @@ public class SignUpCtrl {
 
     }
 
-    public boolean checkUser(String user) {
+    public boolean checkString(String user) {
         if ((user.length() > 0)) {
             return true;
         } else {
@@ -141,19 +155,19 @@ public class SignUpCtrl {
         stage.close();
     }
 
-    public void proPicSetter(ActionEvent event , String user) throws IOException{
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("/study/setProPic.fxml"));
-         root = loader.load();
+    public void proPicSetter(ActionEvent event, String user) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/study/setProPic.fxml"));
+        root = loader.load();
 
         ProPicCtrl p1 = loader.getController();
-       	p1.setUser(user);
+        p1.setUser(user);
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         stage.setX(400);
-        stage.setY(400);
+        stage.setY(200);
 
     }
 

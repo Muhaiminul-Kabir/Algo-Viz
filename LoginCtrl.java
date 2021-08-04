@@ -43,7 +43,7 @@ public class LoginCtrl {
     AccessData API;
 
     public void login(ActionEvent event) throws IOException, Exception {
-        API = new AccessData();
+       
         String userName = userIn.getText();
 
         
@@ -80,7 +80,7 @@ public class LoginCtrl {
 
         MainMenuCtrl p2 = loader.getController();
        	
-        p2.setImg(user);
+        p2.setProfile(user);
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -91,7 +91,7 @@ public class LoginCtrl {
 
     
 
-    public void closeWindowOnButton(Button b) {
+    public static void closeWindowOnButton(Button b) {
         // get a handle to the stage
         Stage stage = (Stage) b.getScene().getWindow();
         // do what you have to do

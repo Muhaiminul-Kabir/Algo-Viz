@@ -25,7 +25,7 @@ public class Study extends Application {
     
     @Override
     public void start(Stage stage) throws IOException {
-                        makeDir();
+                        makeDirMAIN();
 			Parent root = FXMLLoader.load(getClass().getResource("/study/loginPage.fxml"));
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
@@ -39,7 +39,7 @@ public class Study extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    public  void makeDir() {
+    public  void makeDirMAIN() {
         File f1 = new File("C:/AppDataBase");
         //Creating a folder using mkdir() method  
         boolean bool = f1.mkdir();        

@@ -21,9 +21,9 @@
       <URL value="@style.css" />
     </stylesheets>
   </TextField>
-  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="236.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="219.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
     <image>
-      <Image url="@images/user-outline-people-person-icon-with-png-and-vector-format-137553.png" />
+      <Image url="@images/user.png" />
     </image>
   </ImageView>
   <TextField fx:id="regMobile" layoutX="233.0" layoutY="402.0" prefHeight="48.0" prefWidth="293.0" promptText="" styleClass="text">

@@ -23,19 +23,23 @@ public class NotifyFactory {
     private Scene scene;
     private Parent root;
     
-    public void notificationInit(ActionEvent event, String msg) throws IOException{
+    public void notificationInit(ActionEvent event, String msg, boolean good) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/study/notification.fxml"));
         root = loader.load();
 
-        NotifyCtrl alert = loader.getController();
-      	alert.showMsg(msg);
+        NotifyCtrl notf = loader.getController();
+      	if(good){
+            notf.showMsg(msg);
+        } else {
+            notf.alert(msg);
+        }
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         stage.setX(400);
-        stage.setY(400);
+        stage.setY(200);
         
     }
 }

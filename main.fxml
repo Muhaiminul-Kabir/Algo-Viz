@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="study.MainMenuCtrl">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1157.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="study.MainMenuCtrl">
   <children>
     <SplitPane dividerPositions="0.11988847583643122" focusTraversable="true" layoutX="0.0" layoutY="0.0" prefHeight="600.0" prefWidth="1080.0" styleClass="split-pane-divider">
       <items>
@@ -18,7 +18,7 @@
               <graphic>
                 <ImageView fx:id="pic" fitHeight="90.0" fitWidth="85.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                   <image>
-                    <Image url="@../../../../../Pictures/images.jpg" />
+                    <Image url="@images/user.png" />
                   </image>
                 </ImageView>
               </graphic>
@@ -88,7 +88,7 @@
             <URL value="@style.css" />
           </stylesheets>
         </AnchorPane>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="386.0" styleClass="anchorP">
+        <AnchorPane fx:id="winContainer" minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="386.0" styleClass="anchorP">
           <stylesheets>
             <URL value="@style.css" />
           </stylesheets>
@@ -98,5 +98,6 @@
         <URL value="@style.css" />
       </stylesheets>
     </SplitPane>
+    <Button fx:id="logOutB" layoutX="1087.0" layoutY="27.0" mnemonicParsing="false" onAction="#logOut" prefHeight="65.00006103515625" prefWidth="56.0" text="" />
   </children>
 </AnchorPane>

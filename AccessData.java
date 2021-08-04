@@ -7,12 +7,15 @@ package study;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -39,6 +42,19 @@ public class AccessData {
 
         return data;
     }
+    
+    
+    public static boolean isUserExists(String user) throws Exception {
+        
+        String path = "C:/AppDataBase/" + user;
+        File tmpDir = new File(path);
+        boolean exists = tmpDir.exists();
+        return exists;
+
+        
+    }
+    
+    
     
     
     
@@ -76,6 +92,14 @@ public class AccessData {
             System.out.println("Operation Failed");
         }
     
+    }
+    
+   
+    public static void getSourceImage(String path,ImageView view) throws FileNotFoundException{
+       
+        FileInputStream input = new FileInputStream(path);
+        Image image = new Image(input);
+        view.setImage(image);
     }
     
 

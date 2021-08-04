@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="184.0" prefWidth="600.000199999995" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="study.NotifyCtrl">
+<AnchorPane id="AnchorPane" minHeight="156.0" prefHeight="156.0" prefWidth="570.000199999995" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="study.NotifyCtrl">
   <children>
     <ImageView fitHeight="77.5" fitWidth="103.33333333333333" layoutX="28.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
-    <Button fx:id="okB" layoutX="273.0" layoutY="138.0" mnemonicParsing="false" onAction="#action" text="OK" />
-    <Label fx:id="notifyLbl" layoutX="64.0" layoutY="41.0" prefHeight="77.5" prefWidth="472.0" text="Label" />
+    <Button fx:id="okB" layoutX="273.0" layoutY="115.0" mnemonicParsing="false" onAction="#action" text="OK" />
+    <Label fx:id="notifyLbl" layoutX="139.0" layoutY="34.0" prefHeight="74.0" prefWidth="397.0" styleClass="msgtxt" text="ddfdf" />
+    <ImageView fx:id="alertIcon" fitHeight="70.0" fitWidth="70.0" layoutX="27.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@images/wrong.png" />
+      </image>
+    </ImageView>
   </children>
 </AnchorPane>

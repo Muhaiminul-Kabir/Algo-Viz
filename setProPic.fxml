@@ -9,18 +9,23 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="study.ProPicCtrl">
   <children>
-    <TextField fx:id="filePath" layoutX="59.0" layoutY="154.0" prefWidth="200.0" />
-    <Button fx:id="fileChs" layoutX="291.0" layoutY="154.0" mnemonicParsing="false" onAction="#choosePic" text="..." />
-    <Label alignment="CENTER" layoutX="138.0" layoutY="35.0" prefHeight="62.0" prefWidth="281.0" text="Set Profile Picture" />
-    <Button layoutX="414.0" layoutY="297.0" mnemonicParsing="false" styleClass="roundB" text="SKIP">
+    <TextField fx:id="filePath" layoutX="167.0" layoutY="156.0" prefWidth="200.0" />
+    <Button fx:id="fileChs" layoutX="386.0" layoutY="155.0" mnemonicParsing="false" onAction="#choosePic" text="..." />
+    <Label alignment="CENTER" layoutX="151.0" layoutY="53.0" prefHeight="62.0" prefWidth="281.0" text="Set Profile Picture" />
+    <Button fx:id="skipButton" layoutX="359.0" layoutY="252.0" mnemonicParsing="false" onAction="#skipped" styleClass="roundB" text="SKIP">
       <stylesheets>
         <URL value="@style.css" />
       </stylesheets>
     </Button>
-    <Button layoutX="167.0" layoutY="282.0" mnemonicParsing="false" onAction="#setPic" styleClass="loginB" text="Set Profile Pic">
+    <Button layoutX="167.0" layoutY="252.0" mnemonicParsing="false" onAction="#setPic" styleClass="loginB" text="Set Profile Pic">
       <stylesheets>
         <URL value="@style.css" />
       </stylesheets>
     </Button>
+    <Label fx:id="noProPicAlrt" layoutX="166.0" layoutY="200.0" prefWidth="251.0" text="Label" textFill="RED">
+      <stylesheets>
+        <URL value="@style.css" />
+      </stylesheets>
+    </Label>
   </children>
 </AnchorPane>

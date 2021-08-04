@@ -5,6 +5,9 @@
  */
 package study;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +17,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import static study.AccessData.*;
 
 /**
  *
@@ -25,6 +31,8 @@ public class NotifyCtrl {
     Label notifyLbl;
     @FXML
     Button okB;
+     @FXML
+    ImageView alertIcon;
      
     LoginCtrl end;
     
@@ -36,10 +44,22 @@ public class NotifyCtrl {
     
     
     
-    public void showMsg(String msg){
+    public void showMsg(String msg) throws FileNotFoundException{
+        String fPath = "src/study/images/right.png";
+        getSourceImage(fPath,alertIcon);
         notifyLbl.setText(msg);
         
     }
+    
+    public void alert(String msg) throws FileNotFoundException{
+        String fPath = "src/study/images/wrong.png";
+        getSourceImage(fPath,alertIcon);
+        notifyLbl.setText(msg);
+        
+        okB.setText("LOG IN");
+        
+    }
+    
     public void action(ActionEvent event){
        
         end = new LoginCtrl();

@@ -44,6 +44,11 @@
     
 }
 
+.menuButton:pressed{
+    
+    -fx-background-color: MediumSeaGreen;
+    
+}
 
 
 
@@ -59,12 +64,24 @@
 }
 
 .loginB:hover {
-    -fx-background-color: cyan;
+    -fx-background-color: #EA4C46;
     -fx-background-radius: 5px;
 
 
     -fx-background-insets: 0;
 }
+
+.loginB:pressed {
+    -fx-background-color: black;
+    -fx-background-radius: 5px;
+
+    -fx-text-fill: red;
+
+    -fx-background-insets: 0;
+}
+
+
+
 
 .dashButton{
     
@@ -99,7 +116,11 @@
     -fx-font-size: 15;
     -fx-prompt-text-fill: #000000;
     -fx-background-color: transparent;
-    -fx-border-width: 3;
+    -fx-border-style: solid;
+    -fx-border-color: gray;
+    -fx-border-width: 0 0 3 0;
+    
+    
     -fx-text-fill: black;
 
 
@@ -127,15 +148,25 @@
 
 }
 .roundB:hover {
-    -fx-background-color: violet;
+    -fx-background-color: #202020;
     -fx-background-radius: 5px;
 
 
     -fx-background-insets: 0;
 }
+
+.roundB:pressed {
+    -fx-background-color: red;
+    -fx-background-radius: 5px;
+
+    -fx-text-fill: black;
+    -fx-background-insets: 0;
+}
+
+
 .msgtxt{
     -fx-font-weight: bold;
-    -fx-font-size: 20;
+    -fx-font-size: 16;
 }
 
 
