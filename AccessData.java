@@ -42,24 +42,18 @@ public class AccessData {
 
         return data;
     }
-    
-    
+
     public static boolean isUserExists(String user) throws Exception {
-        
+
         String path = "C:/AppDataBase/" + user;
         File tmpDir = new File(path);
         boolean exists = tmpDir.exists();
         return exists;
 
-        
     }
-    
-    
-    
-    
-    
+
     public static String filelist(String user) {
-        File folder = new File("C:/AppDataBase/"+user +"/Photos");
+        File folder = new File("C:/AppDataBase/" + user + "/Photos");
         File[] listOfFiles = folder.listFiles();
         String ext = null;
         for (File file : listOfFiles) {
@@ -75,32 +69,27 @@ public class AccessData {
         return ext;
     }
 
-    
-    
-    public void rename(String patht , String pathr ){
-        
+    public static void rename(String patht, String pathr) {
+
         File file = new File(patht);
-  
+
         File rename = new File(pathr);
-  
+
         boolean flag = file.renameTo(rename);
-  
+
         if (flag == true) {
-            System.out.println("File Successfully Rename");
-        }
-        else {
+            System.out.println("File Successfully Renamed");
+        } else {
             System.out.println("Operation Failed");
         }
-    
+
     }
-    
-   
-    public static void getSourceImage(String path,ImageView view) throws FileNotFoundException{
-       
+
+    public static void getSourceImage(String path, ImageView view) throws FileNotFoundException {
+
         FileInputStream input = new FileInputStream(path);
         Image image = new Image(input);
         view.setImage(image);
     }
-    
 
 }

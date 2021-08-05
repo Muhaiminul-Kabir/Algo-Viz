@@ -7,9 +7,16 @@
 
 .anchorP{
     -fx-background-color: white;
+
 }
 
+.winPane{
 
+    -fx-background-color: white;
+    -fx-border-style: solid;
+    -fx-border-color: gray;
+    -fx-border-width: 0 0 0 3;    
+}
 
 .pane2{
 
@@ -21,6 +28,10 @@
 
 .picButton:hover{
     -fx-border-color: black;
+
+}
+
+.split-pane:horizontal {
 
 }
 
@@ -76,16 +87,16 @@
     
 }
 
-.logOutB:hover{
+.logOutB:hover {
     
     -fx-background-color: gray;
     
 }
 
-.logOutB:pressed{
+.logOutB:pressed {
     
     -fx-background-color: #5b6467;
-    }
+}
 
 
 

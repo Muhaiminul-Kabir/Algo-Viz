@@ -10,11 +10,11 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1168.000199999995" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="study.MainMenuCtrl">
   <children>
-    <SplitPane dividerPositions="0.11988847583643122" focusTraversable="true" layoutX="0.0" layoutY="0.0" prefHeight="600.0" prefWidth="1080.0" styleClass="split-pane-divider">
+    <SplitPane fx:id="splitPane" dividerPositions="" focusTraversable="true" layoutX="0.0" layoutY="0.0" prefHeight="600.0" prefWidth="1095.0" styleClass="split-pane-divider">
       <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="anchorP">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="1079.0" styleClass="anchorP">
           <children>
-            <Button fx:id="profileB" layoutX="28.0" layoutY="506.0" minHeight="66.0" minWidth="76.00006103515625" mnemonicParsing="false" prefHeight="66.0" prefWidth="76.00006103515625" styleClass="menuButton" text="">
+            <Button fx:id="profileB" layoutX="28.0" layoutY="506.0" minHeight="66.0" minWidth="76.00006103515625" mnemonicParsing="false" onAction="#loadProfileWindow" prefHeight="66.0" prefWidth="76.00006103515625" styleClass="menuButton" text="">
               <graphic>
                 <ImageView fx:id="pic" fitHeight="63.0" fitWidth="63.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -59,7 +59,7 @@
                 <URL value="@style.css" />
               </stylesheets>
             </Button>
-            <Button layoutX="0.0" layoutY="294.0" minHeight="81.0" minWidth="126.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="126.0" styleClass="menuButton" text="">
+            <Button layoutX="3.0" layoutY="294.0" minHeight="81.0" minWidth="126.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="126.0" styleClass="menuButton" text="">
               <graphic>
                 <ImageView fitHeight="76.00006103515625" fitWidth="76.00006103515625" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -83,12 +83,8 @@
                 <URL value="@style.css" />
               </stylesheets>
             </Button>
+            <AnchorPane fx:id="winContainer" layoutX="129.0" layoutY="0.0" prefHeight="600.0" prefWidth="974.0" />
           </children>
-          <stylesheets>
-            <URL value="@style.css" />
-          </stylesheets>
-        </AnchorPane>
-        <AnchorPane fx:id="winContainer" minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="386.0" styleClass="anchorP">
           <stylesheets>
             <URL value="@style.css" />
           </stylesheets>
@@ -98,9 +94,9 @@
         <URL value="@style.css" />
       </stylesheets>
     </SplitPane>
-    <Button fx:id="logOutB" layoutX="1095.0" layoutY="28.0" minHeight="62.999900000002526" minWidth="62.999900000002526" mnemonicParsing="false" onAction="#logout" prefHeight="63.0" prefWidth="62.999900000002526" styleClass="logOutB" text="">
+    <Button fx:id="logOutB" layoutX="1105.0" layoutY="27.0" minHeight="62.999900000002526" minWidth="62.999900000002526" mnemonicParsing="false" onAction="#logout" prefHeight="63.0" prefWidth="62.999900000002526" styleClass="menuButton" text="">
       <graphic>
-        <ImageView fitHeight="46.0" fitWidth="46.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="40.0" fitWidth="40.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
           <image>
             <Image url="@images/log-out.png" />
           </image>

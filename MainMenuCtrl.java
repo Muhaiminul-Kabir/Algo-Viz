@@ -25,67 +25,123 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.imageio.ImageIO;
+
 import static study.AccessData.*;
 import static study.LoginCtrl.*;
+
 /**
  *
  * @author ASUS
  */
-public class MainMenuCtrl {
+public class MainMenuCtrl{
 
     @FXML
     ImageView pic;
     @FXML
     Button profileB;
-     @FXML
+    @FXML
     AnchorPane winContainer;
     @FXML
     Button logOutB;
-      
-    String user;
+    @FXML
+    SplitPane splitPane;
 
+    String user;
     String path;
+    
 
     void setProfile(String user) throws FileNotFoundException, IOException {
-         String path = "C:/AppDataBase/" + user + "/Photos";
+        String path = "C:/AppDataBase/" + user + "/Photos";
         String file = path + "/user." + filelist(user);
-        getSourceImage(file,pic);
+        getSourceImage(file, pic);
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    //  TO BE DONE IN MID BREAK BY US
+    public void loadInsightWindow(ActionEvent event) throws IOException {
+    }
+
+    public void loadTimerWindow(ActionEvent event) throws IOException {
+    }
+
+    public void loadReminderWindow(ActionEvent event) throws IOException {
+    }
+
+    public void loadStudyWindow(ActionEvent event) throws IOException {
+    }
+
+    public void loadStickyNotesWindow(ActionEvent event) throws IOException {
+    }
+
+    //TO BE DONE IN MID BREAK BY US
+
+
+
+
+
+
+    public void loadProfileWindow(ActionEvent event) throws IOException {
+      
+        Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/study/profile.fxml"));
+        
+        winContainer.getChildren().add(newLoadedPane);
+    }
+
+
+
+
+
+
+
+
+
+
+    Stage stage;
+
+    public void logout(ActionEvent event) throws IOException {
+
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText("You're about to logout!");
+        alert.setContentText("Do you want to save before exiting?: ");
+
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            stage = (Stage) winContainer.getScene().getWindow();
+            System.out.println("You successfully logged out!");
+            stage.close();
+            loginInit(event);
+        }
+
+    }
+
+    public void loginInit(ActionEvent event) throws IOException {
+
+        Stage stage = new Stage();
+        stage.setResizable(false);
+        stage.resizableProperty().setValue(Boolean.FALSE);
+        Parent root = FXMLLoader.load(getClass().getResource("/study/loginPage.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
     }
     
     
-    
-    
-    
-    
-        Stage stage;
-	public void logout(ActionEvent event) {
-		
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Logout");
-		alert.setHeaderText("You're about to logout!");
-		alert.setContentText("Do you want to save before exiting?: ");
-		
-		if(alert.showAndWait().get() == ButtonType.OK){
-			stage = (Stage) winContainer.getScene().getWindow();
-			System.out.println("You successfully logged out!");
-			stage.close();
-		}
-		
-	}
-        
-        
-     
 
-    
 
-    
-    
-    
 }

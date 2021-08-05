@@ -17,6 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+
 import static study.AccessData.*;
 
 /**
@@ -78,7 +80,7 @@ public class LoginCtrl {
     public void mainMenu(ActionEvent event,String user) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/study/main.fxml"));
-         root = loader.load();
+        root = loader.load();
 
         MainMenuCtrl p2 = loader.getController();
        	
