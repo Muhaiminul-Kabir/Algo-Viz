@@ -22,7 +22,7 @@ import javafx.stage.Stage;
  *
  * @author ASUS
  */
-public class ProPicCtrl {
+public class ProPicCtrl extends NotifyFactory{
 
     @FXML
     TextField filePath;
@@ -41,7 +41,7 @@ public class ProPicCtrl {
         userIns = new SignUpCtrl();
         System.out.println(getUser());
 
-        pathPic = "C:/AppDataBase/" + getUser() + "/Photos/";
+        
         Stage stage = new Stage();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Upload File");
@@ -86,13 +86,16 @@ public class ProPicCtrl {
 
             copyFileUsingStream(source, dest);
             System.out.println("Profile picture sat successfully");
-            sendNotification(event);
+            
+            super.notificationInit(event, "Regis", true);
         }
     }
 
     public void skipped(ActionEvent event) throws IOException {
-        photoPath = "src/study/images/user.png";
+        if(photoPath.equals("err")){
+            photoPath = "src/study/images/user.png";
 
+        }
         String pathDes = pathPic + "user.png";
 
         File source = new File(photoPath);
@@ -100,7 +103,10 @@ public class ProPicCtrl {
 
         copyFileUsingStream(source, dest);
         System.out.println("Defualt profile picture sat successfully");
-        sendNotification(event);
+        System.out.println("photoPath :" +photoPath);
+        System.out.println("pathDes :"+pathDes);
+        
+        super.notificationInit(event, "Registration Successfull", true);
     }
 
     public void copyFileUsingStream(File source, File dest) throws IOException {
@@ -120,24 +126,16 @@ public class ProPicCtrl {
         }
     }
 
-    public void sendNotification(ActionEvent event) throws IOException {
-        notify(event, "Registration Successfull");
-    }
-
-    public void notify(ActionEvent event, String msg) throws IOException {
-        notf = new NotifyFactory();
-        notf.notificationInit(event, msg, true);
-    }
-
-    public String getPhoto() {
-        return photoPath;
-    }
+    
+    
 
     private String getUser() {
         return user;
     }
 
     void setUser(String user) {
+        pathPic = "C:/AppDataBase/" + user + "/Photos/";
+        
         this.user = user;
 
     }

@@ -66,6 +66,8 @@ public class LoginCtrl {
     public void signUP(ActionEvent event) throws IOException {
 
         Stage stage = new Stage();
+        stage.setResizable(false);
+        stage.resizableProperty().setValue(Boolean.FALSE);
         Parent root = FXMLLoader.load(getClass().getResource("/study/signUpPage.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -83,6 +85,8 @@ public class LoginCtrl {
         p2.setProfile(user);
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
+        stage.resizableProperty().setValue(Boolean.FALSE);
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -98,3 +102,4 @@ public class LoginCtrl {
         stage.close();
     }
 }
+

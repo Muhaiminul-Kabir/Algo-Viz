@@ -35,6 +35,9 @@ public class NotifyFactory {
         }
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.resizableProperty().setValue(Boolean.FALSE);
+        stage.setResizable(false);
+        
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

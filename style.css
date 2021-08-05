@@ -32,6 +32,22 @@
 }
 
 
+.xtraButton{
+    
+    -fx-background-color: transparent;
+    -fx-border-color : gray;
+}
+
+.xtraButton:hover{
+    
+    -fx-background-color: gray;
+    
+}
+
+
+
+
+
 .menuButton{
     
     -fx-background-color: transparent;
@@ -46,10 +62,30 @@
 
 .menuButton:pressed{
     
-    -fx-background-color: MediumSeaGreen;
+    -fx-background-color: #5b6467;
+    }
+
+.logOutB{
+    -fx-background-radius: 5em;
+                -fx-min-width: 25px; 
+                -fx-min-height: 25px;  
+                -fx-max-width: 25px;  
+                -fx-max-height: 25px;
+        
+    -fx-background-color: transparent;
     
 }
 
+.logOutB:hover{
+    
+    -fx-background-color: gray;
+    
+}
+
+.logOutB:pressed{
+    
+    -fx-background-color: #5b6467;
+    }
 
 
 

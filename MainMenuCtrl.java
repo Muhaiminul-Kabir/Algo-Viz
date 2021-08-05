@@ -19,11 +19,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javax.imageio.ImageIO;
 import static study.AccessData.*;
 import static study.LoginCtrl.*;
@@ -52,9 +59,30 @@ public class MainMenuCtrl {
         getSourceImage(file,pic);
     }
     
-    public void logOut(ActionEvent event){
-        closeWindowOnButton(logOutB);
-    }
+    
+    
+    
+    
+    
+        Stage stage;
+	public void logout(ActionEvent event) {
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Logout");
+		alert.setHeaderText("You're about to logout!");
+		alert.setContentText("Do you want to save before exiting?: ");
+		
+		if(alert.showAndWait().get() == ButtonType.OK){
+			stage = (Stage) winContainer.getScene().getWindow();
+			System.out.println("You successfully logged out!");
+			stage.close();
+		}
+		
+	}
+        
+        
+     
+
     
 
     
