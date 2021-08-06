@@ -22,7 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import static study.AccessData.*;
+import  study.AccessData;
 
 
 /**
@@ -68,7 +68,7 @@ public class SignUpCtrl {
 
         try {
             if (isUser && isPass) {
-                if (!isUserExists(user)) {
+                if (!AccessData.isUserExists(user)) {
                     makeDir(userFolder);
                     path = "C:/AppDataBase/" + user + "/password.txt";
                     pathInstut = "C:/AppDataBase/" + user + "/Institute.txt";

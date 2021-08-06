@@ -19,7 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 
-import static study.AccessData.*;
+import study.AccessData;
 
 /**
  *
@@ -50,12 +50,12 @@ public class LoginCtrl {
 
         
 
-        if (matchPassAPI(userName).equals("err")) {
+        if (AccessData.matchPassAPI(userName).equals("err")) {
             System.out.println("Invalid User");
             userInLbl.setText("Invalid user");
-        } else if (matchPassAPI(userName).equals(passIn.getText())) {
+        } else if (AccessData.matchPassAPI(userName).equals(passIn.getText())) {
             closeWindowOnButton(loginB);
-            System.out.println(filelist(userName));
+            System.out.println(AccessData.filelist(userName));
             mainMenu(event,userName);
             
         }

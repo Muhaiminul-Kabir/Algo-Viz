@@ -17,9 +17,10 @@ import javafx.scene.image.ImageView;
  */
 public class ProfileWindowCtrl {
 
-    @FXML
-    ImageView profileDP;
-
+    
+    
+    
+    
 
 
 }

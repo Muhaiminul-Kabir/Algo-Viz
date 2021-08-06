@@ -35,14 +35,14 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.imageio.ImageIO;
 
-import static study.AccessData.*;
-import static study.LoginCtrl.*;
+import  study.AccessData;
+import  study.LoginCtrl;
 
 /**
  *
  * @author ASUS
  */
-public class MainMenuCtrl{
+public class MainMenuCtrl {
 
     @FXML
     ImageView pic;
@@ -54,15 +54,32 @@ public class MainMenuCtrl{
     Button logOutB;
     @FXML
     SplitPane splitPane;
-
-    String user;
+    @FXML
+    Button stickyNotesB;
+    @FXML
+    Button studyB;
+    @FXML
+    Button timerB;
+    @FXML
+    Button insightsB;
+    @FXML
+    Button reminderB;
+    
+    
+    Pane tempPane;
+    
+    
+    
+    String userName;
     String path;
     
 
     void setProfile(String user) throws FileNotFoundException, IOException {
+        userName = user;
+        System.out.println("Current user : "+ userName);
         String path = "C:/AppDataBase/" + user + "/Photos";
-        String file = path + "/user." + filelist(user);
-        getSourceImage(file, pic);
+        String file = path + "/user." + AccessData.filelist(user);
+        AccessData.getSourceImage(file, pic);
     }
 
     
@@ -86,6 +103,9 @@ public class MainMenuCtrl{
     }
 
     public void loadStickyNotesWindow(ActionEvent event) throws IOException {
+        
+    
+    
     }
 
     //TO BE DONE IN MID BREAK BY US
@@ -96,13 +116,15 @@ public class MainMenuCtrl{
 
 
     public void loadProfileWindow(ActionEvent event) throws IOException {
-      
+        
+        // THIS WILL BE PASTED IN ALL LOADWINDOW FUNCTION
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/study/profile.fxml"));
         
+        winContainer.getChildren().remove(tempPane);
         winContainer.getChildren().add(newLoadedPane);
+        
+        tempPane = newLoadedPane;
     }
-
-
 
 
 
@@ -141,6 +163,11 @@ public class MainMenuCtrl{
 
     }
     
+    
+    public String getUser(){
+        return userName;
+    }
+
     
 
 
