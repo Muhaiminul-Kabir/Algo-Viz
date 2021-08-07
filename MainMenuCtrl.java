@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -35,8 +36,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.imageio.ImageIO;
 
-import  study.AccessData;
-import  study.LoginCtrl;
+import study.AccessData;
+import study.LoginCtrl;
 
 /**
  *
@@ -64,31 +65,22 @@ public class MainMenuCtrl {
     Button insightsB;
     @FXML
     Button reminderB;
-    
-    
+    @FXML
+    ProfileWindowCtrl profileView;
+
     Pane tempPane;
-    
-    
-    
-    String userName;
+
+    public String userName;
     String path;
-    
 
     void setProfile(String user) throws FileNotFoundException, IOException {
-        userName = user;
-        System.out.println("Current user : "+ userName);
+        setUser(user);
+        System.out.println("Current user : " + userName);
         String path = "C:/AppDataBase/" + user + "/Photos";
         String file = path + "/user." + AccessData.filelist(user);
         AccessData.getSourceImage(file, pic);
     }
 
-    
-    
-    
-    
-    
-    
-    
     //  TO BE DONE IN MID BREAK BY US
     public void loadInsightWindow(ActionEvent event) throws IOException {
     }
@@ -104,34 +96,23 @@ public class MainMenuCtrl {
 
     public void loadStickyNotesWindow(ActionEvent event) throws IOException {
         
-    
-    
     }
 
     //TO BE DONE IN MID BREAK BY US
-
-
-
-
-
-
     public void loadProfileWindow(ActionEvent event) throws IOException {
-        
+        System.out.println(userName);
         // THIS WILL BE PASTED IN ALL LOADWINDOW FUNCTION
-        Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/study/profile.fxml"));
-        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/study/profile.fxml"));
+        Pane newLoadedPane = loader.load();
+        ProfileWindowCtrl p2 = loader.getController();
+        p2.showUser(userName);//Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/study/profile.fxml"));
+
+       
         winContainer.getChildren().remove(tempPane);
         winContainer.getChildren().add(newLoadedPane);
-        
+
         tempPane = newLoadedPane;
     }
-
-
-
-
-
-
-
 
     Stage stage;
 
@@ -162,13 +143,9 @@ public class MainMenuCtrl {
         stage.show();
 
     }
-    
-    
-    public String getUser(){
-        return userName;
+
+    public void setUser(String user) {
+        this.userName = user;
     }
-
-    
-
 
 }

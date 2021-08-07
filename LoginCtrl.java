@@ -78,14 +78,11 @@ public class LoginCtrl {
     }
     
     public void mainMenu(ActionEvent event,String user) throws IOException {
-
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/study/main.fxml"));
         root = loader.load();
-
         MainMenuCtrl p2 = loader.getController();
-       	
         p2.setProfile(user);
-
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         stage.resizableProperty().setValue(Boolean.FALSE);
