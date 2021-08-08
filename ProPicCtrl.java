@@ -109,7 +109,7 @@ public class ProPicCtrl extends NotifyFactory{
         super.notificationInit(event, "Registration Successfull", true);
     }
 
-    public void copyFileUsingStream(File source, File dest) throws IOException {
+    public static void copyFileUsingStream(File source, File dest) throws IOException {
         InputStream is = null;
         OutputStream os = null;
         try {
@@ -138,5 +138,9 @@ public class ProPicCtrl extends NotifyFactory{
         
         this.user = user;
 
+    }
+    @FXML 
+    void initialize(){
+        noProPicAlrt.setText("Select Image");
     }
 }

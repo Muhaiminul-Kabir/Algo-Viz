@@ -17,6 +17,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+import study.ProPicCtrl;
+
 /**
  *
  * @author ASUS
@@ -39,12 +41,23 @@ public class Study extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    public  void makeDirMAIN() {
+    public  void makeDirMAIN() throws IOException {
         File f1 = new File("C:/AppDataBase");
+        
+        
+        
         //Creating a folder using mkdir() method  
         boolean bool = f1.mkdir();        
         if (bool) {            
-            System.out.println("Folder is created successfully");            
+            System.out.println("Folder is created successfully");
+            File f11 = new File("C:/AppDataBase/Guest");
+             f11.mkdir();
+            File f12 = new File("C:/AppDataBase/Guest/Photos");
+            f12.mkdir();
+            File f13 = new File("C:/AppDataBase/Guest/Photos/user.png");
+            File f14 = new File("src/study/images/user.png");
+            ProPicCtrl.copyFileUsingStream(f14, f13);
+            
         } else {            
             System.out.println("exists");            
         }        

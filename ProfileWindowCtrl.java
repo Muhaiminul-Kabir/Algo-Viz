@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 import study.AccessData;
@@ -20,16 +21,19 @@ import study.AccessData;
 public class ProfileWindowCtrl  {
     @FXML
     ImageView profileDP;
+    @FXML
+    Label nameLbl;
    
     
     
    public void showUser(String user) throws FileNotFoundException{
        System.out.println("study.ProfileWindowCtrl.showUser()" + user);
-       String ext = AccessData.filelist(user);
+       String ext = AccessData.getExtension(user);
        System.out.println("C:/AppDataBase/"+user+"/Photos/user."+ext);
        AccessData.getSourceImage("C:/AppDataBase/"+user+"/Photos/user."+ext , profileDP);
+       nameLbl.setText(user);
+   
    }
-    
 
 
 }

@@ -30,6 +30,8 @@ public class LoginCtrl {
     @FXML
     Button loginB;
     @FXML
+    Button guestB;
+    @FXML
     TextField userIn;
     @FXML
     PasswordField passIn;
@@ -55,7 +57,7 @@ public class LoginCtrl {
             userInLbl.setText("Invalid user");
         } else if (AccessData.matchPassAPI(userName).equals(passIn.getText())) {
             closeWindowOnButton(loginB);
-            System.out.println(AccessData.filelist(userName));
+            System.out.println(AccessData.getExtension(userName));
             mainMenu(event,userName);
             
         }
@@ -64,6 +66,22 @@ public class LoginCtrl {
         }
 
     }
+    
+    
+    public void guestLogin(ActionEvent event) throws IOException, Exception {
+       
+            String userName = "Guest";
+
+        
+
+            closeWindowOnButton(loginB);
+            System.out.println(AccessData.getExtension(userName));
+            mainMenu(event,userName);
+            
+       
+
+    }
+    
 
     public void signUP(ActionEvent event) throws IOException {
 

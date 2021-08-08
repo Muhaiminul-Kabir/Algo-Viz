@@ -54,11 +54,9 @@ public class SignUpCtrl {
         String pass = regPass.getText();
         String instut = regInstut.getText();
         String mobile = regMobile.getText();
-
-        boolean isPass = checkString(pass);
-        boolean isUser = checkString(user);
-        System.out.println(isPass);
-
+        boolean isNameLimit = checkStringLn(user,1,20);
+        boolean isPassLimit = checkStringLn(pass,8,1000000000);
+        
         String userFolder;
         String path;
         String pathInstut;
@@ -67,7 +65,7 @@ public class SignUpCtrl {
         userFolder = "C:/AppDataBase/" + user;
 
         try {
-            if (isUser && isPass) {
+            if ((isNameLimit && isPassLimit) ) {
                 if (!AccessData.isUserExists(user)) {
                     makeDir(userFolder);
                     path = "C:/AppDataBase/" + user + "/password.txt";
@@ -99,11 +97,17 @@ public class SignUpCtrl {
                 }
             } else {
                 System.out.println("Something went Wrong");
-                if (!isUser || !isPass) {
-                    userLbl.setText("Invalid username");
+               
+                   if(!isNameLimit){
+                        userLbl.setText("Username length must be in between 1-20");
 
-                    passLbl.setText("Invalid password or username");
-                }
+                   }
+                   if(!isPassLimit){
+                        passLbl.setText("Password length must be atleast 8 inputs");
+
+                   }
+                   
+                
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -170,6 +174,13 @@ public class SignUpCtrl {
         stage.setX(400);
         stage.setY(200);
 
+    }
+
+    private boolean checkStringLn(String user, int strt , int end) {
+        if(user.length() <= end && user.length() >= strt){
+            return true;
+        }
+        else{ return false; }
     }
 
 }

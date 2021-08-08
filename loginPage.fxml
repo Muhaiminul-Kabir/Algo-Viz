@@ -46,6 +46,11 @@
       </textFill>
     </Label>
     <Label fx:id="passInLbl" layoutX="555.0" layoutY="317.0" prefWidth="272.0" text="" textFill="$x1" />
+    <Button fx:id="guestB" layoutX="711.0" layoutY="477.0" mnemonicParsing="false" onAction="#guestLogin" prefHeight="48.0" prefWidth="137.0" styleClass="loginB" text="GUEST">
+      <stylesheets>
+        <URL value="@style.css" />
+      </stylesheets>
+    </Button>
   </children>
   <stylesheets>
     <URL value="@style.css" />

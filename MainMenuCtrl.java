@@ -77,7 +77,7 @@ public class MainMenuCtrl {
         setUser(user);
         System.out.println("Current user : " + userName);
         String path = "C:/AppDataBase/" + user + "/Photos";
-        String file = path + "/user." + AccessData.filelist(user);
+        String file = path + "/user." + AccessData.getExtension(user);
         AccessData.getSourceImage(file, pic);
     }
 
@@ -105,8 +105,7 @@ public class MainMenuCtrl {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/study/profile.fxml"));
         Pane newLoadedPane = loader.load();
         ProfileWindowCtrl p2 = loader.getController();
-        p2.showUser(userName);//Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/study/profile.fxml"));
-
+        p2.showUser(userName);
        
         winContainer.getChildren().remove(tempPane);
         winContainer.getChildren().add(newLoadedPane);

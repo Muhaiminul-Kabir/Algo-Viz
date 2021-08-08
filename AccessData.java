@@ -32,8 +32,7 @@ public class AccessData {
     public static String matchPassAPI(String user) throws Exception {
         String data;
         String path = "C:/AppDataBase/" + user + "/password.txt";
-        File tmpDir = new File(path);
-        boolean exists = tmpDir.exists();
+        boolean exists = isUserExists(user);
         if (!exists) {
             data = "err";
         } else {
@@ -45,14 +44,26 @@ public class AccessData {
 
     public static boolean isUserExists(String user) throws Exception {
 
-        String path = "C:/AppDataBase/" + user;
-        File tmpDir = new File(path);
-        boolean exists = tmpDir.exists();
+        boolean exists = true;
+        
+        String[] temp = getAvaliableFilesInDir("C:/AppDataBase");
+        int i = 0;
+        for(i = 0; i<temp.length ; i++){
+            if(user.equals(temp[i])){
+                exists = true;
+                break;
+            }
+        
+        }
+        if(i == temp.length){
+            exists = false; 
+        }
+        
         return exists;
 
     }
 
-    public static String filelist(String user) {
+    public static String getExtension(String user) {
         File folder = new File("C:/AppDataBase/" + user + "/Photos");
         File[] listOfFiles = folder.listFiles();
         String ext = null;
@@ -91,5 +102,15 @@ public class AccessData {
         Image image = new Image(input);
         view.setImage(image);
     }
+    
+    
+    public static String[] getAvaliableFilesInDir(String path){
+        
+        File source = new File(path);
+        String[] fileList = source.list();
+        return fileList;
+    
+    }
+    
 
 }

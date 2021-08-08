@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="984.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="study.ProfileWindowCtrl">
   <children>
@@ -14,5 +16,13 @@
         <Image url="@images/user.png" />
       </image>
     </ImageView>
+    <Label fx:id="nameLbl" layoutX="231.0" layoutY="97.0" prefHeight="77.0" prefWidth="651.0" styleClass="show" text="Label">
+      <font>
+        <Font size="45.0" />
+      </font>
+      <stylesheets>
+        <URL value="@style.css" />
+      </stylesheets>
+    </Label>
   </children>
 </AnchorPane>
