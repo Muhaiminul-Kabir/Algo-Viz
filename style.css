@@ -99,6 +99,19 @@
 }
 
 
+.confirmB{
+    
+    -fx-background-color: transparent;
+    
+}
+
+
+.menuButton:pressed{
+    
+    -fx-background-color: #5b6467;
+    }
+
+
 
 .loginB{
 
@@ -157,6 +170,26 @@
    -fx-font-weight: bold;
     -fx-font-size: 28;
 }
+
+
+.confirmB{
+        -fx-background-color: transparent;
+
+
+}
+.confirmB:hover {
+    -fx-border-style: solid;
+    -fx-border-color: gray;
+    -fx-border-width: 3 3 3 3;
+
+}
+
+.confirmB:pressed {
+    
+    -fx-background-color: #5b6467;
+        
+}
+
 
 
 

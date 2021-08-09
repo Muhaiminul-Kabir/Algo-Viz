@@ -5,6 +5,7 @@
  */
 package study;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,12 +24,45 @@ import javafx.scene.image.ImageView;
  */
 public class AccessData {
 
+    //inserts data to file
+    public static void dataIn(String sl, String path, String temp) throws FileNotFoundException, IOException {
+        FileOutputStream fout = new FileOutputStream(path);
+        BufferedOutputStream bout = new BufferedOutputStream(fout);
+
+        byte c[] = temp.getBytes();
+        bout.write(c);
+        bout.flush();
+        bout.close();
+        fout.close();
+
+        System.out.println(sl + "success...");
+
+    }
+    
+    //creates expexted file path
+    public static String createFolderPath(String key, String flName){
+        String path = null;
+        if(!flName.equals("")){
+            path = "C:/AppDataBase/" + key + "/" + flName;
+       }
+        else{
+            path = "C:/AppDataBase/" + key;
+               
+        }
+        System.out.println(path);
+       return path;
+    
+    }
+    
+    //read a file as String
     public static String readFileAsString(String fileName) throws Exception {
         String data = "";
         data = new String(Files.readAllBytes(Paths.get(fileName)));
         return data;
     }
 
+    
+    //matches password
     public static String matchPassAPI(String user) throws Exception {
         String data;
         String path = "C:/AppDataBase/" + user + "/password.txt";
@@ -42,6 +76,7 @@ public class AccessData {
         return data;
     }
 
+    //checks if the user exists
     public static boolean isUserExists(String user) throws Exception {
 
         boolean exists = true;
@@ -63,6 +98,8 @@ public class AccessData {
 
     }
 
+    
+    //gets extension of Profile Photo
     public static String getExtension(String user) {
         File folder = new File("C:/AppDataBase/" + user + "/Photos");
         File[] listOfFiles = folder.listFiles();
@@ -80,6 +117,7 @@ public class AccessData {
         return ext;
     }
 
+    //renames a file 
     public static void rename(String patht, String pathr) {
 
         File file = new File(patht);
@@ -96,6 +134,8 @@ public class AccessData {
 
     }
 
+    
+    //gets targeted image and sets in a imageview
     public static void getSourceImage(String path, ImageView view) throws FileNotFoundException {
 
         FileInputStream input = new FileInputStream(path);
@@ -104,6 +144,7 @@ public class AccessData {
     }
     
     
+    //returns list of files in a directory
     public static String[] getAvaliableFilesInDir(String path){
         
         File source = new File(path);

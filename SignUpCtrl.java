@@ -75,15 +75,15 @@ public class SignUpCtrl {
                     pathPic = "C:/AppDataBase/" + user + "/Photos" + "/proPic.txt";
 
                     makeDir(pathPicFld);
-                    dataIn("password", path, pass);
+                    AccessData.dataIn("password", path, pass);
                     
                     if(checkString(instut) && checkString(mobile)){
-                        dataIn("institute", pathInstut, instut);
-                        dataIn("mobile", pathMobile, mobile);
+                        AccessData.dataIn("institute", pathInstut, instut);
+                        AccessData.dataIn("mobile", pathMobile, mobile);
                     
                     } else{
-                        dataIn("institute", pathInstut, "Not provided");
-                        dataIn("mobile", pathMobile, "Not provided");
+                        AccessData.dataIn("institute", pathInstut, "Not provided");
+                        AccessData.dataIn("mobile", pathMobile, "Not provided");
                     
                     }
 
@@ -131,19 +131,7 @@ public class SignUpCtrl {
         return user;
     }
 
-    public void dataIn(String sl, String path, String temp) throws FileNotFoundException, IOException {
-        FileOutputStream fout = new FileOutputStream(path);
-        BufferedOutputStream bout = new BufferedOutputStream(fout);
-
-        byte c[] = temp.getBytes();
-        bout.write(c);
-        bout.flush();
-        bout.close();
-        fout.close();
-
-        System.out.println(sl + "success...");
-
-    }
+    
 
     public boolean checkString(String user) {
         if ((user.length() > 0)) {

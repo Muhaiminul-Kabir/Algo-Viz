@@ -24,5 +24,6 @@
         <URL value="@style.css" />
       </stylesheets>
     </Label>
+    <Button fx:id="settingsB" layoutX="848.0" layoutY="69.0" mnemonicParsing="false" onAction="#showSettings" text="" />
   </children>
 </AnchorPane>

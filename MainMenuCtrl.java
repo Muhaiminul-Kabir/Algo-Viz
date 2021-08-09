@@ -70,7 +70,8 @@ public class MainMenuCtrl {
 
     Pane tempPane;
 
-    public String userName;
+    private String userName;
+    
     String path;
 
     void setProfile(String user) throws FileNotFoundException, IOException {
@@ -99,6 +100,8 @@ public class MainMenuCtrl {
     }
 
     //TO BE DONE IN MID BREAK BY US
+    
+    
     public void loadProfileWindow(ActionEvent event) throws IOException {
         System.out.println(userName);
         // THIS WILL BE PASTED IN ALL LOADWINDOW FUNCTION
@@ -113,9 +116,15 @@ public class MainMenuCtrl {
         tempPane = newLoadedPane;
     }
 
+    
+    
+    
+    
+    
+    
     Stage stage;
 
-    public void logout(ActionEvent event) throws IOException {
+    public  void logout(ActionEvent event) throws IOException {
 
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Logout");
@@ -126,7 +135,7 @@ public class MainMenuCtrl {
             stage = (Stage) winContainer.getScene().getWindow();
             System.out.println("You successfully logged out!");
             stage.close();
-            loginInit(event);
+            loginInit(event);  
         }
 
     }
@@ -145,6 +154,10 @@ public class MainMenuCtrl {
 
     public void setUser(String user) {
         this.userName = user;
+    }
+    
+    public String getUser() {
+        return userName;
     }
 
 }
