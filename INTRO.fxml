@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studycmp.INTROController">
+   <children>
+      <JFXButton fx:id="nextButton" layoutX="295.0" layoutY="324.0" onAction="#loadSlide" prefHeight="44.0" prefWidth="71.0" style="-fx-background-color: #cbf542;" text="NEXT" />
+      <JFXButton fx:id="skipButton" layoutX="41.0" layoutY="324.0" onAction="#loadInitial" prefHeight="44.0" prefWidth="71.0" ripplerFill="#b7e915" text="SKIP" />
+      <Pane fx:id="slideContainer" layoutX="4.0" prefHeight="307.0" prefWidth="394.0" />
+      <JFXProgressBar fx:id="slideProgress" layoutX="145.0" layoutY="341.0" prefHeight="11.0" prefWidth="110.0" progress="0.0" />
+   </children>
+</AnchorPane>
