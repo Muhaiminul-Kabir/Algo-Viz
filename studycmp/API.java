@@ -42,6 +42,22 @@ public class API {
 
     }
 
+    
+    
+    
+    
+    
+    //for string
+    public static void  appendToFile(String path, String data) throws IOException {
+        File myFoo = new File(path);
+        FileWriter fooWriter = new FileWriter(myFoo, true); // true to append
+        // false to overwrite.
+        fooWriter.write(data);
+        fooWriter.close();
+    }
+
+    
+    
     public static void overwriteFile(String path, String data) throws IOException {
         File myFoo = new File(path);
         FileWriter fooWriter = new FileWriter(myFoo, false); // true to append

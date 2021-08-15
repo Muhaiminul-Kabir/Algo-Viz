@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="studycmp.MAINMENUController">
+   <children>
+      <VBox layoutY="-2.0" prefHeight="600.0" prefWidth="89.0">
+         <children>
+            <JFXButton fx:id="homeButton" onAction="#loadHome" prefHeight="107.0" prefWidth="89.0" text="HOME" />
+            <JFXButton fx:id="studyButton" onAction="#loadStudy" prefHeight="107.0" prefWidth="89.0" text="STUDY" />
+            <JFXButton fx:id="todoButton" onAction="#loadTasks" prefHeight="107.0" prefWidth="89.0" text="TO DO" />
+            <JFXButton fx:id="notesButton" onAction="#loadNotes" prefHeight="107.0" prefWidth="89.0" text="NOTES" />
+            <JFXButton fx:id="settingsButton" onAction="#loadSettings" prefHeight="107.0" prefWidth="89.0" text="SETTINGS" />
+            <JFXButton fx:id="progressButton" onAction="#loadProgress" prefHeight="107.0" prefWidth="89.0" text="INSIGHTS" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
