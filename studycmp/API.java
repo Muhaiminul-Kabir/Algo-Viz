@@ -28,13 +28,26 @@ import javafx.stage.Stage;
 public class API {
 
     public static void mainDir() throws IOException {
-        File f1 = new File("C:/AUSTBase");
-
+        
+        File f0 = new File("C:/StudyBase");
+        
+        File f1 = new File("C:/StudyBase/To_do");
+        File f2 = new File("C:/StudyBase/Study");
+        File f3 = new File("C:/StudyBase/Settings");
+        File f4 = new File("C:/StudyBase/Progress");
+        
+        File[] mainFolder ={f1,f2,f3,f4};
+        
         //Creating a folder using mkdir() method  
-        boolean bool = f1.mkdir();
+        boolean bool = f0.mkdir();
         if (bool) {
             System.out.println("Folder is created successfully");
-            dataIn("init", "C:/AUSTBase/app_state.txt", "pre_user");
+            
+            for(int i =0 ; i< mainFolder.length ;i++){
+               mainFolder[i].mkdir();
+            }
+            
+            dataIn("init", "C:/StudyBase/app_state.txt", "pre_user");
         } else {
             System.out.println("exists");
 
@@ -42,13 +55,8 @@ public class API {
 
     }
 
-    
-    
-    
-    
-    
     //for string
-    public static void  appendToFile(String path, String data) throws IOException {
+    public static void appendToFile(String path, String data) throws IOException {
         File myFoo = new File(path);
         FileWriter fooWriter = new FileWriter(myFoo, true); // true to append
         // false to overwrite.
@@ -56,8 +64,6 @@ public class API {
         fooWriter.close();
     }
 
-    
-    
     public static void overwriteFile(String path, String data) throws IOException {
         File myFoo = new File(path);
         FileWriter fooWriter = new FileWriter(myFoo, false); // true to append

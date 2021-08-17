@@ -19,6 +19,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 /**
@@ -31,7 +33,7 @@ public class INITSETTINGSController implements Initializable {
     @FXML
     JFXTextField getNameFld;
     @FXML
-    JFXDatePicker birthDayPicker;    
+    JFXDatePicker birthDayPicker;
     @FXML
     JFXButton applyButton;
 
@@ -40,35 +42,53 @@ public class INITSETTINGSController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        birthDayPicker.getEditor().setEditable(false);
         // TODO
     }
 
     @FXML
     private void loadMainMenu(ActionEvent event) throws IOException {
+
+        if (birthDayPicker.getValue() != null) {
+            System.out.println(getNameFld.getText());
         
-        System.out.println(getNameFld.getText());
-  
+            doThingsAndLoad();
+
+        } else {
+            Alert a = new Alert(AlertType.ERROR);
+            a.setContentText("Please enter/choose a valid date");
+            a.show();
+        }
+    }
+
+    private void doThingsAndLoad() throws IOException {
+
+        if(getNameFld.getText().equals("")){
+            API.dataIn("NAME", "C:/StudyBase/Name.txt", "User1425");
         
-        API.dataIn("NAME", "C:/AUSTBase/Name.txt", getNameFld.getText());
+        }
+        else{
+            API.dataIn("NAME", "C:/StudyBase/Name.txt", getNameFld.getText());
+        
+        }
+        
         LocalDate localDate = birthDayPicker.getValue();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
         String formatStr = localDate.format(formatter);
-        API.dataIn("BIRTHDAY", "C:/AUSTBase/Birth_Day.txt", formatStr);
-        API.overwriteFile("C:/AUSTBase/app_state.txt", "pro_user");
-        
+        API.dataIn("BIRTHDAY", "C:/StudyBase/Birth_Day.txt", formatStr);
+        API.overwriteFile("C:/StudyBase/app_state.txt", "pro_user");
+
         API.closeWindowOnButton(applyButton);
-            
-            Parent root = FXMLLoader.load(getClass().getResource("/studycmp/MAINMENU.fxml"));
-           
-            Stage stage = new Stage();
-            
-            Scene scene = new Scene(root);
-            
-            
-            
-            stage.setScene(scene);
-            stage.show();
-      
+
+        Parent root = FXMLLoader.load(getClass().getResource("/studycmp/MAINMENU.fxml"));
+
+        Stage stage = new Stage();
+
+        Scene scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
+
     }
 
 }

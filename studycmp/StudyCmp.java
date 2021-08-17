@@ -5,8 +5,10 @@
  */
 package studycmp;
 
+import java.io.IOException;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +31,8 @@ public class StudyCmp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         API.mainDir();
-        if (API.readFileAsString("C:/AUSTBase/app_state.txt").equals("pre_user")) {
+        loadBackGroundTasker();
+        if (API.readFileAsString("C:/StudyBase/app_state.txt").equals("pre_user")) {
 
             Parent root = FXMLLoader.load(getClass().getResource("/studycmp/INTRO.fxml"));
 
@@ -41,11 +44,12 @@ public class StudyCmp extends Application {
             Scene scene = new Scene(root);
 
             primaryStage.initStyle(StageStyle.UNDECORATED);
-
             primaryStage.setScene(scene);
             primaryStage.show();
+        
         } else {
             Parent root = FXMLLoader.load(getClass().getResource("/studycmp/MAINMENU.fxml"));
+        
             Scene scene = new Scene(root);
 
             primaryStage.setScene(scene);
@@ -59,6 +63,21 @@ public class StudyCmp extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+
+    private void loadBackGroundTasker() throws IOException {
+        
+        Parent root = FXMLLoader.load(getClass().getResource("/studycmp/BGN.fxml"));
+        Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(scene);
+            stage.setX(0);
+            stage.setY(0);
+            stage.hide();
+        
+    
     }
 
 }
