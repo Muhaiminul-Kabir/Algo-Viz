@@ -89,6 +89,7 @@ public class MAINMENUController implements Initializable {
     public void loadWindow(int index) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource(window[index]));
         Pane newLoadedPane = loader.load();
+        
         windowContainer.getChildren().remove(tempPane);
 
         windowContainer.getChildren().add(newLoadedPane);

@@ -73,15 +73,22 @@ public class INITSETTINGSController implements Initializable {
         }
         
         LocalDate localDate = birthDayPicker.getValue();
+        
+        // converting date to string
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
         String formatStr = localDate.format(formatter);
+        
+        // inserting data
         API.dataIn("BIRTHDAY", "C:/StudyBase/Birth_Day.txt", formatStr);
         API.overwriteFile("C:/StudyBase/app_state.txt", "pro_user");
-
+        
+        // closing running window
         API.closeWindowOnButton(applyButton);
 
+        
+        // loading new window
         Parent root = FXMLLoader.load(getClass().getResource("/studycmp/MAINMENU.fxml"));
-
+        
         Stage stage = new Stage();
 
         Scene scene = new Scene(root);

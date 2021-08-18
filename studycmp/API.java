@@ -1,6 +1,6 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template file, choose Tools | Templates1
  * and open the template in the editor.
  */
 package studycmp;
@@ -27,6 +27,8 @@ import javafx.stage.Stage;
  */
 public class API {
 
+    
+    // for creating primary folders
     public static void mainDir() throws IOException {
         
         File f0 = new File("C:/StudyBase");
@@ -72,6 +74,7 @@ public class API {
         fooWriter.close();
     }
 
+    // close current window for button click
     public static void closeWindowOnButton(Button b) {
         // get a handle to the stage
         Stage stage = (Stage) b.getScene().getWindow();
@@ -79,7 +82,7 @@ public class API {
         stage.close();
     }
 
-    //inserts data to file
+    // inserts String data to file
     public static void dataIn(String sl, String path, String temp) throws FileNotFoundException, IOException {
         FileOutputStream fout = new FileOutputStream(path);
         BufferedOutputStream bout = new BufferedOutputStream(fout);
@@ -94,7 +97,7 @@ public class API {
 
     }
 
-    //creates expexted file path
+    // creates file path
     public static String createFolderPath(String key, String flName) {
         String path = null;
         if (!flName.equals("")) {
@@ -108,18 +111,18 @@ public class API {
 
     }
 
-    //read a file as String
+    // read a file as a whole String
     public static String readFileAsString(String fileName) throws Exception {
         String data = "";
         data = new String(Files.readAllBytes(Paths.get(fileName)));
         return data;
     }
 
-    //matches password
+    // checks password (not in use)
     public static String matchPass(String user) throws Exception {
         String data;
-        String path = "C:/AUSTBase/" + user + "/password.txt";
-        boolean exists = isUserExists(user);
+        String path = "C:/StudyBase/" + user + "/password.txt";
+        boolean exists = isUserExists(user, path);
         if (!exists) {
             data = "err";
         } else {
@@ -129,12 +132,12 @@ public class API {
         return data;
     }
 
-    //checks if the user exists
-    public static boolean isUserExists(String user) throws Exception {
+    // checks if the user exists (not in use)
+    public static boolean isUserExists(String user , String dirPath) throws Exception {
 
         boolean exists = true;
 
-        String[] temp = getAvaliableFilesInDir("C:/AUSTBase");
+        String[] temp = getAvaliableFilesInDir(dirPath);
         int i = 0;
         for (i = 0; i < temp.length; i++) {
             if (user.equals(temp[i])) {
@@ -151,15 +154,15 @@ public class API {
 
     }
 
-    //gets extension of Profile Photo
-    public static String getExtension(String user) {
-        File folder = new File("C:/AUSTBase/" + user + "/Photos");
+    // gets extension of existing  of a given file name in a directory
+    public static String getExtension(String path , String fileName) {
+        File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
         String ext = null;
         for (File file : listOfFiles) {
             if (file.isFile()) {
                 String[] filename = file.getName().split("\\.(?=[^\\.]+$)"); //split filename from it's extension
-                if (filename[0].equalsIgnoreCase("user")) //matching defined filename
+                if (filename[0].equalsIgnoreCase(fileName)) //matching defined filename
                 {
                     System.out.println("File exist: " + filename[0] + "." + filename[1]); // match occures.Apply any condition what you need
                 }
@@ -169,7 +172,7 @@ public class API {
         return ext;
     }
 
-    //renames a file 
+    // renames a file 
     public static void rename(String patht, String pathr) {
 
         File file = new File(patht);
@@ -186,7 +189,7 @@ public class API {
 
     }
 
-    //gets targeted image and sets in a imageview
+    // gets targeted image and sets in a imageview
     public static void getSourceImage(String path, ImageView view) throws FileNotFoundException {
 
         FileInputStream input = new FileInputStream(path);
