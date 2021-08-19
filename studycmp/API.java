@@ -16,6 +16,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -56,6 +58,14 @@ public class API {
         }
 
     }
+    
+    // Localdate to String like (20-08-2021) -> (20 August 2021)
+    
+    public static String dateToString(LocalDate date){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+        return date.format(formatter);  
+    }
+    
 
     //for string
     public static void appendToFile(String path, String data) throws IOException {

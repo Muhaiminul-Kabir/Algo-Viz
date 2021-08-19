@@ -16,11 +16,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-
-import studycmp.API;
 
 /**
  *
@@ -31,7 +30,7 @@ public class StudyCmp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         API.mainDir();
-        loadBackGroundTasker();
+
         if (API.readFileAsString("C:/StudyBase/app_state.txt").equals("pre_user")) {
 
             Parent root = FXMLLoader.load(getClass().getResource("/studycmp/INTRO.fxml"));
@@ -46,15 +45,16 @@ public class StudyCmp extends Application {
             primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setScene(scene);
             primaryStage.show();
-        
+
         } else {
             Parent root = FXMLLoader.load(getClass().getResource("/studycmp/MAINMENU.fxml"));
-        
+
             Scene scene = new Scene(root);
 
             primaryStage.setScene(scene);
             primaryStage.show();
-        }
+        } // code-x
+        loadBackGroundTasker(); // don't change occurance of this line after code-x
 
     }
 
@@ -66,18 +66,16 @@ public class StudyCmp extends Application {
     }
 
     private void loadBackGroundTasker() throws IOException {
+
+        Parent root1 = FXMLLoader.load(getClass().getResource("/studycmp/BGN.fxml"));
+        Stage stage2 = new Stage();
+        Scene scene = new Scene(root1);
+//  stage2.initStyle(StageStyle.UNDECORATED);
+
+        stage2.setScene(scene);
+        stage2.show();
+        stage2.setIconified(true); // don't touch this line
         
-        Parent root = FXMLLoader.load(getClass().getResource("/studycmp/BGN.fxml"));
-        Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setScene(scene);
-            stage.setX(0);
-            stage.setY(0);
-            stage.hide();
-        
-    
     }
 
 }

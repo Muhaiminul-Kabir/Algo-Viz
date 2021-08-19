@@ -42,11 +42,14 @@ public class BGNController implements Initializable {
             public void run() {
                 try {
                     LocalTime myObj = LocalTime.now();
-                    LocalTime time = LocalTime.parse("01:34:40");
+                    LocalTime time = LocalTime.parse("03:32:00");
+                    LocalTime time1 = LocalTime.parse("03:33:00");
+                    
+                    
                     LocalDate x = LocalDate.now();
-                    if (time.withNano(0).compareTo(myObj.withNano(0)) == 0) {
+                    if (time.withNano(0).compareTo(myObj.withNano(0)) == 0 || time1.withNano(0).compareTo(myObj.withNano(0)) == 0) {
                         Platform.runLater(() -> {
-                            Alert a = new Alert(AlertType.ERROR);
+                            Alert a = new Alert(AlertType.INFORMATION);
                             a.show();
 
                         });
