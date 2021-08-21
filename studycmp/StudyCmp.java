@@ -31,7 +31,7 @@ public class StudyCmp extends Application {
     public void start(Stage primaryStage) throws Exception {
         API.mainDir();
 
-        if (API.readFileAsString("C:/StudyBase/app_state.txt").equals("pre_user")) {
+        if (API.readFileAsString("src/StudyBase/app_state.txt").equals("pre_user")) {
 
             Parent root = FXMLLoader.load(getClass().getResource("/studycmp/INTRO.fxml"));
 

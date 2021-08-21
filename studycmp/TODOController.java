@@ -7,6 +7,7 @@ package studycmp;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -29,19 +30,18 @@ import javax.swing.text.DateFormatter;
  * @author ASUS
  */
 public class TODOController implements Initializable {
-
+    
     @FXML
-    private JFXButton addNewTaskButton;    
+    private JFXButton addNewTaskButton;
     @FXML
     private JFXListView<String> taskList;
     @FXML
-    private JFXButton  dateAheadButton;
+    private JFXButton dateAheadButton;
     @FXML
     private JFXButton dateBehindButton;
     @FXML
     private Label dateLabel;
-    
-    
+
     /**
      * Initializes the controller class.
      */
@@ -52,8 +52,13 @@ public class TODOController implements Initializable {
         String showDate = API.dateToString(date);
         dateLabel.setText(showDate);
         
-    }    
-
+        try {
+            loadAvaliableTasks(showDate);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+    
     @FXML
     private void addNewTask(ActionEvent event) throws IOException {
         
@@ -65,34 +70,52 @@ public class TODOController implements Initializable {
     }
     
     @FXML
-    private void dateIncrementAndLoadTasks(ActionEvent event) {
+    private void dateIncrementAndLoadTasks(ActionEvent event) throws Exception {
+        
+        taskList.getItems().clear();
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-       
         
-        LocalDate dateX = LocalDate.parse(dateLabel.getText(),formatter);
-        //System.out.println(dateX);
+        LocalDate dateX = LocalDate.parse(dateLabel.getText(), formatter);
         LocalDate dateY = dateX.plusDays(1);
         
-        dateLabel.setText(API.dateToString(dateY));
+        String day = API.dateToString(dateY);
+        dateLabel.setText(day);
+        API.overwriteFile("src/StudyBase/temp_day.txt", day);
         
-        
+        loadAvaliableTasks(day);
         
     }
     
     @FXML
-    private void dateDecrementAndLoadTasks(ActionEvent event) {
+    private void dateDecrementAndLoadTasks(ActionEvent event) throws Exception {
         
-         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-       
+        taskList.getItems().clear();
         
-        LocalDate dateX = LocalDate.parse(dateLabel.getText(),formatter);
-        //System.out.println(dateX);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+        
+        LocalDate dateX = LocalDate.parse(dateLabel.getText(), formatter);
         LocalDate dateY = dateX.plusDays(-1);
         
-        dateLabel.setText(API.dateToString(dateY));
+        String day1 = API.dateToString(dateY);
+        dateLabel.setText(day1);
+        API.overwriteFile("src/StudyBase/temp_day.txt", day1);
         
+        loadAvaliableTasks(day1);
         
+    }
+    
+    private void loadAvaliableTasks(String day) throws Exception {
+        
+        String[] avail = API.getAvaliableFilesInDir("src/StudyBase/To_do/" + day);
+        
+        if (avail == null) {
+            taskList.getItems().add("NO TASK ADDED");
+        } else {
+            
+            String[] tasks = API.getAvaliableFilesInDir("src/StudyBase/To_do/" + day);
+            taskList.getItems().addAll(tasks);
+        }
         
     }
     

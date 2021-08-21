@@ -64,11 +64,11 @@ public class INITSETTINGSController implements Initializable {
     private void doThingsAndLoad() throws IOException {
 
         if(getNameFld.getText().equals("")){
-            API.dataIn("NAME", "C:/StudyBase/Name.txt", "User1425");
+            API.dataIn("NAME", "src/StudyBase/Name.txt", "User1425");
         
         }
         else{
-            API.dataIn("NAME", "C:/StudyBase/Name.txt", getNameFld.getText());
+            API.dataIn("NAME", "src/StudyBase/Name.txt", getNameFld.getText());
         
         }
         
@@ -79,8 +79,8 @@ public class INITSETTINGSController implements Initializable {
         String formatStr = localDate.format(formatter);
         
         // inserting data
-        API.dataIn("BIRTHDAY", "C:/StudyBase/Birth_Day.txt", formatStr);
-        API.overwriteFile("C:/StudyBase/app_state.txt", "pro_user");
+        API.dataIn("BIRTHDAY", "src/StudyBase/Birth_Day.txt", formatStr);
+        API.overwriteFile("src/StudyBase/app_state.txt", "pro_user");
         
         // closing running window
         API.closeWindowOnButton(applyButton);

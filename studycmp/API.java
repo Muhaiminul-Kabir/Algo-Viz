@@ -19,6 +19,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -29,29 +30,30 @@ import javafx.stage.Stage;
  */
 public class API {
 
-    
     // for creating primary folders
     public static void mainDir() throws IOException {
-        
-        File f0 = new File("C:/StudyBase");
-        
-        File f1 = new File("C:/StudyBase/To_do");
-        File f2 = new File("C:/StudyBase/Study");
-        File f3 = new File("C:/StudyBase/Settings");
-        File f4 = new File("C:/StudyBase/Progress");
-        
-        File[] mainFolder ={f1,f2,f3,f4};
-        
+
+        File f0 = new File("src/StudyBase");
+
+        File f1 = new File("src/StudyBase/To_do");
+        File f2 = new File("src/StudyBase/Study");
+        File f3 = new File("src/StudyBase/Settings");
+        File f4 = new File("src/StudyBase/Progress");
+
+        File[] mainFolder = {f1, f2, f3, f4};
+
         //Creating a folder using mkdir() method  
         boolean bool = f0.mkdir();
         if (bool) {
             System.out.println("Folder is created successfully");
-            
-            for(int i =0 ; i< mainFolder.length ;i++){
-               mainFolder[i].mkdir();
+
+            for (int i = 0; i < mainFolder.length; i++) {
+                mainFolder[i].mkdir();
             }
-            
-            dataIn("init", "C:/StudyBase/app_state.txt", "pre_user");
+
+            dataIn("init", "src/StudyBase/app_state.txt", "pre_user");
+            //dataIn("init", "src/StudyBase/task_state.txt", "no");
+            dataIn("temp", "src/StudyBase/temp_day.txt", dateToString(LocalDate.now()));
         } else {
             System.out.println("exists");
 
@@ -59,13 +61,30 @@ public class API {
 
     }
     
-    // Localdate to String like (20-08-2021) -> (20 August 2021)
-    
-    public static String dateToString(LocalDate date){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-        return date.format(formatter);  
+    // make desierd folder
+    public static void makeDir(String path){
+        File fld = new File(path);
+        fld.mkdir();
     }
     
+
+    
+    public static boolean tryParse(String txt) {
+        try{
+            Integer.parseInt(txt);
+            
+        }catch(NumberFormatException ex){
+            return false;
+        }
+        return true;
+    }
+    
+
+    // Localdate to String like (20-08-2021) -> (20 August 2021)
+    public static String dateToString(LocalDate date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+        return date.format(formatter);
+    }
 
     //for string
     public static void appendToFile(String path, String data) throws IOException {
@@ -111,9 +130,9 @@ public class API {
     public static String createFolderPath(String key, String flName) {
         String path = null;
         if (!flName.equals("")) {
-            path = "C:/AUSTBase/" + key + "/" + flName;
+            path = "src/StudyBase/" + key + "/" + flName;
         } else {
-            path = "C:/AUSTBase/" + key;
+            path = "src/StudyBase/" + key;
 
         }
         System.out.println(path);
@@ -131,7 +150,7 @@ public class API {
     // checks password (not in use)
     public static String matchPass(String user) throws Exception {
         String data;
-        String path = "C:/StudyBase/" + user + "/password.txt";
+        String path = "src/StudyBase/" + user + "/password.txt";
         boolean exists = isUserExists(user, path);
         if (!exists) {
             data = "err";
@@ -143,7 +162,7 @@ public class API {
     }
 
     // checks if the user exists (not in use)
-    public static boolean isUserExists(String user , String dirPath) throws Exception {
+    public static boolean isUserExists(String user, String dirPath) throws Exception {
 
         boolean exists = true;
 
@@ -165,7 +184,7 @@ public class API {
     }
 
     // gets extension of existing  of a given file name in a directory
-    public static String getExtension(String path , String fileName) {
+    public static String getExtension(String path, String fileName) {
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
         String ext = null;
