@@ -49,9 +49,7 @@ public class BGNController implements Initializable {
                     LocalDate x = LocalDate.now();
                     if (time.withNano(0).compareTo(myObj.withNano(0)) == 0 || time1.withNano(0).compareTo(myObj.withNano(0)) == 0) {
                         Platform.runLater(() -> {
-                            Alert a = new Alert(AlertType.INFORMATION);
-                            a.show();
-
+                            //TODO : notification generation//
                         });
 
                     }

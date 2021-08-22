@@ -34,6 +34,8 @@ public class TODOController implements Initializable {
     @FXML
     private JFXButton addNewTaskButton;
     @FXML
+    private JFXButton refreshButton;
+    @FXML
     private JFXListView<String> taskList;
     @FXML
     private JFXButton dateAheadButton;
@@ -102,6 +104,15 @@ public class TODOController implements Initializable {
         API.overwriteFile("src/StudyBase/temp_day.txt", day1);
         
         loadAvaliableTasks(day1);
+        
+    }
+    
+    @FXML
+    private void refreshTask(ActionEvent event) throws Exception{
+        String day = API.readFileAsString("src/studyBase/temp_day.txt");
+        taskList.getItems().clear();
+        loadAvaliableTasks(day);
+        
         
     }
     
