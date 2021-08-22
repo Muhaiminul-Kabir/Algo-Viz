@@ -107,7 +107,7 @@ public class ADDNEWTASKController implements Initializable {
             dayFolder = "src/StudyBase/To_do/" + API.readFileAsString("src/StudyBase/temp_day.txt");
             taskFolder = dayFolder + "/" + taskNameField.getText();
             API.makeDir(taskFolder);
-            String time = hourFld.getText() + ":" + miniuteFld.getText() + ":" + secondFld.getText();
+            String time = hour + ":" + miniute + ":" + second ;
 
             API.dataIn("new_task", taskFolder + "/time.txt", time);
             a = new Alert(AlertType.INFORMATION);
