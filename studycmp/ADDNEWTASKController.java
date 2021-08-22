@@ -71,7 +71,26 @@ public class ADDNEWTASKController implements Initializable {
 
     private void validateAndAdd() throws Exception {
 
-        if (!(API.tryParse(hourFld.getText()) || API.tryParse(miniuteFld.getText()) || API.tryParse(secondFld.getText()))) {
+        String hour = hourFld.getText();
+        String miniute = miniuteFld.getText();
+        String second = secondFld.getText();
+
+        
+        
+        
+        if (API.isEqualsLimit(taskNameField.getText(), 0)) {
+            a = new Alert(AlertType.ERROR);
+            a.setContentText("Please enter a valid Task name");
+            a.show();
+        } else if (!API.tryParse(hour) || !API.tryParse(miniute) || !API.tryParse(second)) {
+            a = new Alert(AlertType.ERROR);
+            a.setContentText("Please enter a valid time");
+            a.show();
+        } else if (!API.isEqualsLimit(hour, 2) || !API.isEqualsLimit(miniute, 2) || !API.isEqualsLimit(second, 2)) {
+            a = new Alert(AlertType.ERROR);
+            a.setContentText("Please enter a valid time Format (HH:mm:ss)");
+            a.show();
+        } else if (Integer.parseInt(hourFld.getText()) > 23) {
             a = new Alert(AlertType.ERROR);
             a.setContentText("Please enter a valid time");
             a.show();

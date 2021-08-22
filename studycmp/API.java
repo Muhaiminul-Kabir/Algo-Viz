@@ -41,7 +41,7 @@ public class API {
         File f4 = new File("src/StudyBase/Progress");
 
         File[] mainFolder = {f1, f2, f3, f4};
-
+        String[] path = {"src/StudyBase/To_do/empty.txt","src/StudyBase/Study/empty.txt","src/StudyBase/Settings/empty.txt","src/StudyBase/Progress/empty.txt"};
         //Creating a folder using mkdir() method  
         boolean bool = f0.mkdir();
         if (bool) {
@@ -49,6 +49,7 @@ public class API {
 
             for (int i = 0; i < mainFolder.length; i++) {
                 mainFolder[i].mkdir();
+                dataIn("git", path[i], "0");
             }
 
             dataIn("init", "src/StudyBase/app_state.txt", "pre_user");
@@ -67,8 +68,12 @@ public class API {
         fld.mkdir();
     }
     
-
+   // is String inside the limit
+    public static boolean isEqualsLimit(String txt, int limit){
+        return txt.length() == limit ;
+    }
     
+    //checks if the String is parsable or not
     public static boolean tryParse(String txt) {
         try{
             Integer.parseInt(txt);

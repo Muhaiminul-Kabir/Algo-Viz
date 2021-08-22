@@ -114,7 +114,15 @@ public class TODOController implements Initializable {
         } else {
             
             String[] tasks = API.getAvaliableFilesInDir("src/StudyBase/To_do/" + day);
-            taskList.getItems().addAll(tasks);
+            
+            String[] showTask = new String[tasks.length];
+            
+            for(int i = 0; i < tasks.length ; i++){
+                showTask[i] = tasks[i] + " at " + API.readFileAsString("src/StudyBase/To_do/" + day + "/" +tasks[i]+"/time.txt");
+            }
+            
+            
+            taskList.getItems().addAll(showTask);
         }
         
     }
