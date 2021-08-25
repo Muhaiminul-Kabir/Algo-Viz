@@ -1,0 +1,17 @@
+.list-view {
+    -fx-padding: 10px ;
+    -fx-background-color: transparent ;
+}
+
+.list-cell {
+    -fx-font-size : 30px;
+    -fx-padding: 10px ;
+    -fx-background-color: transparent, -fx-background ;
+    -fx-background-insets: 0px, 10px ;
+}
+
+.list-cell:empty {
+    -fx-padding: 10px ;
+    -fx-background-color: transparent ;
+    -fx-background-insets: 0 ;
+}
