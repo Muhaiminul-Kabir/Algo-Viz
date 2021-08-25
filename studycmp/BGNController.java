@@ -25,6 +25,8 @@ import javafx.scene.control.Alert.AlertType;
  */
 public class BGNController implements Initializable {
 
+    private int index = 0;
+
     /**
      * Initializes the controller class.
      */
@@ -36,25 +38,36 @@ public class BGNController implements Initializable {
     }
 
     private void make(Timer timer) {
-        
+
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 try {
                     LocalTime myObj = LocalTime.now();
-                    LocalTime time = LocalTime.parse("03:32:00");
-                    LocalTime time1 = LocalTime.parse("03:33:00");
+
+                    String today = API.dateToString(LocalDate.now());
+
+                    String get[] = API.getAvaliableFilesInDir("src/StudyBase/To_do/" + today);
+
+                    String txtTime = API.readFileAsString("src/StudyBase/To_do/" + today + "/" + get[index] + "/time.txt");
                     
-                    
+                    LocalTime temp = LocalTime.parse(txtTime);
+
                     LocalDate x = LocalDate.now();
-                    if (time.withNano(0).compareTo(myObj.withNano(0)) == 0 || time1.withNano(0).compareTo(myObj.withNano(0)) == 0) {
+                    if (get != null && temp.withNano(0).compareTo(myObj.withNano(0)) == 0) {
                         Platform.runLater(() -> {
-                            //TODO : notification generation//
+                            Alert a = new Alert(AlertType.INFORMATION);
+                            a.setContentText(get[index]);
+                            a.show();
+                            if(index < get.length){
+                                index++;
+                            
+                            }
                         });
 
                     }
 
-                    System.out.println(x + " " +myObj.withNano(0));
+                    System.out.println(x + " " + myObj.withNano(0));
 
                     make(timer);
                 } catch (Exception ex) {
@@ -62,7 +75,7 @@ public class BGNController implements Initializable {
                 }
             }
         }, 1000);
-    
+
     }
 
 }
