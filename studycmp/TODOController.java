@@ -57,11 +57,13 @@ public class TODOController implements Initializable {
         dateLabel.setText(showDate);
 
         try {
-            
+            temp = taskList;
             taskList.setExpanded(true);
             taskList.depthProperty().set(10);
+           
             loadAvaliableTasks(showDate);
-            temp = taskList;
+
+        
         } catch (Exception ex) {
             System.out.println(ex);
         }

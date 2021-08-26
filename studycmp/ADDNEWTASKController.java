@@ -107,7 +107,7 @@ public class ADDNEWTASKController extends TODOController implements Initializabl
             String time = hour + ":" + miniute + ":" + second;
 
             API.dataIn("new_task", taskFolder + "/time.txt", time);
-            temp.getItems().add(taskNameField.getText() + " at " + time);
+            temp.getItems().add(taskNameField.getText() + " at " + time); // from super class
             a = new Alert(AlertType.INFORMATION);
             a.setContentText("Task added successfully");
             a.show();
