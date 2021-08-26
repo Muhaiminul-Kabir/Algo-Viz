@@ -26,7 +26,7 @@ import javafx.stage.Stage;
  *
  * @author ASUS
  */
-public class ADDNEWTASKController implements Initializable {
+public class ADDNEWTASKController extends TODOController implements Initializable {
 
     @FXML
     private TextField hourFld;
@@ -75,9 +75,6 @@ public class ADDNEWTASKController implements Initializable {
         String miniute = miniuteFld.getText();
         String second = secondFld.getText();
 
-        
-        
-        
         if (API.isEqualsLimit(taskNameField.getText(), 0)) {
             a = new Alert(AlertType.ERROR);
             a.setContentText("Please enter a valid Task name");
@@ -107,9 +104,10 @@ public class ADDNEWTASKController implements Initializable {
             dayFolder = "src/StudyBase/To_do/" + API.readFileAsString("src/StudyBase/temp_day.txt");
             taskFolder = dayFolder + "/" + taskNameField.getText();
             API.makeDir(taskFolder);
-            String time = hour + ":" + miniute + ":" + second ;
+            String time = hour + ":" + miniute + ":" + second;
 
             API.dataIn("new_task", taskFolder + "/time.txt", time);
+            temp.getItems().add(taskNameField.getText() + "at" + time);
             a = new Alert(AlertType.INFORMATION);
             a.setContentText("Task added successfully");
             a.show();
