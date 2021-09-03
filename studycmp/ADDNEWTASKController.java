@@ -100,14 +100,17 @@ public class ADDNEWTASKController extends TODOController implements Initializabl
             a.setContentText("Please enter a valid time");
             a.show();
         } else {
-
             dayFolder = "src/StudyBase/To_do/" + API.readFileAsString("src/StudyBase/temp_day.txt");
             taskFolder = dayFolder + "/" + taskNameField.getText();
+ 
             API.makeDir(taskFolder);
             String time = hour + ":" + miniute + ":" + second;
 
             API.dataIn("new_task", taskFolder + "/time.txt", time);
-            temp.getItems().add(taskNameField.getText() + " at " + time); // from super class
+            temp.getItems().add(taskNameField.getText()+ time); // from super class
+            temp.setMouseTransparent(false);
+            temp.setFocusTraversable(true);
+            
             a = new Alert(AlertType.INFORMATION);
             a.setContentText("Task added successfully");
             a.show();

@@ -134,12 +134,15 @@ public class API {
     // creates file path
     public static String createFolderPath(String key, String flName) {
         String path = null;
-        if (!flName.equals("")) {
-            path = "src/StudyBase/" + key + "/" + flName;
-        } else {
-            path = "src/StudyBase/" + key;
+        path = "src/StudyBase/" + key + "/" + flName;
+        System.out.println(path);
+        return path;
 
-        }
+    }
+    
+    public static String createFolderPath(String key) {
+        String path = null;
+        path = "src/StudyBase/" + key;
         System.out.println(path);
         return path;
 
@@ -238,6 +241,12 @@ public class API {
         String[] fileList = source.list();
         return fileList;
 
+    }
+
+    static void createNew(String path) throws IOException {
+        File x = new File(path);
+        x.createNewFile();
+        
     }
 
 }

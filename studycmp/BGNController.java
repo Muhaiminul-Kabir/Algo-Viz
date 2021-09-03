@@ -49,22 +49,28 @@ public class BGNController implements Initializable {
 
                     String get[] = API.getAvaliableFilesInDir("src/StudyBase/To_do/" + today);
 
-                    String txtTime = API.readFileAsString("src/StudyBase/To_do/" + today + "/" + get[index] + "/time.txt");
-                    
-                    LocalTime temp = LocalTime.parse(txtTime);
+                    String txtTime;
+
+                    LocalTime temp;
 
                     LocalDate x = LocalDate.now();
-                    if (get != null && temp.withNano(0).compareTo(myObj.withNano(0)) == 0) {
-                        Platform.runLater(() -> {
-                            Alert a = new Alert(AlertType.INFORMATION);
-                            a.setContentText(get[index]);
-                            a.show();
-                            if(index < get.length){
-                                index++;
-                            
-                            }
-                        });
 
+                    if (get != null) {
+                        txtTime = API.readFileAsString("src/StudyBase/To_do/" + today + "/" + get[index] + "/time.txt");
+                        temp = LocalTime.parse(txtTime);
+
+                        if (temp.withNano(0).compareTo(myObj.withNano(0)) == 0) {
+                            Platform.runLater(() -> {
+                                Alert a = new Alert(AlertType.INFORMATION);
+                                a.setContentText(get[index]);
+                                a.show();
+                                if (index < get.length) {
+                                    index++;
+
+                                }
+                            });
+
+                        }
                     }
 
                     System.out.println(x + " " + myObj.withNano(0));
