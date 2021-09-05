@@ -6,10 +6,12 @@
 package studycmp;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,27 +47,28 @@ public class API {
         //Creating a folder using mkdir() method  
         boolean bool = f0.mkdir();
         if (bool) {
-            System.out.println("Folder is created successfully");
+            System.out.println("FOLDER IS CREATED SUCCESSFULLY");
 
             for (int i = 0; i < mainFolder.length; i++) {
                 mainFolder[i].mkdir();
                 dataIn("git", path[i], "0");
             }
-
-            dataIn("init", "src/StudyBase/app_state.txt", "pre_user");
+            
+           
+            dataIn("INIT ", "src/StudyBase/app_state.txt", "pre_user");
             //dataIn("init", "src/StudyBase/task_state.txt", "no");
-            dataIn("temp", "src/StudyBase/temp_day.txt", dateToString(LocalDate.now()));
+            dataIn("TEMP ", "src/StudyBase/temp_day.txt", dateToString(LocalDate.now()));
         } else {
-            System.out.println("exists");
-
+            System.out.println("EXISTS");
+            dataIn("TEMP ", "src/StudyBase/temp_day.txt", dateToString(LocalDate.now()));
         }
 
     }
     
     // make desierd folder
-    public static void makeDir(String path){
+    public static boolean makeDir(String path){
         File fld = new File(path);
-        fld.mkdir();
+        return fld.mkdir();
     }
     
    // is String inside the limit
@@ -246,6 +249,58 @@ public class API {
     static void createNew(String path) throws IOException {
         File x = new File(path);
         x.createNewFile();
+        
+    }
+
+    
+    //read every line in a file
+    static String[] readEveryLine(String path) {
+        BufferedReader reader;
+        
+        int count = 0;
+        try {
+            int i = 0;
+        
+            reader = new BufferedReader(new FileReader(path));
+            String line = reader.readLine();
+            while (line != null) {
+                //System.out.println(">>>>"+line);
+                line = reader.readLine();
+         
+                count++;
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        String[] store = new  String[count];
+        try {
+            int i = 0;
+        
+            reader = new BufferedReader(new FileReader(path));
+            String line4 ;//= reader.readLine();
+            int temp_counter = 0;
+            while (i < count) {
+                temp_counter++;
+                line4 = reader.readLine();
+                if((line4 != null)){
+                    if (!line4.equals("NOT THIS LINE")) {
+                      store[i] = line4; 
+                      System.out.println(count + ">>>>"+store[ i ]);
+                
+                      i++; 
+                    }
+                }
+               
+                
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        
+        
+        return store;
         
     }
 

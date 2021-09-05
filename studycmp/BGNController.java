@@ -17,6 +17,7 @@ import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -26,6 +27,8 @@ import javafx.scene.control.Alert.AlertType;
 public class BGNController implements Initializable {
 
     private int index = 0;
+    private LocalTime[] times;
+    private String today = API.dateToString(LocalDate.now());
 
     /**
      * Initializes the controller class.
@@ -43,11 +46,24 @@ public class BGNController implements Initializable {
             @Override
             public void run() {
                 try {
-                    LocalTime myObj = LocalTime.now();
-
-                    String today = API.dateToString(LocalDate.now());
 
                     String get[] = API.getAvaliableFilesInDir("src/StudyBase/To_do/" + today);
+                    if (get == null) {
+                        System.out.println("no task inside");
+                    } else {
+                        System.out.println("is task inside");
+                    }
+
+                    if (get != null) {
+                        times = new LocalTime[get.length];
+
+                        for (int i = 0; i < get.length; i++) {
+                            times[i] = timeOf(get[i]);
+                            System.out.println(get[i] + " pending at " + times[i]);
+                        }
+                    }
+
+                    LocalTime myObj = LocalTime.now();
 
                     String txtTime;
 
@@ -56,14 +72,15 @@ public class BGNController implements Initializable {
                     LocalDate x = LocalDate.now();
 
                     if (get != null) {
-                        txtTime = API.readFileAsString("src/StudyBase/To_do/" + today + "/" + get[index] + "/time.txt");
-                        temp = LocalTime.parse(txtTime);
 
-                        if (temp.withNano(0).compareTo(myObj.withNano(0)) == 0) {
+                        if (searchTime()) {
                             Platform.runLater(() -> {
-                                Alert a = new Alert(AlertType.INFORMATION);
-                                a.setContentText(get[index]);
-                                a.show();
+
+                                Notifications.create()
+                                        .title(get[index])
+                                        .text("Get ready")
+                                        .showWarning();
+
                                 if (index < get.length) {
                                     index++;
 
@@ -77,11 +94,35 @@ public class BGNController implements Initializable {
 
                     make(timer);
                 } catch (Exception ex) {
-                    System.out.println(ex);
+                    System.out.println("caught at line 88 -> " + ex);
                 }
             }
         }, 1000);
 
+    }
+
+    private LocalTime timeOf(String task) throws Exception {
+        String dayFolder = "src/StudyBase/To_do/" + API.dateToString(LocalDate.now());
+
+        String tPath = dayFolder + "/" + task + "/time.txt";
+        LocalTime time = LocalTime.parse(API.readFileAsString(tPath));
+
+        return time;
+    }
+
+    private boolean searchTime() {
+        int i;
+        for (i = 0; i < times.length; i++) {
+            if (LocalTime.now().withNano(0).compareTo(times[i]) == 0) {
+                index = i;
+                break;
+            }
+        }
+        if (i == times.length) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 }

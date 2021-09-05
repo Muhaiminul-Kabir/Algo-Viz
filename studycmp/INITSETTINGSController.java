@@ -22,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -81,6 +82,12 @@ public class INITSETTINGSController implements Initializable {
         // inserting data
         API.dataIn("BIRTHDAY", "src/StudyBase/Birth_Day.txt", formatStr);
         API.overwriteFile("src/StudyBase/app_state.txt", "pro_user");
+        
+        
+             Notifications.create()
+                                        .title("Welcome!")
+                                        .text("Explore exiting features and start studying")
+                                        .showWarning();
         
         // closing running window
         API.closeWindowOnButton(applyButton);

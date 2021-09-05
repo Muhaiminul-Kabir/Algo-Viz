@@ -8,7 +8,9 @@ package studycmp;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.sun.jnlp.ApiDialog;
+import java.io.IOException;
 import java.net.URL;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -44,6 +46,7 @@ public class ADDNEWTASKController extends TODOController implements Initializabl
     private Alert a;
     private String dayFolder;
     private String taskFolder;
+    private boolean noTask;
 
     /**
      * Initializes the controller class.
@@ -57,7 +60,9 @@ public class ADDNEWTASKController extends TODOController implements Initializabl
     private void addTask(ActionEvent event) throws Exception {
         dayFolder = "src/StudyBase/To_do/" + API.readFileAsString("src/StudyBase/temp_day.txt");
 
-        API.makeDir(dayFolder);
+        noTask = API.makeDir(dayFolder);
+        System.out.println(noTask);
+
         validateAndAdd();
 
     }
@@ -102,12 +107,18 @@ public class ADDNEWTASKController extends TODOController implements Initializabl
         } else {
             dayFolder = "src/StudyBase/To_do/" + API.readFileAsString("src/StudyBase/temp_day.txt");
             taskFolder = dayFolder + "/" + taskNameField.getText();
- 
+
             API.makeDir(taskFolder);
             String time = hour + ":" + miniute + ":" + second;
 
-            API.dataIn("new_task", taskFolder + "/time.txt", time);
-            temp.getItems().add(taskNameField.getText()+ time); // from super class
+            API.dataIn("NEW_TASK", taskFolder + "/time.txt", time);
+
+            if (noTask) {
+                temp.getItems().clear();
+                noTask = false;
+            }
+            
+            temp.getItems().add(taskNameField.getText()); // from super class
             temp.setMouseTransparent(false);
             temp.setFocusTraversable(true);
             
