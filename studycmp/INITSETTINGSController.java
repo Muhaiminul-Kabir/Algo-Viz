@@ -13,6 +13,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,7 +53,7 @@ public class INITSETTINGSController implements Initializable {
 
         if (birthDayPicker.getValue() != null) {
             System.out.println(getNameFld.getText());
-        
+
             doThingsAndLoad();
 
         } else {
@@ -64,38 +65,38 @@ public class INITSETTINGSController implements Initializable {
 
     private void doThingsAndLoad() throws IOException {
 
-        if(getNameFld.getText().equals("")){
+        if (getNameFld.getText().equals("")) {
             API.dataIn("NAME", "src/StudyBase/Name.txt", "User1425");
-        
-        }
-        else{
+
+        } else {
             API.dataIn("NAME", "src/StudyBase/Name.txt", getNameFld.getText());
-        
+
         }
-        
+
         LocalDate localDate = birthDayPicker.getValue();
-        
+
         // converting date to string
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
         String formatStr = localDate.format(formatter);
-        
+
         // inserting data
         API.dataIn("BIRTHDAY", "src/StudyBase/Birth_Day.txt", formatStr);
         API.overwriteFile("src/StudyBase/app_state.txt", "pro_user");
-        
-        
-             Notifications.create()
-                                        .title("Welcome!")
-                                        .text("Explore exiting features and start studying")
-                                        .showWarning();
-        
+
+        Platform.runLater(() -> {
+
+            Notifications.create()
+                    .title("Welcome!")
+                    .text("Get ready")
+                    .showWarning();
+
+        });
         // closing running window
         API.closeWindowOnButton(applyButton);
 
-        
         // loading new window
         Parent root = FXMLLoader.load(getClass().getResource("/studycmp/MAINMENU.fxml"));
-        
+
         Stage stage = new Stage();
 
         Scene scene = new Scene(root);

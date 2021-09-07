@@ -5,6 +5,7 @@
  */
 package studycmp;
 
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -67,18 +68,20 @@ public class BGNController implements Initializable {
 
                     String txtTime;
 
-                    LocalTime temp;
 
                     LocalDate x = LocalDate.now();
 
                     if (get != null) {
 
                         if (searchTime()) {
+                            
+                                                   
+                            
                             Platform.runLater(() -> {
-
+                               
                                 Notifications.create()
-                                        .title(get[index])
-                                        .text("Get ready")
+                                        .title("Reminder")
+                                        .text(get[index])
                                         .showWarning();
 
                                 if (index < get.length) {
@@ -86,7 +89,7 @@ public class BGNController implements Initializable {
 
                                 }
                             });
-
+                                
                         }
                     }
 

@@ -2,34 +2,27 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXSpinner?>
-<?import java.lang.String?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="343.0" prefWidth="515.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="studycmp.CLOCKController">
+<AnchorPane id="AnchorPane" prefHeight="406.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studycmp.CLOCKController">
    <children>
-      <JFXSpinner fx:id="timeBar" layoutX="14.0" layoutY="21.0" prefHeight="283.0" prefWidth="271.0" progress="0.31" style="-fx-text-fill: red;" stylesheets="@resources/spinner.css">
-         <styleClass>
-            <String fx:value=".jfx-spinner" />
-            <String fx:value=".percentage" />
-         </styleClass>
-      </JFXSpinner>
-      <Label fx:id="timerLabel" alignment="CENTER" layoutX="312.0" layoutY="40.0" prefHeight="62.0" prefWidth="156.0" text="00:48:99">
+      <JFXButton fx:id="resetTimerButton" layoutX="139.0" layoutY="328.0" onAction="#resetTimer" prefHeight="48.0" prefWidth="93.0" style="-fx-background-color: #eb3521; -fx-text-fill: #ffffff;" text="RESET">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="finishTimerButton" layoutX="354.0" layoutY="328.0" onAction="#finishTimer" prefHeight="48.0" prefWidth="93.0" style="-fx-background-color: #21eb89;" text="FINISH" textFill="#121212">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXSpinner layoutX="151.0" layoutY="25.0" prefHeight="303.0" prefWidth="267.0" />
+      <Label fx:id="timerLabel" alignment="CENTER" layoutX="193.0" layoutY="146.0" prefHeight="61.0" prefWidth="184.0">
          <font>
             <Font size="31.0" />
          </font>
       </Label>
-      <JFXButton fx:id="resetTimerButton" layoutX="344.0" layoutY="189.0" onAction="#resetTimer" prefHeight="48.0" prefWidth="93.0" style="-fx-background-color: #eb3521; -fx-text-fill: #ffffff;" text="RESET">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </JFXButton>
-      <JFXButton fx:id="finishTimerButton" layoutX="344.0" layoutY="256.0" onAction="#finishTimer" prefHeight="48.0" prefWidth="93.0" style="-fx-background-color: #21eb89;" text="FINISH" textFill="#121212">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </JFXButton>
    </children>
 </AnchorPane>

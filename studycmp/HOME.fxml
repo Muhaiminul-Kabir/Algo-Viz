@@ -1,11 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="811.0" xmlns:fx="http://javafx.com/fxml/1">
-    
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studycmp.HOMEController">
+   <children>
+      <Pane layoutX="32.0" layoutY="29.0" prefHeight="139.0" prefWidth="766.0" style="-fx-background-color: #34eb89; -fx-background-radius: 30px;">
+         <children>
+            <Label layoutX="28.0" layoutY="30.0" prefHeight="79.0" prefWidth="355.0" text="Welcome" textFill="#f4f3f3">
+               <font>
+                  <Font size="46.0" />
+               </font>
+            </Label>
+            <Label fx:id="dateLabel" layoutX="411.0" layoutY="30.0" prefHeight="79.0" prefWidth="355.0" text="24th january" textFill="#f4f3f3">
+               <font>
+                  <Font size="51.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <JFXSpinner fx:id="taskCmplt" layoutX="51.0" layoutY="206.0" prefHeight="308.0" prefWidth="318.0" progress="0.18" />
+      <Label alignment="CENTER" layoutX="87.0" layoutY="514.0" prefHeight="46.0" prefWidth="245.0" text="Task Completion">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <Pane layoutX="479.0" layoutY="201.0" prefHeight="359.0" prefWidth="318.0" style="-fx-background-color: #42f5ad; -fx-background-radius: 30px;">
+         <children>
+            <Label alignment="CENTER" layoutX="83.0" layoutY="36.0" prefHeight="60.0" prefWidth="153.0" text="Task pending" textFill="#fbf8f8">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="pendingLabel" alignment="CENTER" layoutX="53.0" layoutY="96.0" prefHeight="234.0" prefWidth="214.0" text="12" textFill="#fffefe">
+               <font>
+                  <Font name="System Bold" size="95.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
 </AnchorPane>

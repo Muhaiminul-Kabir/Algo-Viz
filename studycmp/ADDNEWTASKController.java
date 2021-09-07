@@ -7,10 +7,12 @@ package studycmp;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTimePicker;
 import com.sun.jnlp.ApiDialog;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -42,6 +44,8 @@ public class ADDNEWTASKController extends TODOController implements Initializabl
     private JFXButton addTaskButton;
     @FXML
     private JFXButton cancelButton;
+    @FXML
+    private JFXTimePicker taskTime;
 
     private Alert a;
     private String dayFolder;
@@ -76,52 +80,31 @@ public class ADDNEWTASKController extends TODOController implements Initializabl
 
     private void validateAndAdd() throws Exception {
 
-        String hour = hourFld.getText();
-        String miniute = miniuteFld.getText();
-        String second = secondFld.getText();
-
         if (API.isEqualsLimit(taskNameField.getText(), 0)) {
             a = new Alert(AlertType.ERROR);
             a.setContentText("Please enter a valid Task name");
             a.show();
-        } else if (!API.tryParse(hour) || !API.tryParse(miniute) || !API.tryParse(second)) {
+        } else if (taskTime.getValue() == null) {
             a = new Alert(AlertType.ERROR);
-            a.setContentText("Please enter a valid time");
-            a.show();
-        } else if (!API.isEqualsLimit(hour, 2) || !API.isEqualsLimit(miniute, 2) || !API.isEqualsLimit(second, 2)) {
-            a = new Alert(AlertType.ERROR);
-            a.setContentText("Please enter a valid time Format (HH:mm:ss)");
-            a.show();
-        } else if (Integer.parseInt(hourFld.getText()) > 23) {
-            a = new Alert(AlertType.ERROR);
-            a.setContentText("Please enter a valid time");
-            a.show();
-        } else if (Integer.parseInt(miniuteFld.getText()) > 59) {
-            a = new Alert(AlertType.ERROR);
-            a.setContentText("Please enter a valid time");
-            a.show();
-        } else if (Integer.parseInt(secondFld.getText()) > 59) {
-            a = new Alert(AlertType.ERROR);
-            a.setContentText("Please enter a valid time");
+            a.setContentText("Please enter a valid Task name");
             a.show();
         } else {
             dayFolder = "src/StudyBase/To_do/" + API.readFileAsString("src/StudyBase/temp_day.txt");
             taskFolder = dayFolder + "/" + taskNameField.getText();
 
             API.makeDir(taskFolder);
-            String time = hour + ":" + miniute + ":" + second;
 
-            API.dataIn("NEW_TASK", taskFolder + "/time.txt", time);
+            API.dataIn("NEW_TASK", taskFolder + "/time.txt", taskTime.getValue().toString());
 
             if (noTask) {
                 temp.getItems().clear();
                 noTask = false;
             }
-            
+
             temp.getItems().add(taskNameField.getText()); // from super class
             temp.setMouseTransparent(false);
             temp.setFocusTraversable(true);
-            
+
             a = new Alert(AlertType.INFORMATION);
             a.setContentText("Task added successfully");
             a.show();
