@@ -63,8 +63,7 @@ public class API {
         } else {
             System.out.println("EXISTS");
             dataIn("TEMP ", "src/StudyBase/temp_day.txt", dateToString(LocalDate.now()));
-            dataIn("INIT ", "src/StudyBase/"+API.dateToString(LocalDate.now())+"_complt.txt", "0");
-            
+           
         }
 
     }

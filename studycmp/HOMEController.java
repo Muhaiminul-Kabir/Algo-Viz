@@ -6,17 +6,22 @@
 package studycmp;
 
 import com.jfoenix.controls.JFXSpinner;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import org.controlsfx.control.Notifications;
+import static studycmp.API.dataIn;
 import static studycmp.TODOController.temp;
 
 /**
@@ -28,6 +33,8 @@ public class HOMEController implements Initializable {
 
     @FXML
     private Label dateLabel;
+    @FXML
+    private Label grettings;
     @FXML
     private JFXSpinner taskCmplt;
     @FXML
@@ -43,7 +50,11 @@ public class HOMEController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         get = API.getAvaliableFilesInDir("src/StudyBase/To_do/" + today);
-
+        try {
+            grettings.setText("Hi, "+API.readFileAsString("src/StudyBase/Name.txt"));
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
         dateLabel.setText(LocalDate.now().toString());
         if (get == null) {
             pendingLabel.setText(String.valueOf(0));
@@ -58,6 +69,18 @@ public class HOMEController implements Initializable {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
+                try {
+                    File t = new File("src/StudyBase/" + API.dateToString(LocalDate.now()) + "_complt.txt");
+                    if (!t.exists()) {
+
+                        API.dataIn("INIT ", "src/StudyBase/" + API.dateToString(LocalDate.now()) + "_complt.txt", "0");
+
+                    }
+
+                } catch (IOException ex) {
+                    System.out.println(ex);
+                }
+
                 get = API.getAvaliableFilesInDir("src/StudyBase/To_do/" + today);
                 Platform.runLater(() -> {
                     if (get == null) {
@@ -69,7 +92,6 @@ public class HOMEController implements Initializable {
                 update(timer);
             }
         }, 100);
-       
 
     }
 
