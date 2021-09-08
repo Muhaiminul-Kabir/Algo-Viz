@@ -6,10 +6,12 @@
 package studycmp;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,49 +43,52 @@ public class API {
         File f4 = new File("src/StudyBase/Progress");
 
         File[] mainFolder = {f1, f2, f3, f4};
-        String[] path = {"src/StudyBase/To_do/empty.txt","src/StudyBase/Study/empty.txt","src/StudyBase/Settings/empty.txt","src/StudyBase/Progress/empty.txt"};
+        String[] path = {"src/StudyBase/To_do/empty.txt", "src/StudyBase/Study/empty.txt", "src/StudyBase/Settings/empty.txt", "src/StudyBase/Progress/empty.txt"};
         //Creating a folder using mkdir() method  
         boolean bool = f0.mkdir();
         if (bool) {
-            System.out.println("Folder is created successfully");
+            System.out.println("FOLDER IS CREATED SUCCESSFULLY");
 
             for (int i = 0; i < mainFolder.length; i++) {
                 mainFolder[i].mkdir();
                 dataIn("git", path[i], "0");
             }
 
-            dataIn("init", "src/StudyBase/app_state.txt", "pre_user");
-            //dataIn("init", "src/StudyBase/task_state.txt", "no");
-            dataIn("temp", "src/StudyBase/temp_day.txt", dateToString(LocalDate.now()));
+            dataIn("INIT ", "src/StudyBase/session_duration.txt", "00:00:01");
+            dataIn("INIT", "src/StudyBase/Progress/daily_session.txt", "0");
+            dataIn("INIT ", "src/StudyBase/app_state.txt", "pre_user");
+            dataIn("INIT ", "src/StudyBase/"+API.dateToString(LocalDate.now())+"_complt.txt", "0");
+            
+            dataIn("TEMP ", "src/StudyBase/temp_day.txt", dateToString(LocalDate.now()));
         } else {
-            System.out.println("exists");
-
+            System.out.println("EXISTS");
+            dataIn("TEMP ", "src/StudyBase/temp_day.txt", dateToString(LocalDate.now()));
+           
         }
 
     }
-    
+
     // make desierd folder
-    public static void makeDir(String path){
+    public static boolean makeDir(String path) {
         File fld = new File(path);
-        fld.mkdir();
+        return fld.mkdir();
     }
-    
-   // is String inside the limit
-    public static boolean isEqualsLimit(String txt, int limit){
-        return txt.length() == limit ;
+
+    // is String inside the limit
+    public static boolean isEqualsLimit(String txt, int limit) {
+        return txt.length() == limit;
     }
-    
+
     //checks if the String is parsable or not
     public static boolean tryParse(String txt) {
-        try{
+        try {
             Integer.parseInt(txt);
-            
-        }catch(NumberFormatException ex){
+
+        } catch (NumberFormatException ex) {
             return false;
         }
         return true;
     }
-    
 
     // Localdate to String like (20-08-2021) -> (20 August 2021)
     public static String dateToString(LocalDate date) {
@@ -134,12 +139,15 @@ public class API {
     // creates file path
     public static String createFolderPath(String key, String flName) {
         String path = null;
-        if (!flName.equals("")) {
-            path = "src/StudyBase/" + key + "/" + flName;
-        } else {
-            path = "src/StudyBase/" + key;
+        path = "src/StudyBase/" + key + "/" + flName;
+        System.out.println(path);
+        return path;
 
-        }
+    }
+
+    public static String createFolderPath(String key) {
+        String path = null;
+        path = "src/StudyBase/" + key;
         System.out.println(path);
         return path;
 
@@ -240,4 +248,74 @@ public class API {
 
     }
 
+    static void createNew(String path) throws IOException {
+        File x = new File(path);
+        x.createNewFile();
+
+    }
+
+    //read every line in a file
+    static String[] readEveryLine(String path) {
+        BufferedReader reader;
+
+        int count = 0;
+        try {
+            int i = 0;
+
+            reader = new BufferedReader(new FileReader(path));
+            String line = reader.readLine();
+            while (line != null) {
+                //System.out.println(">>>>"+line);
+                line = reader.readLine();
+
+                count++;
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        String[] store = new String[count];
+        try {
+            int i = 0;
+
+            reader = new BufferedReader(new FileReader(path));
+            String line4;//= reader.readLine();
+            int temp_counter = 0;
+            while (i < count) {
+                temp_counter++;
+                line4 = reader.readLine();
+                if ((line4 != null)) {
+                    if (!line4.equals("NOT THIS LINE")) {
+                        store[i] = line4;
+                        System.out.println(count + ">>>>" + store[i]);
+
+                        i++;
+                    }
+                }
+
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+
+        return store;
+
+    }
+
+    public static boolean delete(File directory) {
+        if (directory.exists()) {
+            File[] files = directory.listFiles();
+            if (null != files) {
+                for (int i = 0; i < files.length; i++) {
+                    if (files[i].isDirectory()) {
+                        delete(files[i]);
+                    } else {
+                        files[i].delete();
+                    }
+                }
+            }
+        }
+        return (directory.delete());
+    }
 }
