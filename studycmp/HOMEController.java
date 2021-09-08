@@ -17,9 +17,14 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
 import static studycmp.API.dataIn;
 import static studycmp.TODOController.temp;
@@ -63,6 +68,20 @@ public class HOMEController implements Initializable {
         }
         update(new Timer());
     }
+    
+    
+    @FXML
+    private void startTimer(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/studycmp/CLOCK.fxml"));
+
+            Scene scene = new Scene(root);
+            Stage primaryStage = new Stage();
+            primaryStage.setScene(scene);
+            primaryStage.show();
+    }
+    
+    
+    
 
     void update(Timer timer) {
 
