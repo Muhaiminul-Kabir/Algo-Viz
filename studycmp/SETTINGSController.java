@@ -7,48 +7,47 @@ package studycmp;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
  *
- * @author new
+ * @author ASUS
  */
-public class NOTESController implements Initializable {
+public class SETTINGSController implements Initializable {
 
     @FXML
-    private JFXListView<String> noteList;
+    private JFXListView<String> settingsList;
     @FXML
-    private JFXButton addNoteButton;
-    
-    
-    private static JFXListView<String> temp;
+    private Pane settingsPane;
+     @FXML
+    private JFXButton logOutButton;
     
 
+    private String setButtons[] = {"General","About Us?","Profile"};
+    
+    
+    
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        settingsList.getItems().addAll(setButtons);
     }    
-
+    
     @FXML
-    private void createNote(ActionEvent event) throws IOException {
-        Parent root1 = FXMLLoader.load(getClass().getResource("/studycmp/ADDNEWNOTE.fxml"));
-        Stage stage2 = new Stage();
-        Scene scene = new Scene(root1);
-        stage2.setScene(scene);
-        stage2.show();
+    private void logOut(ActionEvent e){
+        //later
     }
+    
+    
     
 }
