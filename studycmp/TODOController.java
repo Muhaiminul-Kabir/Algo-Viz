@@ -119,7 +119,18 @@ public class TODOController implements Initializable {
         String day = API.dateToString(dateY);
         dateLabel.setText(day);
         API.overwriteFile("src/StudyBase/temp_day.txt", day);
-
+        
+        if(API.dateToString(LocalDate.now()).equals(dateLabel.getText())){
+            addNewTaskButton.setVisible(true);
+        }else if(API.strToDate(day).compareTo(LocalDate.now()) > 0){
+            
+            addNewTaskButton.setVisible(true);
+        }
+        else{
+            addNewTaskButton.setVisible(false);
+        }
+        
+        
         loadAvaliableTasks(day);
 
     }
@@ -138,6 +149,17 @@ public class TODOController implements Initializable {
         dateLabel.setText(day1);
         API.overwriteFile("src/StudyBase/temp_day.txt", day1);
 
+        
+        if(API.dateToString(LocalDate.now()).equals(dateLabel.getText())){
+            addNewTaskButton.setVisible(true);
+        }else if(API.strToDate(day1).compareTo(LocalDate.now()) > 0){
+            
+            addNewTaskButton.setVisible(true);
+        }
+        else{
+            addNewTaskButton.setVisible(false);
+        }
+        
         loadAvaliableTasks(day1);
 
     }

@@ -13,7 +13,7 @@
             <Image url="@images/cropped-view-of-woman-writing-with-black-highlighter-on-to-do-list-on-cork-board.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="6.0" layoutY="154.0" prefHeight="150.0" prefWidth="386.0" text="Keep a track of your to do list">
+      <Label layoutX="6.0" layoutY="154.0" prefHeight="150.0" prefWidth="386.0" text="Get reminded for your daily tasks">
          <font>
             <Font size="18.0" />
          </font>

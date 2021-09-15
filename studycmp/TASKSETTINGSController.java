@@ -93,7 +93,7 @@ public class TASKSETTINGSController extends TODOController implements Initializa
     private void change1(ActionEvent event) throws Exception {
 
         API.delete(new File("src/StudyBase/To_do/" + API.dateToString(LocalDate.now()) + "/" + name));
-        String x1 = API.readFileAsString("src/StudyBase/task_complt.txt");
+        String x1 = API.readFileAsString("src/StudyBase/" + API.dateToString(LocalDate.now()) + "_complt.txt");
         int y = Integer.parseInt(x1);
         API.overwriteFile("src/StudyBase/" + API.dateToString(LocalDate.now()) + "_complt.txt", String.valueOf(++y));
         String[] get = API.getAvaliableFilesInDir("src/StudyBase/To_do/" + API.dateToString(LocalDate.now()));

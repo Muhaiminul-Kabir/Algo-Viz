@@ -20,6 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -57,13 +58,13 @@ public class API {
             dataIn("INIT ", "src/StudyBase/session_duration.txt", "00:00:01");
             dataIn("INIT", "src/StudyBase/Progress/daily_session.txt", "0");
             dataIn("INIT ", "src/StudyBase/app_state.txt", "pre_user");
-            dataIn("INIT ", "src/StudyBase/"+API.dateToString(LocalDate.now())+"_complt.txt", "0");
-            
+            dataIn("INIT ", "src/StudyBase/" + API.dateToString(LocalDate.now()) + "_complt.txt", "0");
+
             dataIn("TEMP ", "src/StudyBase/temp_day.txt", dateToString(LocalDate.now()));
         } else {
             System.out.println("EXISTS");
             dataIn("TEMP ", "src/StudyBase/temp_day.txt", dateToString(LocalDate.now()));
-           
+
         }
 
     }
@@ -212,6 +213,14 @@ public class API {
             }
         }
         return ext;
+    }
+
+    static LocalDate strToDate(String day) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+        formatter = formatter.withLocale(Locale.getDefault());  // Locale specifies human language for translating, and cultural norms for lowercase/uppercase and abbreviations and such. Example: Locale.US or Locale.CANADA_FRENCH
+        LocalDate date = LocalDate.parse(day, formatter);
+        return date;
     }
 
     // renames a file 

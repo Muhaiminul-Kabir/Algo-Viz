@@ -20,13 +20,13 @@
          </font>
       </Label>
       <JFXTextField fx:id="taskNameField" layoutX="131.0" layoutY="46.0" prefHeight="35.0" prefWidth="228.0" />
-      <JFXButton fx:id="applyTaskSettings" layoutX="254.0" layoutY="230.0" onAction="#change" prefHeight="42.0" prefWidth="101.0" ripplerFill="BLACK" style="-fx-background-color: #34ebb4;" text="APPLY">
+      <JFXButton fx:id="applyTaskSettings" layoutX="254.0" layoutY="230.0" onAction="#change" prefHeight="42.0" prefWidth="101.0" ripplerFill="BLACK" styleClass="setinButton" stylesheets="@button.css" text="APPLY">
          <font>
             <Font size="16.0" />
          </font>
       </JFXButton>
       <JFXTimePicker fx:id="taskTimeField" layoutX="131.0" layoutY="109.0" prefHeight="35.0" prefWidth="171.0" />
-      <JFXButton fx:id="applyTaskSettings1" layoutX="86.0" layoutY="230.0" onAction="#change1" prefHeight="42.0" prefWidth="159.0" ripplerFill="BLACK" style="-fx-background-color: #34ebb4;" text="MARK AS DONE">
+      <JFXButton fx:id="applyTaskSettings1" layoutX="86.0" layoutY="230.0" onAction="#change1" prefHeight="42.0" prefWidth="159.0" ripplerFill="BLACK" styleClass="setinButton" stylesheets="@button.css" text="MARK AS DONE">
          <font>
             <Font size="16.0" />
          </font>
