@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="811.0" xmlns:fx="http://javafx.com/fxml/1">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="811.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="studycmp.NOTESController">
+   <children>
+      <JFXListView fx:id="noteList" layoutX="14.0" layoutY="118.0" prefHeight="434.0" prefWidth="728.0" stylesheets="@list.css" />
+      <JFXButton fx:id="addNoteButton" layoutX="490.0" layoutY="561.0" onAction="#createNote" prefHeight="25.0" prefWidth="219.0" ripplerFill="#099fcd" styleClass="addButton" stylesheets="@button.css" text="Add Note" textAlignment="CENTER" />
+      <Label alignment="CENTER" layoutX="209.0" layoutY="29.0" prefHeight="52.0" prefWidth="307.0" text="Notes">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="61.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>
