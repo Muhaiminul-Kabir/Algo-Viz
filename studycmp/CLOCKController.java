@@ -45,7 +45,7 @@ public class CLOCKController implements Initializable {
     int seconds = 02;
     double progress = 0;
     boolean isOk = true;
-
+    String duration;
     /**
      * Initializes the controller class.
      */
@@ -72,7 +72,19 @@ public class CLOCKController implements Initializable {
     }
 
     @FXML
-    private void resetTimer(ActionEvent event) {
+    private void resetTimer(ActionEvent event) throws Exception {
+            duration = API.readFileAsString("src/StudyBase/session_duration.txt");
+            String[] splited = duration.split(":");
+
+            hours = Integer.parseInt(splited[0]);
+            miniutes = Integer.parseInt(splited[1]);
+            seconds = Integer.parseInt(splited[2]);
+
+            // TODO
+            timerLabel.setText(duration);
+        
+    
+    
     }
 
     @FXML
