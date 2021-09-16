@@ -48,10 +48,10 @@ public class API {
         File f4 = new File("src/StudyBase/" + user + "/Progress");
 
         File[] mainFolder = {f1, f2,f3, f4};
-        String[] path = {"src/StudyBase/" + user + "/Notes/empty.txt","src/StudyBase/" + user + "/To_do/empty.txt", "src/StudyBase/" + user + "/Study/empty.txt", "src/StudyBase/"+user+"/Progress/empty.txt"};
+       
         for (int i = 0; i < mainFolder.length; i++) {
                 mainFolder[i].mkdir();
-                dataIn("git", path[i], "0");
+               
         }
         //dataIn("INIT", "src/StudyBase/"+user+"/Progress/daily_session.txt", "0");
             
@@ -79,7 +79,7 @@ public class API {
             dataIn("INIT ", "src/StudyBase/app_state.txt", "pre_user");
             dataIn("INIT ", "src/StudyBase/current_user.txt", "");
             
-            dataIn("INIT ", "src/StudyBase/" + API.dateToString(LocalDate.now()) + "_complt.txt", "0");
+            
 
             
 
