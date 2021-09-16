@@ -45,53 +45,42 @@ public class LOGINPAGEController implements Initializable {
     Connection con;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void logIn(ActionEvent event) throws IOException {
 
+        String login = "SELECT * FROM USERS WHERE ID=? AND PASSWORD=?";
+        try {
+            con = API.connectDb();
+            ps = con.prepareStatement(login);
+            ps.setString(1, userNameFld.getText());
+            ps.setString(2, passField.getText());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                API.closeWindowOnButton(loginButton);
+                API.overwriteFile("src/StudyBase/current_user.txt", userNameFld.getText());
+                API.overwriteFile("src/StudyBase/app_state.txt","logged_in");
+                loadMainMenu();
 
-       String login  = "SELECT * FROM USERS WHERE ID=? AND PASSWORD=?";
-       try{
-           con = API.connectDb();
-          ps = con.prepareStatement(login);
-          ps.setString(1,userNameFld.getText() );
-          ps.setString(2,passField.getText() );
-          rs= ps.executeQuery();
-          if(rs.next()){
-              API.closeWindowOnButton(loginButton);
-              API.overwriteFile("src/StudyBase/current_user.txt", userNameFld.getText());
-              loadMainMenu();
-              
-              
-          }else{
-            Alert a = new Alert(AlertType.ERROR);
-            a.setContentText("Inorrect password");
-            a.show();
-              
-              
-          }
-       }catch(SQLException e){
-           System.out.println(e);
-       }
+            } else {
+                Alert a = new Alert(AlertType.ERROR);
+                a.setContentText("Inorrect password");
+                a.show();
 
-
-
-
-
-
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
 
     }
-    
-    
 
     private void loadMainMenu() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/studycmp/MAINMENU.fxml"));
@@ -108,15 +97,13 @@ public class LOGINPAGEController implements Initializable {
     @FXML
     private void signUp(ActionEvent event) throws IOException {
         API.closeWindowOnButton(signUpButton);
-         Parent root = FXMLLoader.load(getClass().getResource("/studycmp/INITSETTINGS.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/studycmp/INITSETTINGS.fxml"));
 
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-        
-        
-        
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+
     }
-    
+
 }

@@ -68,15 +68,6 @@ public class INITSETTINGSController implements Initializable {
 
     private void doThings() throws IOException {
 
-        if (!getNameFld.getText().equals("") || passField.getText() != null || confirmPassField.getText() != null) {
-            System.out.println(getNameFld.getText());
-
-        } else {
-            Alert a = new Alert(AlertType.ERROR);
-            a.setContentText("Please enter a valid password");
-            a.show();
-        }
-
         API.makeDir("src/StudyBase/" + getNameFld.getText());
         API.userDir(getNameFld.getText());
         dataIn("INIT ", "src/StudyBase/current_user.txt", getNameFld.getText());
@@ -96,49 +87,53 @@ public class INITSETTINGSController implements Initializable {
     }
 
     public void saveUser() throws IOException, Exception {
+        if (!API.isEqualsLimit(getNameFld.getText(), 0) || !API.isEqualsLimit(passField.getText(), 0) || !API.isEqualsLimit(confirmPassField.getText(), 0)) {
 
-        try {
-            if (confirmPassField.getText().equals(passField.getText()) && !isUser()) {
+            try {
+                if (confirmPassField.getText().equals(passField.getText()) && !isUser()) {
 
-                Connection con = API.connectDb();
+                    Connection con = API.connectDb();
 
-                Statement st = con.createStatement();
+                    Statement st = con.createStatement();
 
-                st.execute("INSERT INTO USERS VALUES('" + getNameFld.getText() + "','" + passField.getText() + "')");
-                API.closeWindowOnButton(applyButton);
+                    st.execute("INSERT INTO USERS VALUES('" + getNameFld.getText() + "','" + passField.getText() + "')");
+                    doThings();
+                    API.closeWindowOnButton(applyButton);
+                    Platform.runLater(() -> {
 
-                Platform.runLater(() -> {
+                        Notifications.create()
+                                .title("Welcome!")
+                                .text("Get ready")
+                                .showWarning();
 
-                    Notifications.create()
-                            .title("Welcome!")
-                            .text("Get ready")
-                            .showWarning();
+                    });
 
-                });
-                doThings();
-// closing running window
-                API.closeWindowOnButton(applyButton);
+                    if (API.readFileAsString("src/StudyBase/app_state.txt").equals("pre_user")) {
 
-                if (API.readFileAsString("src/StudyBase/app_state.txt").equals("pre_user")) {
+                        loadMainMenu();
 
-                    loadMainMenu();
+                        API.overwriteFile("src/StudyBase/app_state.txt", "pro_user");
+                    } else {
+                        loadLogin();
+                    }
+                } else if (isUser()) {
+                    Alert a = new Alert(AlertType.ERROR);
+                    a.setContentText("User already exists");
+                    a.show();
 
-                    API.overwriteFile("src/StudyBase/app_state.txt", "pro_user");
                 } else {
-                    loadLogin();
+                    Alert a = new Alert(AlertType.ERROR);
+                    a.setContentText("Password didn't matched");
+                    a.show();
                 }
-            } else if (isUser()) {
-                Alert a = new Alert(AlertType.ERROR);
-                a.setContentText("User already exists");
-                a.show();
-
-            } else {
-                Alert a = new Alert(AlertType.ERROR);
-                a.setContentText("Password didn't matched");
-                a.show();
+            } catch (SQLException ex) {
+                System.out.println(ex);
             }
-        } catch (SQLException ex) {
-            System.out.println(ex);
+
+        } else {
+            Alert a = new Alert(AlertType.ERROR);
+            a.setContentText("Please enter all fields");
+            a.show();
         }
 
     }

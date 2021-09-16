@@ -46,6 +46,14 @@ public class StudyCmp extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
 
+        } else if(API.readFileAsString("src/StudyBase/app_state.txt").equals("logged_in")){
+            Parent root = FXMLLoader.load(getClass().getResource("/studycmp/MAINMENU.fxml"));
+
+            Scene scene = new Scene(root);
+
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        
         } else {
             Parent root = FXMLLoader.load(getClass().getResource("/studycmp/LOGINPAGE.fxml"));
 

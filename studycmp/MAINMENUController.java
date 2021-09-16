@@ -66,6 +66,7 @@ public class MAINMENUController implements Initializable {
     @FXML
     private void logOut(ActionEvent event) throws IOException {
         API.overwriteFile("src/StudyBase/current_user.txt", "");
+        API.overwriteFile("src/StudyBase/app_state.txt", "pro_user");
         API.closeWindowOnButton(logOutButton);
     }
     

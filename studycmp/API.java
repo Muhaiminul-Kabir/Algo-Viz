@@ -76,6 +76,8 @@ public class API {
 
             dataIn("INIT ", "src/StudyBase/session_duration.txt", "00:00:01");
             dataIn("INIT ", "src/StudyBase/app_state.txt", "pre_user");
+            dataIn("INIT ", "src/StudyBase/current_user.txt", "");
+            
             dataIn("INIT ", "src/StudyBase/" + API.dateToString(LocalDate.now()) + "_complt.txt", "0");
 
             
@@ -260,52 +262,24 @@ public class API {
     }
 
     //read every line in a file
-    static String[] readEveryLine(String path) {
+    static String readEveryLine(String path) {
+        String line = null;
         BufferedReader reader;
-
-        int count = 0;
-        try {
-            int i = 0;
-
-            reader = new BufferedReader(new FileReader(path));
-            String line = reader.readLine();
-            while (line != null) {
-                //System.out.println(">>>>"+line);
-                line = reader.readLine();
-
-                count++;
-            }
-            reader.close();
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-        String[] store = new String[count];
-        try {
-            int i = 0;
-
-            reader = new BufferedReader(new FileReader(path));
-            String line4;//= reader.readLine();
-            int temp_counter = 0;
-            while (i < count) {
-                temp_counter++;
-                line4 = reader.readLine();
-                if ((line4 != null)) {
-                    if (!line4.equals("NOT THIS LINE")) {
-                        store[i] = line4;
-                        System.out.println(count + ">>>>" + store[i]);
-
-                        i++;
-                    }
-                }
-
-            }
-            reader.close();
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-
-        return store;
-
+		try {
+			reader = new BufferedReader(new FileReader(path));
+			line = reader.readLine();
+			while (line != null) {
+				System.out.println(line);
+				
+				line = reader.readLine();
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        
+        
+        return line;
     }
 
     public static boolean delete(File directory) {
