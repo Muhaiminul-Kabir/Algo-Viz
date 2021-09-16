@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,13 +8,12 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studycmp.SETTINGSController">
    <children>
-      <JFXListView fx:id="settingsList" layoutY="196.0" prefHeight="270.0" prefWidth="258.0" />
+      <JFXListView fx:id="settingsList" layoutY="196.0" prefHeight="406.0" prefWidth="258.0" />
       <Label prefHeight="196.0" prefWidth="258.0" style="-fx-background-color: #06cccc;" text=" Settings">
          <font>
             <Font size="43.0" />
          </font>
       </Label>
       <Pane fx:id="settingsPane" layoutX="258.0" prefHeight="601.0" prefWidth="552.0" />
-      <JFXButton fx:id="logOutButton" layoutX="164.0" layoutY="493.0" prefHeight="51.0" prefWidth="94.0" styleClass="session" stylesheets="@button.css" text="Log Out" />
-   </children>
+      </children>
 </AnchorPane>

@@ -7,6 +7,14 @@
     
 
  }
+
+.logout:hover {
+    -fx-background-color: red;
+	-fx-text-fill: white;
+    
+
+ }
+
  
  .addButton{
     -fx-background-color: #34ebb4;

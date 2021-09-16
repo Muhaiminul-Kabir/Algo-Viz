@@ -62,7 +62,7 @@ public class ADDNEWTASKController extends TODOController implements Initializabl
 
     @FXML
     private void addTask(ActionEvent event) throws Exception {
-        dayFolder = "src/StudyBase/To_do/" + API.readFileAsString("src/StudyBase/temp_day.txt");
+        dayFolder = "src/StudyBase/"+API.getUser()+"/To_do/" + API.readFileAsString("src/StudyBase/temp_day.txt");
 
         noTask = API.makeDir(dayFolder);
         System.out.println(noTask);
@@ -89,7 +89,7 @@ public class ADDNEWTASKController extends TODOController implements Initializabl
             a.setContentText("Please enter a valid Task name");
             a.show();
         } else {
-            dayFolder = "src/StudyBase/To_do/" + API.readFileAsString("src/StudyBase/temp_day.txt");
+            dayFolder = "src/StudyBase/"+API.getUser()+"To_do/" + API.readFileAsString("src/StudyBase/temp_day.txt");
             taskFolder = dayFolder + "/" + taskNameField.getText();
 
             API.makeDir(taskFolder);

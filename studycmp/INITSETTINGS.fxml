@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studycmp.INITSETTINGSController">
+<AnchorPane id="AnchorPane" prefHeight="478.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studycmp.INITSETTINGSController">
    <children>
-      <JFXButton fx:id="applyButton" layoutX="293.0" layoutY="319.0" onAction="#loadMainMenu" prefHeight="46.0" prefWidth="77.0" style="-fx-background-color: #cbf542;" text="APPLY" />
-      <JFXTextField fx:id="getNameFld" layoutX="71.0" layoutY="118.0" prefHeight="46.0" prefWidth="258.0" />
-      <Label layoutX="71.0" layoutY="64.0" prefHeight="46.0" prefWidth="215.0" text="Set your name">
+      <JFXButton fx:id="applyButton" layoutX="291.0" layoutY="404.0" onAction="#loadMainMenu" prefHeight="46.0" prefWidth="77.0" style="-fx-background-color: #cbf542;" text="APPLY" />
+      <JFXTextField fx:id="getNameFld" layoutX="71.0" layoutY="84.0" prefHeight="46.0" prefWidth="258.0" />
+      <Label layoutX="71.0" layoutY="30.0" prefHeight="46.0" prefWidth="215.0" text="Set your name">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <JFXDatePicker fx:id="birthDayPicker" layoutX="71.0" layoutY="234.0" prefHeight="46.0" prefWidth="258.0" />
-      <Label layoutX="71.0" layoutY="188.0" prefHeight="46.0" prefWidth="215.0" text="Set your Birthday">
+      <Label layoutX="71.0" layoutY="154.0" prefHeight="46.0" prefWidth="215.0" text="Set your Password">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
+      <JFXPasswordField fx:id="passField" layoutX="71.0" layoutY="207.0" prefHeight="46.0" prefWidth="258.0" />
+      <Label layoutX="71.0" layoutY="267.0" prefHeight="46.0" prefWidth="215.0" text="Confirm Password">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <JFXPasswordField fx:id="confirmPassField" layoutX="71.0" layoutY="320.0" prefHeight="46.0" prefWidth="258.0" />
    </children>
 </AnchorPane>

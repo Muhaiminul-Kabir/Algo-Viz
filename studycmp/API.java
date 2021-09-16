@@ -18,14 +18,21 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,32 +40,45 @@ import javafx.stage.Stage;
  */
 public class API {
 
+    public static void userDir(String user) throws IOException {
+
+        File f1 = new File("src/StudyBase/" + user + "/To_do");
+        File f2 = new File("src/StudyBase/" + user + "/Study");
+        File f4 = new File("src/StudyBase/" + user + "/Progress");
+
+        File[] mainFolder = {f1, f2, f4};
+        String[] path = {"src/StudyBase/" + user + "/To_do/empty.txt", "src/StudyBase/" + user + "/Study/empty.txt", "src/StudyBase/"+user+"/Progress/empty.txt"};
+        for (int i = 0; i < mainFolder.length; i++) {
+                mainFolder[i].mkdir();
+                dataIn("git", path[i], "0");
+        }
+        dataIn("INIT", "src/StudyBase/"+user+"/Progress/daily_session.txt", "0");
+            
+        
+    }
+
     // for creating primary folders
     public static void mainDir() throws IOException {
 
         File f0 = new File("src/StudyBase");
 
-        File f1 = new File("src/StudyBase/To_do");
-        File f2 = new File("src/StudyBase/Study");
+        
         File f3 = new File("src/StudyBase/Settings");
-        File f4 = new File("src/StudyBase/Progress");
-
-        File[] mainFolder = {f1, f2, f3, f4};
-        String[] path = {"src/StudyBase/To_do/empty.txt", "src/StudyBase/Study/empty.txt", "src/StudyBase/Settings/empty.txt", "src/StudyBase/Progress/empty.txt"};
-        //Creating a folder using mkdir() method  
+        
         boolean bool = f0.mkdir();
         if (bool) {
             System.out.println("FOLDER IS CREATED SUCCESSFULLY");
 
-            for (int i = 0; i < mainFolder.length; i++) {
-                mainFolder[i].mkdir();
-                dataIn("git", path[i], "0");
-            }
+            
+                f3.mkdir();
+                dataIn("git", "src/StudyBase/Settings/empty.txt", "0");
+            
 
             dataIn("INIT ", "src/StudyBase/session_duration.txt", "00:00:01");
-            dataIn("INIT", "src/StudyBase/Progress/daily_session.txt", "0");
             dataIn("INIT ", "src/StudyBase/app_state.txt", "pre_user");
             dataIn("INIT ", "src/StudyBase/" + API.dateToString(LocalDate.now()) + "_complt.txt", "0");
+
+            
 
             dataIn("TEMP ", "src/StudyBase/temp_day.txt", dateToString(LocalDate.now()));
         } else {
@@ -136,7 +156,7 @@ public class API {
         System.out.println(sl + "success...");
 
     }
-
+/*
     // creates file path
     public static String createFolderPath(String key, String flName) {
         String path = null;
@@ -153,7 +173,7 @@ public class API {
         return path;
 
     }
-
+*/
     // read a file as a whole String
     public static String readFileAsString(String fileName) throws Exception {
         String data = "";
@@ -163,37 +183,13 @@ public class API {
 
     // checks password (not in use)
     public static String matchPass(String user) throws Exception {
-        String data;
-        String path = "src/StudyBase/" + user + "/password.txt";
-        boolean exists = isUserExists(user, path);
-        if (!exists) {
-            data = "err";
-        } else {
-            data = readFileAsString(path);
-        }
-
-        return data;
+        return null;
     }
 
     // checks if the user exists (not in use)
     public static boolean isUserExists(String user, String dirPath) throws Exception {
 
-        boolean exists = true;
-
-        String[] temp = getAvaliableFilesInDir(dirPath);
-        int i = 0;
-        for (i = 0; i < temp.length; i++) {
-            if (user.equals(temp[i])) {
-                exists = true;
-                break;
-            }
-
-        }
-        if (i == temp.length) {
-            exists = false;
-        }
-
-        return exists;
+        return true;
 
     }
 
@@ -327,4 +323,24 @@ public class API {
         }
         return (directory.delete());
     }
+
+    static String getUser() throws Exception {
+        return readFileAsString("src/StudyBase/current_user.txt") + "/";
+    }
+    
+    public static Connection connectDb() throws SQLException{
+        Connection con = null;
+        con = DriverManager.getConnection("jdbc:derby://localhost:1527/Study", "Base", "12345");
+        return con;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

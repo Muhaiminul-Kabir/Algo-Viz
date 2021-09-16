@@ -37,6 +37,8 @@ public class MAINMENUController implements Initializable {
     @FXML
     private JFXButton progressButton;
     @FXML
+    private JFXButton logOutButton;
+    @FXML
     private Pane windowContainer;
     
     
@@ -60,6 +62,13 @@ public class MAINMENUController implements Initializable {
         loadWindow(0);
     }
 
+    
+    @FXML
+    private void logOut(ActionEvent event) throws IOException {
+        API.overwriteFile("src/StudyBase/current_user.txt", "");
+        API.closeWindowOnButton(logOutButton);
+    }
+    
     @FXML
     private void loadStudy(ActionEvent event) throws IOException {
         loadWindow(1);

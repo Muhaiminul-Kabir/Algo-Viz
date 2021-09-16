@@ -53,10 +53,14 @@ public class HOMEController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        get = API.getAvaliableFilesInDir("src/StudyBase/To_do/" + today);
         try {
-            grettings.setText("Hi, "+API.readFileAsString("src/StudyBase/Name.txt"));
+            // TODO
+            get = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"To_do/" + today);
+        } catch (Exception ex) {
+            Logger.getLogger(HOMEController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            grettings.setText("Hi, "+API.readFileAsString("src/StudyBase/current_user.txt"));
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -89,18 +93,24 @@ public class HOMEController implements Initializable {
             @Override
             public void run() {
                 try {
-                    File t = new File("src/StudyBase/" + API.dateToString(LocalDate.now()) + "_complt.txt");
+                    File t = new File("src/StudyBase/"+API.getUser()+ API.dateToString(LocalDate.now()) + "_complt.txt");
                     if (!t.exists()) {
 
-                        API.dataIn("INIT ", "src/StudyBase/" + API.dateToString(LocalDate.now()) + "_complt.txt", "0");
+                        API.dataIn("INIT ", "src/StudyBase/"+API.getUser()+ API.dateToString(LocalDate.now()) + "_complt.txt", "0");
 
                     }
 
                 } catch (IOException ex) {
                     System.out.println(ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(HOMEController.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                get = API.getAvaliableFilesInDir("src/StudyBase/To_do/" + today);
+                try {
+                    get = API.getAvaliableFilesInDir("src/StudyBase/To_do/"+API.getUser() + today);
+                } catch (Exception ex) {
+                    Logger.getLogger(HOMEController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 Platform.runLater(() -> {
                     if (get == null) {
                         pendingLabel.setText(String.valueOf(0));

@@ -47,7 +47,7 @@ public class StudyCmp extends Application {
             primaryStage.show();
 
         } else {
-            Parent root = FXMLLoader.load(getClass().getResource("/studycmp/MAINMENU.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/studycmp/LOGINPAGE.fxml"));
 
             Scene scene = new Scene(root);
 

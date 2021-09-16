@@ -48,7 +48,7 @@ public class BGNController implements Initializable {
             public void run() {
                 try {
 
-                    String get[] = API.getAvaliableFilesInDir("src/StudyBase/To_do/" + today);
+                    String get[] = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"To_do/" + today);
                     if (get == null) {
                         System.out.println("no task inside");
                     } else {
@@ -105,7 +105,7 @@ public class BGNController implements Initializable {
     }
 
     private LocalTime timeOf(String task) throws Exception {
-        String dayFolder = "src/StudyBase/To_do/" + API.dateToString(LocalDate.now());
+        String dayFolder = "src/StudyBase/"+API.getUser()+"To_do/" + API.dateToString(LocalDate.now());
 
         String tPath = dayFolder + "/" + task + "/time.txt";
         LocalTime time = LocalTime.parse(API.readFileAsString(tPath));

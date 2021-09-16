@@ -48,7 +48,7 @@ public class TASKSETTINGSController extends TODOController implements Initializa
 
     void setData(String string) throws Exception {
         name = string;
-        String time = API.readFileAsString("src/StudyBase/To_do/"
+        String time = API.readFileAsString("src/StudyBase/"+API.getUser()+"To_do/"
                 + API.readFileAsString("src/StudyBase/temp_day.txt")
                 + "/" + string + "/time.txt");
 
@@ -61,13 +61,13 @@ public class TASKSETTINGSController extends TODOController implements Initializa
         String newName = taskNameField.getText();
         String newTime = taskTimeField.getValue().toString();
 
-        String timeFile = "src/StudyBase/To_do/"
+        String timeFile = "src/StudyBase/"+API.getUser()+"To_do/"
                 + API.readFileAsString("src/StudyBase/temp_day.txt")
                 + "/" + newName + "/time.txt";
-        String target = "src/StudyBase/To_do/"
+        String target = "src/StudyBase/"+API.getUser()+"To_do/"
                 + API.readFileAsString("src/StudyBase/temp_day.txt")
                 + "/" + name;
-        String result = "src/StudyBase/To_do/"
+        String result = "src/StudyBase/"+API.getUser()+"To_do/"
                 + API.readFileAsString("src/StudyBase/temp_day.txt")
                 + "/" + newName;
 
@@ -92,15 +92,15 @@ public class TASKSETTINGSController extends TODOController implements Initializa
     @FXML
     private void change1(ActionEvent event) throws Exception {
 
-        API.delete(new File("src/StudyBase/To_do/" + API.dateToString(LocalDate.now()) + "/" + name));
-        String x1 = API.readFileAsString("src/StudyBase/" + API.dateToString(LocalDate.now()) + "_complt.txt");
+        API.delete(new File("src/StudyBase/"+API.getUser()+"To_do/" + API.dateToString(LocalDate.now()) + "/" + name));
+        String x1 = API.readFileAsString("src/StudyBase/"+API.getUser()+ API.dateToString(LocalDate.now()) + "_complt.txt");
         int y = Integer.parseInt(x1);
-        API.overwriteFile("src/StudyBase/" + API.dateToString(LocalDate.now()) + "_complt.txt", String.valueOf(++y));
-        String[] get = API.getAvaliableFilesInDir("src/StudyBase/To_do/" + API.dateToString(LocalDate.now()));
+        API.overwriteFile("src/StudyBase/"+API.getUser()+ API.dateToString(LocalDate.now()) + "_complt.txt", String.valueOf(++y));
+        String[] get = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"To_do/" + API.dateToString(LocalDate.now()));
         
         if (get.length <= 1) {
 
-            API.delete(new File("src/StudyBase/To_do/" + API.dateToString(LocalDate.now())));
+            API.delete(new File("src/StudyBase/"+API.getUser()+"To_do/" + API.dateToString(LocalDate.now())));
  
         }
         temp.getItems().remove(name);
