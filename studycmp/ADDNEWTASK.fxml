@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTimePicker?>
 <?import javafx.scene.control.Label?>
@@ -9,22 +10,28 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studycmp.ADDNEWTASKController">
    <children>
-      <Label layoutX="60.0" layoutY="88.0" prefHeight="44.0" prefWidth="133.0" text="Task">
+      <Label layoutX="58.0" layoutY="63.0" prefHeight="44.0" prefWidth="133.0" text="Task">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="60.0" layoutY="186.0" prefHeight="44.0" prefWidth="133.0" text="Time">
+      <Label layoutX="58.0" layoutY="143.0" prefHeight="44.0" prefWidth="133.0" text="Time">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="taskNameField" layoutX="209.0" layoutY="88.0" prefHeight="44.0" prefWidth="283.0">
+      <JFXTextField fx:id="taskNameField" layoutX="207.0" layoutY="63.0" prefHeight="44.0" prefWidth="283.0">
          <font>
             <Font size="18.0" />
          </font></JFXTextField>
       <JFXButton fx:id="addTaskButton" layoutX="466.0" layoutY="333.0" onAction="#addTask" prefHeight="44.0" prefWidth="88.0" styleClass="addButton" stylesheets="@button.css" text="ADD" textFill="#bf1793" />
       <JFXButton fx:id="cancelButton" layoutX="369.0" layoutY="333.0" onAction="#dontCreateTask" prefHeight="44.0" prefWidth="88.0" style="-fx-background-color: #FF0011;" text="CANCEL" textFill="#efecec" />
-      <JFXTimePicker fx:id="taskTime" layoutX="209.0" layoutY="186.0" prefHeight="44.0" prefWidth="171.0" />
+      <JFXTimePicker fx:id="taskTime" layoutX="207.0" layoutY="143.0" prefHeight="44.0" prefWidth="171.0" />
+      <Label layoutX="58.0" layoutY="232.0" prefHeight="44.0" prefWidth="133.0" text="Repeat">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="repeatBox" layoutX="207.0" layoutY="232.0" prefHeight="44.0" prefWidth="171.0" />
    </children>
 </AnchorPane>

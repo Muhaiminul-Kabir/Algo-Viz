@@ -89,9 +89,9 @@ public class CLOCKController implements Initializable {
 
     @FXML
     private void finishTimer(ActionEvent event) throws IOException, Exception {
-        String x =API.readFileAsString("src/StudyBase/Progress/daily_session.txt");
+        String x =API.readFileAsString("src/StudyBase/"+API.getUser()+"Progress/daily_session.txt");
         int y = Integer.parseInt(x);
-        API.overwriteFile("src/StudyBase/Progress/daily_session.txt", String.valueOf(++y));
+        API.overwriteFile("src/StudyBase/"+API.getUser()+"Progress/daily_session.txt", String.valueOf(++y));
         API.closeWindowOnButton(finishTimerButton);
     }
 

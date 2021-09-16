@@ -13,6 +13,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -58,7 +60,11 @@ public class TODOController implements Initializable {
         String showDate = API.dateToString(date);
         dateLabel.setText(showDate);
 
-        String[] avail = API.getAvaliableFilesInDir("src/StudyBase/To_do/" + showDate);
+        try {
+            String[] avail = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"To_do/" + showDate);
+        } catch (Exception ex) {
+            Logger.getLogger(TODOController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
            
             temp = taskList;
@@ -165,7 +171,7 @@ public class TODOController implements Initializable {
     }
 
     private void loadAvaliableTasks(String day) throws Exception {
-        String[] avail = API.getAvaliableFilesInDir("src/StudyBase/To_do/" + day);
+        String[] avail = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"To_do/" + day);
 
         if (avail == null) {
             taskList.getItems().add("NO TASK ADDED");
@@ -175,7 +181,7 @@ public class TODOController implements Initializable {
             taskList.setMouseTransparent(false);
             taskList.setFocusTraversable(true);
  
-            String[] tasks = API.getAvaliableFilesInDir("src/StudyBase/To_do/" + day);
+            String[] tasks = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"To_do/" + day);
             String[] showTask = new String[tasks.length];
 
             for (int i = 0; i < tasks.length; i++) {
