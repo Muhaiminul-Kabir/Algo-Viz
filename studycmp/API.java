@@ -44,15 +44,16 @@ public class API {
 
         File f1 = new File("src/StudyBase/" + user + "/To_do");
         File f2 = new File("src/StudyBase/" + user + "/Study");
+        File f3 = new File("src/StudyBase/" + user + "/Notes");
         File f4 = new File("src/StudyBase/" + user + "/Progress");
 
-        File[] mainFolder = {f1, f2, f4};
-        String[] path = {"src/StudyBase/" + user + "/To_do/empty.txt", "src/StudyBase/" + user + "/Study/empty.txt", "src/StudyBase/"+user+"/Progress/empty.txt"};
+        File[] mainFolder = {f1, f2,f3, f4};
+        String[] path = {"src/StudyBase/" + user + "/Notes/empty.txt","src/StudyBase/" + user + "/To_do/empty.txt", "src/StudyBase/" + user + "/Study/empty.txt", "src/StudyBase/"+user+"/Progress/empty.txt"};
         for (int i = 0; i < mainFolder.length; i++) {
                 mainFolder[i].mkdir();
                 dataIn("git", path[i], "0");
         }
-        dataIn("INIT", "src/StudyBase/"+user+"/Progress/daily_session.txt", "0");
+        //dataIn("INIT", "src/StudyBase/"+user+"/Progress/daily_session.txt", "0");
             
         
     }

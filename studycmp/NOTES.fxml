@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="811.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="studycmp.NOTESController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studycmp.NOTESController">
    <children>
       <JFXListView fx:id="noteList" layoutX="14.0" layoutY="118.0" prefHeight="434.0" prefWidth="728.0" stylesheets="@list.css" />
       <JFXButton fx:id="addNoteButton" layoutX="490.0" layoutY="561.0" onAction="#createNote" prefHeight="25.0" prefWidth="219.0" ripplerFill="#099fcd" styleClass="addButton" stylesheets="@button.css" text="Add Note" textAlignment="CENTER" />

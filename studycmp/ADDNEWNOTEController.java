@@ -6,6 +6,7 @@
 package studycmp;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -24,7 +25,8 @@ public class ADDNEWNOTEController extends NOTESController implements Initializab
     private TextArea noteText;
     @FXML
     private JFXButton createNoteButton;
-
+    @FXML
+    private JFXTextField noteTitle;
     /**
      * Initializes the controller class.
      */
@@ -34,7 +36,9 @@ public class ADDNEWNOTEController extends NOTESController implements Initializab
     }    
 
     @FXML
-    private void addNote(ActionEvent event) {
+    private void addNote(ActionEvent event) throws Exception {
+        String Title=noteTitle.getText();  
+        API.dataIn("NewNote","src/StudyBase/"+API.getUser()+"Notes/"+Title+".txt",noteText.getText());
     }
     
 }

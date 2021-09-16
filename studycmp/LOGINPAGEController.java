@@ -51,7 +51,9 @@ public class LOGINPAGEController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        userNameFld.setPromptText("Username");
+        passField.setPromptText("Password");
+        
     }
 
     @FXML
