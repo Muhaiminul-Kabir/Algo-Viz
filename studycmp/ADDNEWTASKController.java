@@ -6,6 +6,7 @@
 package studycmp;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import com.sun.jnlp.ApiDialog;
@@ -33,12 +34,6 @@ import javafx.stage.Stage;
 public class ADDNEWTASKController extends TODOController implements Initializable {
 
     @FXML
-    private TextField hourFld;
-    @FXML
-    private TextField secondFld;
-    @FXML
-    private TextField miniuteFld;
-    @FXML
     private JFXTextField taskNameField;
     @FXML
     private JFXButton addTaskButton;
@@ -46,7 +41,12 @@ public class ADDNEWTASKController extends TODOController implements Initializabl
     private JFXButton cancelButton;
     @FXML
     private JFXTimePicker taskTime;
+    @FXML
+    private JFXComboBox<String> repeatBox;
 
+    
+    
+    
     private Alert a;
     private String dayFolder;
     private String taskFolder;
@@ -57,7 +57,9 @@ public class ADDNEWTASKController extends TODOController implements Initializabl
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        String[] choice = {"Once","Weekly","For a week"};
+        repeatBox.getItems().addAll(choice);
+        repeatBox.setValue("Once");
     }
 
     @FXML
