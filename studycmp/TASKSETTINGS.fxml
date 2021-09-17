@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studycmp.TASKSETTINGSController">
+   <children>
+      <Label layoutX="42.0" layoutY="109.0" prefHeight="33.0" prefWidth="69.0" text="Time">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="42.0" layoutY="46.0" prefHeight="33.0" prefWidth="69.0" text="Task">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="taskNameField" layoutX="131.0" layoutY="46.0" prefHeight="35.0" prefWidth="228.0" />
+      <JFXButton fx:id="applyTaskSettings" layoutX="254.0" layoutY="230.0" onAction="#change" prefHeight="42.0" prefWidth="101.0" ripplerFill="BLACK" styleClass="setinButton" stylesheets="@button.css" text="APPLY">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXTimePicker fx:id="taskTimeField" layoutX="131.0" layoutY="109.0" prefHeight="35.0" prefWidth="171.0" />
+      <JFXButton fx:id="applyTaskSettings1" layoutX="86.0" layoutY="230.0" onAction="#change1" prefHeight="42.0" prefWidth="159.0" ripplerFill="BLACK" styleClass="setinButton" stylesheets="@button.css" text="MARK AS DONE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

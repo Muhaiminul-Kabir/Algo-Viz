@@ -1,0 +1,69 @@
+.button:hover {
+    -fx-background-color: #84f542;
+    
+}
+.addButton:hover {
+    -fx-background-color: #84f542;
+    
+
+ }
+
+.logout:hover {
+    -fx-background-color: red;
+	-fx-text-fill: white;
+    
+
+ }
+
+ 
+ .addButton{
+    -fx-background-color: #34ebb4;
+
+     
+ }
+ .setinButton{
+      -fx-background-color: #34ebb4;
+ }
+ .arrowButton{
+     -fx-background-color:#34ebb4;
+ 
+ }
+ 
+ .arrowButton2{
+     -fx-background-color:#34ebb4;
+ 
+ }
+ 
+ .setinButton:hover {
+    -fx-background-color: #84f542;
+    
+
+ }
+ .arrowButton:hover {
+    -fx-background-color: #84f542;
+    
+
+ }
+ 
+ 
+ 
+ .arrowButton2:hover {
+    -fx-background-color: #84f542;
+    
+
+ }
+ 
+ 
+ .session {
+    -fx-background-color: #06cccc;
+    
+
+ }
+ 
+ 
+ 
+ .session:hover {
+    -fx-background-color: gray;
+    -fx-text-fill: white;
+
+ }

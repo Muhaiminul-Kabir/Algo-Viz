@@ -13,7 +13,10 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javax.swing.text.DateFormatter;
@@ -44,7 +48,7 @@ public class TODOController implements Initializable {
     private Label dateLabel;
 
     public static JFXListView<String> temp;
-    
+
     /**
      * Initializes the controller class.
      */
@@ -57,13 +61,42 @@ public class TODOController implements Initializable {
         dateLabel.setText(showDate);
 
         try {
+            String[] avail = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"To_do/" + showDate);
+        } catch (Exception ex) {
+            Logger.getLogger(TODOController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+           
             temp = taskList;
             taskList.setExpanded(true);
             taskList.depthProperty().set(10);
-           
             loadAvaliableTasks(showDate);
 
-        
+            taskList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent event) {
+                    try {
+                        loadTaskSettings();
+                    } catch (Exception ex) {
+                        System.out.println(ex);
+                    }
+                }
+
+                private void loadTaskSettings() throws IOException, Exception {
+                    FXMLLoader loader = new FXMLLoader(
+                            getClass().getResource(
+                                    "/studycmp/TASKSETTINGS.fxml"
+                            ));
+                    Parent root = loader.load();
+                    TASKSETTINGSController ctrl = loader.getController();
+                    ctrl.setData((String) taskList.getSelectionModel().getSelectedItem());
+                    Scene scene = new Scene(root);
+                    Stage stage = new Stage();
+                    stage.setScene(scene);
+                    stage.show();
+                }
+            });
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -92,7 +125,18 @@ public class TODOController implements Initializable {
         String day = API.dateToString(dateY);
         dateLabel.setText(day);
         API.overwriteFile("src/StudyBase/temp_day.txt", day);
-
+        
+        if(API.dateToString(LocalDate.now()).equals(dateLabel.getText())){
+            addNewTaskButton.setVisible(true);
+        }else if(API.strToDate(day).compareTo(LocalDate.now()) > 0){
+            
+            addNewTaskButton.setVisible(true);
+        }
+        else{
+            addNewTaskButton.setVisible(false);
+        }
+        
+        
         loadAvaliableTasks(day);
 
     }
@@ -111,24 +155,37 @@ public class TODOController implements Initializable {
         dateLabel.setText(day1);
         API.overwriteFile("src/StudyBase/temp_day.txt", day1);
 
+        
+        if(API.dateToString(LocalDate.now()).equals(dateLabel.getText())){
+            addNewTaskButton.setVisible(true);
+        }else if(API.strToDate(day1).compareTo(LocalDate.now()) > 0){
+            
+            addNewTaskButton.setVisible(true);
+        }
+        else{
+            addNewTaskButton.setVisible(false);
+        }
+        
         loadAvaliableTasks(day1);
 
     }
 
     private void loadAvaliableTasks(String day) throws Exception {
-
-        String[] avail = API.getAvaliableFilesInDir("src/StudyBase/To_do/" + day);
+        String[] avail = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"To_do/" + day);
 
         if (avail == null) {
             taskList.getItems().add("NO TASK ADDED");
+            taskList.setMouseTransparent(true);
+            taskList.setFocusTraversable(false);
         } else {
-
-            String[] tasks = API.getAvaliableFilesInDir("src/StudyBase/To_do/" + day);
-
+            taskList.setMouseTransparent(false);
+            taskList.setFocusTraversable(true);
+ 
+            String[] tasks = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"To_do/" + day);
             String[] showTask = new String[tasks.length];
 
             for (int i = 0; i < tasks.length; i++) {
-                showTask[i] = tasks[i] + " at " + API.readFileAsString("src/StudyBase/To_do/" + day + "/" + tasks[i] + "/time.txt");
+                showTask[i] = tasks[i] ;
             }
 
             taskList.getItems().addAll(showTask);
