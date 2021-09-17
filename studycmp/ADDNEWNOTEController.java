@@ -19,7 +19,6 @@ import javafx.scene.control.TextArea;
  *
  * @author ASUS
  */
-
 public class ADDNEWNOTEController extends NOTESController implements Initializable {
 
     @FXML
@@ -31,20 +30,21 @@ public class ADDNEWNOTEController extends NOTESController implements Initializab
     /**
      * Initializes the controller class.
      */
-    private String noteName= null;
+    private String noteName = null;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        noteTitle.setText(noteName);
-    }    
+        // noteTitle.setText(noteName);
+    }
 
     @FXML
     private void addNote(ActionEvent event) throws Exception {
-        String Title=noteTitle.getText();  
-        API.dataIn("NewNote","src/StudyBase/"+API.getUser()+"Notes/"+Title+".txt",noteText.getText());
+        String Title = noteTitle.getText();
+        API.dataIn("NewNote", "src/StudyBase/" + API.getUser() + "Notes/" + Title + ".txt", noteText.getText());
     }
 
     void setData(String string) {
-        noteName= string;
+        noteTitle.setText(string);
     }
-    
+
 }
