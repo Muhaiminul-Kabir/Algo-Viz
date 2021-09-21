@@ -81,7 +81,14 @@ public class NOTESController implements Initializable {
                             ));
                     Parent root = loader.load();
                     ADDNEWNOTEController ctrl = loader.getController();
-                    ctrl.setData((String) noteList.getSelectionModel().getSelectedItem());
+                    String x= (String) noteList.getSelectionModel().getSelectedItem();
+                    System.out.println(x);
+                    String[] noteExtension;
+                    noteExtension = x.split("\.(?=[^\.]+$)");
+                    for(int i=1;i<noteExtension.length;i++){
+                        System.out.println(noteExtension[i]);
+                    }
+                    ctrl.setData(noteExtension[0]);
                     Scene scene = new Scene(root);
                     Stage stage = new Stage();
                     stage.setScene(scene);
