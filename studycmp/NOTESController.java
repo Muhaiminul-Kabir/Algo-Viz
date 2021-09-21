@@ -37,7 +37,7 @@ public class NOTESController implements Initializable {
     private JFXButton addNoteButton;
     
     
-    private static JFXListView<String> temp;
+    public static JFXListView<String> temp;
     
 
     /**
@@ -109,7 +109,7 @@ public class NOTESController implements Initializable {
          String[] avail = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"Notes");
 
         if (avail == null) {
-            noteList.getItems().add("NO TASK ADDED");
+            noteList.getItems().add("NO NOTES ADDED");
             noteList.setMouseTransparent(true);
             noteList.setFocusTraversable(false);
         } else {
@@ -118,9 +118,12 @@ public class NOTESController implements Initializable {
  
             String[] tasks = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"Notes");
             String[] showTask = new String[tasks.length];
-
+           
+           
             for (int i = 0; i < tasks.length; i++) {
-                showTask[i] = tasks[i] ;
+                String[] tokens = tasks[i].split("\\.(?=[^\\.]+$)");
+
+                showTask[i] = tokens[0] ;
             }
 
             noteList.getItems().addAll(showTask);
