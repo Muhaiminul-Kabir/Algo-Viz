@@ -43,12 +43,11 @@ public class ADDNEWNOTEController extends NOTESController implements Initializab
         API.dataIn("NewNote", "src/StudyBase/" + API.getUser() + "Notes/" + Title + ".txt", noteText.getText());
     }
 
-    void setData(String string) throws Exception {
+    void setData(String rafid) throws Exception {
         
-        String[] splited = string.split(".");
-        System.err.println(splited[0]);
-        noteTitle.setText(splited[0]);
-        noteText.setText(API.readFileAsString("src/StudyBase/" + API.getUser() + "Notes/" + splited[0] + ".txt"));
+        
+        noteTitle.setText(rafid);
+        noteText.setText(API.readFileAsString("src/StudyBase/" + API.getUser() + "Notes/" + rafid + ".txt"));
         
     }
 
