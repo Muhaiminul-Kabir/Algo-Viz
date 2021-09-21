@@ -45,10 +45,12 @@ public class ADDNEWNOTEController extends NOTESController implements Initializab
 
     void setData(String string) throws Exception {
         
-        String[] splited = string.split(".");
-        System.err.println(splited[0]);
-        noteTitle.setText(splited[0]);
-        noteText.setText(API.readFileAsString("src/StudyBase/" + API.getUser() + "Notes/" + splited[0] + ".txt"));
+        
+        String[] tokens = string.split("\\.(?=[^\\.]+$)");
+        
+        
+        noteTitle.setText(tokens[0]);
+        noteText.setText(API.readFileAsString("src/StudyBase/" + API.getUser() + "Notes/" + tokens[0] + ".txt"));
         
     }
 
