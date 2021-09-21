@@ -6,14 +6,11 @@
 package studycmp;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXListView;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -23,31 +20,18 @@ import javafx.scene.layout.Pane;
 public class SETTINGSController implements Initializable {
 
     @FXML
-    private JFXListView<String> settingsList;
-    @FXML
-    private Pane settingsPane;
-     @FXML
-    private JFXButton logOutButton;
-    
+    private JFXButton applySettingsButton;
 
-    private String setButtons[] = {"General","About Us?","Profile"};
-    
-    
-    
-    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        settingsList.getItems().addAll(setButtons);
+        // TODO
     }    
-    
+
     @FXML
-    private void logOut(ActionEvent e){
-        //later
+    private void applySettings(ActionEvent event) {
     }
-    
-    
     
 }

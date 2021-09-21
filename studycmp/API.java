@@ -53,7 +53,7 @@ public class API {
                 mainFolder[i].mkdir();
                
         }
-        //dataIn("INIT", "src/StudyBase/"+user+"/Progress/daily_session.txt", "0");
+        dataIn("INIT", "src/StudyBase/"+user+"/Progress/daily_session.txt", "0");
             
         
     }
