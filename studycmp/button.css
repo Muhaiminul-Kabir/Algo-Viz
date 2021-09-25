@@ -67,3 +67,9 @@
     -fx-text-fill: white;
 
  }
+
+.xButton:hover{
+	   -fx-background-color: gray;
+ 	
+
+}

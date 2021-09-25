@@ -45,7 +45,9 @@ public class CLOCKController implements Initializable {
     int seconds = 02;
     double progress = 0;
     boolean isOk = true;
+    private boolean isFinished = false;
     String duration;
+
     /**
      * Initializes the controller class.
      */
@@ -73,25 +75,24 @@ public class CLOCKController implements Initializable {
 
     @FXML
     private void resetTimer(ActionEvent event) throws Exception {
-            duration = API.readFileAsString("src/StudyBase/session_duration.txt");
-            String[] splited = duration.split(":");
+        duration = API.readFileAsString("src/StudyBase/session_duration.txt");
+        String[] splited = duration.split(":");
 
-            hours = Integer.parseInt(splited[0]);
-            miniutes = Integer.parseInt(splited[1]);
-            seconds = Integer.parseInt(splited[2]);
+        hours = Integer.parseInt(splited[0]);
+        miniutes = Integer.parseInt(splited[1]);
+        seconds = Integer.parseInt(splited[2]);
 
-            // TODO
-            timerLabel.setText(duration);
-        
-    
-    
+        // TODO
+        timerLabel.setText(duration);
+
     }
 
     @FXML
     private void finishTimer(ActionEvent event) throws IOException, Exception {
-        String x =API.readFileAsString("src/StudyBase/"+API.getUser()+"Progress/daily_session.txt");
+        isFinished = true;
+        String x = API.readFileAsString("src/StudyBase/" + API.getUser() + "Progress/daily_session.txt");
         int y = Integer.parseInt(x);
-        API.overwriteFile("src/StudyBase/"+API.getUser()+"Progress/daily_session.txt", String.valueOf(++y));
+        API.overwriteFile("src/StudyBase/" + API.getUser() + "Progress/daily_session.txt", String.valueOf(++y));
         API.closeWindowOnButton(finishTimerButton);
     }
 
@@ -107,13 +108,15 @@ public class CLOCKController implements Initializable {
                     timeStr = String.valueOf(new DecimalFormat("00").format(hours))
                             + ":" + String.valueOf(new DecimalFormat("00").format(miniutes))
                             + ":" + String.valueOf(new DecimalFormat("00").format(seconds));
+                    if (!isFinished) {
 
-                    Platform.runLater(() -> {
+                        Platform.runLater(() -> {
 
-                        timerLabel.setText(timeStr);
-                        System.out.println(isOk);
+                            timerLabel.setText(timeStr);
+                            System.out.println(isOk);
 
-                    });
+                        });
+                    }
 
                     if (timerLabel.getText().equals("00:00:00")) {
                         Platform.runLater(() -> {
@@ -122,7 +125,7 @@ public class CLOCKController implements Initializable {
                             timerLabel.setText("Time's up");
 
                             isOk = false;
-                          
+
                             timer.cancel();
                             timer.purge();
                         });
@@ -135,7 +138,7 @@ public class CLOCKController implements Initializable {
                 } catch (Exception ex) {
                     System.out.println("caught at line 122 -> " + ex);
 
-                } 
+                }
             }
         }, 1000);
     }

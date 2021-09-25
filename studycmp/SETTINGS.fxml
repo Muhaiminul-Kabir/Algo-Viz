@@ -5,13 +5,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="552.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="studycmp.SETTINGSController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studycmp.SETTINGSController">
    <children>
-      <TextField layoutX="235.0" layoutY="135.0" prefHeight="40.0" prefWidth="250.0" />
+      <TextField fx:id="duration" layoutX="235.0" layoutY="135.0" prefHeight="40.0" prefWidth="250.0" />
       <JFXButton fx:id="applySettingsButton" layoutX="365.0" layoutY="466.0" onAction="#applySettings" prefHeight="54.0" prefWidth="99.0" styleClass="addButton" stylesheets="@button.css" text="APPLY" />
       <Label layoutX="66.0" layoutY="135.0" prefHeight="40.0" prefWidth="141.0" text="Session Duration">
          <font>
@@ -28,7 +29,25 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Spinner layoutX="235.0" layoutY="214.0" prefHeight="40.0" prefWidth="76.0" />
-      <JFXToggleButton layoutX="235.0" layoutY="285.0" selected="true" text="ON" />
+      <Spinner fx:id="target" layoutX="235.0" layoutY="214.0" prefHeight="40.0" prefWidth="76.0" />
+      <JFXToggleButton fx:id="noti" layoutX="235.0" layoutY="285.0" selected="true" text="ON" />
+      <JFXButton layoutX="567.0" layoutY="59.0" onAction="#proSet" prefHeight="54.0" prefWidth="0.0" styleClass="xButton" stylesheets="@button.css" text=" ">
+         <graphic>
+            <ImageView fitHeight="43.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/PngItem_1468394.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton layoutX="565.0" layoutY="128.0" prefHeight="54.0" prefWidth="0.0" styleClass="xButton" stylesheets="@button.css" text=" ">
+         <graphic>
+            <ImageView fitHeight="47.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/about-us-icon-34429.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

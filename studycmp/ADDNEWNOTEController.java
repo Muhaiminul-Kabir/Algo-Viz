@@ -7,6 +7,7 @@ package studycmp;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -31,6 +32,7 @@ public class ADDNEWNOTEController extends NOTESController implements Initializab
      * Initializes the controller class.
      */
     private String noteName = null;
+    private boolean is = false;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -40,18 +42,39 @@ public class ADDNEWNOTEController extends NOTESController implements Initializab
     @FXML
     private void addNote(ActionEvent event) throws Exception {
         String Title = noteTitle.getText();
-        API.dataIn("NewNote", "src/StudyBase/" + API.getUser() + "Notes/" + Title + ".txt", noteText.getText());
+        if (!is) {
+            API.dataIn("NewNote", "src/StudyBase/" + API.getUser() + "Notes/" + Title + ".txt", noteText.getText());
+            temp.getItems().add(Title);
+        } else {
+            API.rename("src/StudyBase/" + API.getUser() + "Notes/" + noteName + ".txt", "src/StudyBase/" + API.getUser() + "Notes/" + Title + ".txt");
+
+            API.overwriteFile("src/StudyBase/" + API.getUser() + "Notes/" + Title + ".txt", noteText.getText());
+
+            temp.getItems().remove(noteName);
+            temp.getItems().add(Title);
+        }
+        API.closeWindowOnButton(createNoteButton);
+    }
+    
+    
+    @FXML
+    private void delNote(ActionEvent event) throws Exception {
+        String Title = noteTitle.getText();
+            API.delete(new File("src/StudyBase/" + API.getUser() + "Notes/" + Title + ".txt"));
+
+            temp.getItems().remove(Title);
+        API.closeWindowOnButton(createNoteButton);
     }
 
     void setData(String string) throws Exception {
-        
-        
+        is = true;
+        noteName = string;
+        createNoteButton.setText("SAVE");
         String[] tokens = string.split("\\.(?=[^\\.]+$)");
-        
-        
+
         noteTitle.setText(tokens[0]);
         noteText.setText(API.readFileAsString("src/StudyBase/" + API.getUser() + "Notes/" + tokens[0] + ".txt"));
-        
+
     }
 
 }

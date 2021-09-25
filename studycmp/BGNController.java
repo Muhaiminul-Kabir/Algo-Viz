@@ -79,11 +79,17 @@ public class BGNController implements Initializable {
                             
                             Platform.runLater(() -> {
                                
-                                Notifications.create()
-                                        .title("Reminder")
-                                        .text(get[index])
-                                        .showWarning();
-
+                                try {
+                                    if(API.readFileAsString("src/StudyBase/Settings/notification.txt").equals("ON")){
+                                        Notifications.create()
+                                                .title("Reminder")
+                                                .text(get[index])
+                                                .showWarning();
+                                        
+                                    }
+                                } catch (Exception ex) {
+                                    Logger.getLogger(BGNController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                                 if (index < get.length) {
                                     index++;
 

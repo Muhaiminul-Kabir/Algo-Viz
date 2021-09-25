@@ -37,7 +37,7 @@ public class NOTESController implements Initializable {
     private JFXButton addNoteButton;
     
     
-    private static JFXListView<String> temp;
+    public static JFXListView<String> temp;
     
 
     /**
