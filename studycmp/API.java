@@ -75,7 +75,11 @@ public class API {
                 dataIn("git", "src/StudyBase/Settings/empty.txt", "0");
             
 
-            dataIn("INIT ", "src/StudyBase/session_duration.txt", "00:00:01");
+            dataIn("INIT ", "src/StudyBase/session_duration.txt", "00:00:10");
+            
+            dataIn("INIT ", "src/StudyBase/Settings/notification.txt", "on");
+            
+            dataIn("INIT ", "src/StudyBase/Settings/ss_trgt.txt", "10");
             dataIn("INIT ", "src/StudyBase/app_state.txt", "pre_user");
             dataIn("INIT ", "src/StudyBase/current_user.txt", "");
             

@@ -92,15 +92,18 @@ public class TASKSETTINGSController extends TODOController implements Initializa
     @FXML
     private void change1(ActionEvent event) throws Exception {
 
-        API.delete(new File("src/StudyBase/"+API.getUser()+"To_do/" + API.dateToString(LocalDate.now()) + "/" + name));
+        String s = API.readFileAsString("src/StudyBase/temp_day.txt");
+        
+        
+        API.delete(new File("src/StudyBase/"+API.getUser()+"To_do/" + s + "/" + name));
         String x1 = API.readFileAsString("src/StudyBase/"+API.getUser()+ API.dateToString(LocalDate.now()) + "_complt.txt");
         int y = Integer.parseInt(x1);
         API.overwriteFile("src/StudyBase/"+API.getUser()+ API.dateToString(LocalDate.now()) + "_complt.txt", String.valueOf(++y));
-        String[] get = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"To_do/" + API.dateToString(LocalDate.now()));
+        String[] get = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"To_do/" + s);
         
         if (get.length <= 1) {
 
-            API.delete(new File("src/StudyBase/"+API.getUser()+"To_do/" + API.dateToString(LocalDate.now())));
+            API.delete(new File("src/StudyBase/"+API.getUser()+"To_do/" + s));
  
         }
         temp.getItems().remove(name);
