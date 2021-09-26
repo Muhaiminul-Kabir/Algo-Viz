@@ -107,7 +107,7 @@ public class HOMEController implements Initializable {
                 }
 
                 try {
-                    get = API.getAvaliableFilesInDir("src/StudyBase/To_do/"+API.getUser() + today);
+                    get = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"To_do/" + today);
                 } catch (Exception ex) {
                     Logger.getLogger(HOMEController.class.getName()).log(Level.SEVERE, null, ex);
                 }

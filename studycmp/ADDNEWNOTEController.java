@@ -38,12 +38,15 @@ public class ADDNEWNOTEController extends NOTESController implements Initializab
     public void initialize(URL url, ResourceBundle rb) {
         // noteTitle.setText(noteName);
     }
-    int i= 0;
+  
     @FXML
     private void addNote(ActionEvent event) throws Exception {
+        int i = Integer.parseInt(API.readFileAsString("src/StudyBase/i.txt"));
+        
         String Title = noteTitle.getText();
         if (API.isEqualsLimit(Title, 0)){
             Title = "untitled" + String.valueOf(++i);
+            API.overwriteFile("src/StudyBase/i.txt", String.valueOf(i));
         }
         if (!is) {
             API.dataIn("NewNote", "src/StudyBase/" + API.getUser() + "Notes/" + Title + ".txt", noteText.getText());
