@@ -56,15 +56,16 @@ public class CLOCKController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        String duration;
         try {
-            duration = API.readFileAsString("src/StudyBase/session_duration.txt");
-            String[] splited = duration.split(":");
+            if (isExam) {
+                duration = API.readFileAsString("src/StudyBase/session_duration.txt");
 
-            hours = Integer.parseInt(splited[0]);
-            miniutes = Integer.parseInt(splited[1]);
-            seconds = Integer.parseInt(splited[2]);
+                String[] splited = duration.split(":");
 
+                hours = Integer.parseInt(splited[0]);
+                miniutes = Integer.parseInt(splited[1]);
+                seconds = Integer.parseInt(splited[2]);
+            }
             // TODO
             timerLabel.setText(duration);
         } catch (Exception ex) {
@@ -76,16 +77,28 @@ public class CLOCKController implements Initializable {
     }
 
     void setBool() throws Exception {
+        isExam = false;
         duration = "src/StudyBase/" + API.getUser() + "Study/" + API.readFileAsString("src/StudyBase/curr_std.txt") + "/duration.txt";
-        duration= API.readFileAsString(duration);
+        duration = API.readFileAsString(duration);
+        String[] splited = duration.split(":");
+
+        hours = Integer.parseInt(splited[0]);
+        miniutes = Integer.parseInt(splited[1]);
+        seconds = Integer.parseInt(splited[2]);
         System.out.println(duration);
     }
 
     @FXML
     private void resetTimer(ActionEvent event) throws Exception {
 
-        duration = API.readFileAsString("src/StudyBase/session_duration.txt");
+        if (isExam) {
+            duration = API.readFileAsString("src/StudyBase/session_duration.txt");
 
+        } else {
+            duration = "src/StudyBase/" + API.getUser() + "Study/" + API.readFileAsString("src/StudyBase/curr_std.txt") + "/duration.txt";
+            duration = API.readFileAsString(duration);
+
+        }
         String[] splited = duration.split(":");
 
         hours = Integer.parseInt(splited[0]);
@@ -114,12 +127,12 @@ public class CLOCKController implements Initializable {
             public void run() {
                 try {
 
-                    timerLogic();
                     timeStr = String.valueOf(new DecimalFormat("00").format(hours))
                             + ":" + String.valueOf(new DecimalFormat("00").format(miniutes))
                             + ":" + String.valueOf(new DecimalFormat("00").format(seconds));
                     if (!isFinished) {
-
+                        timerLogic();
+                    
                         Platform.runLater(() -> {
 
                             timerLabel.setText(timeStr);
@@ -155,7 +168,7 @@ public class CLOCKController implements Initializable {
 
     private void timerLogic() {
 
-        if (seconds == 0 || miniutes != 0) {
+        if (seconds == 0 && miniutes!= 0 && hours != 0) {
             miniutes--;
             seconds = 60;
         } else if (miniutes == 0 && hours != 0) {
