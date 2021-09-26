@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="studycmp.STUDYTOPICController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studycmp.STUDYTOPICController">
    <children>
       <Label fx:id="topicName" layoutX="69.0" layoutY="67.0" prefHeight="35.0" prefWidth="168.0" />
       <JFXProgressBar fx:id="realBar" layoutX="69.0" layoutY="307.0" prefHeight="20.0" progress="0.0" />
