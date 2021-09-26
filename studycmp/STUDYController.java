@@ -67,23 +67,22 @@ public class STUDYController implements Initializable {
                     }
                 }
 
-                private void loadTaskSettings() throws IOException, Exception {
+                private void loadStudyTopic() throws IOException, Exception {
+                    System.out.println("psg");
                     FXMLLoader loader = new FXMLLoader(
                             getClass().getResource(
-                                    "/studycmp/TASKSETTINGS.fxml"
+                                    "/studycmp/STUDYTOPIC.fxml"
                             ));
                     Parent root = loader.load();
-                   /* STUDYTOPICController ctrl = loader.getController();
-                    ctrl.setData((String) topicList.getSelectionModel().getSelectedItem());*/
+                    STUDYTOPICController ctrl = loader.getController();
+                    ctrl.setData((String) topicList.getSelectionModel().getSelectedItem());
                     Scene scene = new Scene(root);
                     Stage stage = new Stage();
                     stage.setScene(scene);
                     stage.show();
                 }
 
-                private void loadStudyTopic() {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
+               
             });
         } catch (Exception ex) {
             System.out.println(ex);
