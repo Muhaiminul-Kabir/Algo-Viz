@@ -45,7 +45,7 @@ public class STUDYController implements Initializable {
         //dateLabel.setText(showDate);
 
         try {
-            String[] avail = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"To_do/" + showDate);
+            String[] avail = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"Study");
         } catch (Exception ex) {
             Logger.getLogger(TODOController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -99,8 +99,26 @@ public class STUDYController implements Initializable {
         
     }
 
-    private void loadAvaliableTopics() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void loadAvaliableTopics() throws Exception {
+        String[] avail = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"Study");
+
+        if (avail == null) {
+            topicList.getItems().add("NO TOPIC ADDED");
+            topicList.setMouseTransparent(true);
+            topicList.setFocusTraversable(false);
+        } else {
+            topicList.setMouseTransparent(false);
+            topicList.setFocusTraversable(true);
+ 
+            String[] tasks = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"Study");
+            String[] showTask = new String[tasks.length];
+
+            for (int i = 0; i < tasks.length; i++) {
+                showTask[i] = tasks[i] ;
+            }
+
+            topicList.getItems().addAll(showTask);
+        }
     }
     
 }
