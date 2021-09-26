@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="458.0" prefWidth="624.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+<AnchorPane id="AnchorPane" prefHeight="458.0" prefWidth="624.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studycmp.ADDTOPICController">
    <children>
       <Label layoutX="39.0" layoutY="271.0" prefHeight="35.0" prefWidth="216.0" text="Number of Sessions">
          <font>
@@ -30,7 +29,7 @@
             <Font size="24.0" />
          </font>
       </JFXTextField>
-      <TextField fx:id="setDuration" layoutX="272.0" layoutY="179.0">
+      <TextField fx:id="setDuration" layoutX="272.0" layoutY="179.0" text="00:00:00">
          <font>
             <Font size="24.0" />
          </font>
@@ -45,7 +44,7 @@
             <Font name="Impact" size="39.0" />
          </font>
       </Label>
-      <JFXButton layoutX="274.0" layoutY="370.0" prefHeight="60.0" prefWidth="298.0" styleClass="session" stylesheets="@button.css" text="CONFIRM SESSION DETAILS">
+      <JFXButton fx:id="save"  layoutX="274.0" layoutY="370.0" onAction="#addTopic" prefHeight="60.0" prefWidth="298.0" styleClass="session" stylesheets="@button.css" text="CONFIRM SESSION DETAILS">
          <font>
             <Font name="Rockwell" size="20.0" />
          </font>

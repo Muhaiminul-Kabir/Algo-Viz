@@ -36,7 +36,7 @@ public class STUDYController implements Initializable {
     @FXML
     private JFXButton addTopic;
     
-    private static JFXListView<String> temp;
+    static JFXListView<String> temp;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

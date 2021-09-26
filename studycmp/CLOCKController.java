@@ -48,6 +48,9 @@ public class CLOCKController implements Initializable {
     private boolean isFinished = false;
     String duration;
 
+    public boolean isExam = true;
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -73,9 +76,18 @@ public class CLOCKController implements Initializable {
         makeTimer(new Timer());
     }
 
+    void setBool() throws Exception{
+            duration = "src/StudyBase/"+API.getUser()+"Study/"+API.readFileAsString("src/StudyBase/curr_std.txt")+"/duration.txt";
+        
+    }
+    
+    
     @FXML
     private void resetTimer(ActionEvent event) throws Exception {
-        duration = API.readFileAsString("src/StudyBase/session_duration.txt");
+        
+            duration = API.readFileAsString("src/StudyBase/session_duration.txt");
+        
+        
         String[] splited = duration.split(":");
 
         hours = Integer.parseInt(splited[0]);
@@ -144,14 +156,15 @@ public class CLOCKController implements Initializable {
     }
 
     private void timerLogic() {
-        seconds--;
-        if (seconds == 0 && miniutes != 0) {
+        
+        if (seconds == 0 || miniutes != 0) {
             miniutes--;
-            seconds = 59;
+            seconds = 60;
         } else if (miniutes == 0 && hours != 0) {
             hours--;
             miniutes = 59;
         }
+        seconds--;
 
     }
 

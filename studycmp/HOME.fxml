@@ -44,7 +44,7 @@
             <DropShadow />
          </effect>
       </Pane>
-      <JFXButton fx:id="randomButton" layoutX="14.0" layoutY="201.0" onAction="#startTimer" prefHeight="94.0" prefWidth="376.0" styleClass="session" stylesheets="@button.css" text="Strat random session" textFill="#ffffff">
+      <JFXButton fx:id="randomButton" layoutX="14.0" layoutY="201.0" onAction="#startTimer" prefHeight="94.0" prefWidth="376.0" styleClass="session" stylesheets="@button.css" text="Exam session" textFill="#ffffff">
          <font>
             <Font size="34.0" />
          </font>
