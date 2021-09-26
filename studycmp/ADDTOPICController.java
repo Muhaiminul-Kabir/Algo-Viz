@@ -52,8 +52,8 @@ public class ADDTOPICController extends STUDYController implements Initializable
         API.closeWindowOnButton(save);
         temp.getItems().add(topicName.getText());
         API.makeDir(path + topicName.getText());
-        API.dataIn("xyz", path + "duration.txt", setDuration.getText());
-        API.dataIn("xyz", path + "session_no.txt", setDuration.getText());
+        API.dataIn("xyz", path + topicName.getText() +"/duration.txt", setDuration.getText());
+        API.dataIn("xyz", path + topicName.getText() +"session_no.txt", setDuration.getText());
         
         
         
