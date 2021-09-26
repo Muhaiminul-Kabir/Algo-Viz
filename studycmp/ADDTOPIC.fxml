@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="458.0" prefWidth="624.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+   <children>
+      <Label layoutX="39.0" layoutY="271.0" prefHeight="35.0" prefWidth="216.0" text="Number of Sessions">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="39.0" layoutY="111.0" prefHeight="35.0" prefWidth="216.0" text="Session Topic">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="187.0" prefHeight="35.0" prefWidth="216.0" text="Session Duration">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="topicName" layoutX="280.0" layoutY="103.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </JFXTextField>
+      <TextField fx:id="setDuration" layoutX="272.0" layoutY="179.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="numSessions" layoutX="274.0" layoutY="263.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </TextField>
+      <Label alignment="CENTER" layoutX="105.0" layoutY="29.0" prefHeight="51.0" prefWidth="414.0" text="SESSION DETAILS" textAlignment="CENTER">
+         <font>
+            <Font name="Impact" size="39.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="274.0" layoutY="370.0" prefHeight="60.0" prefWidth="298.0" styleClass="session" stylesheets="@button.css" text="CONFIRM SESSION DETAILS">
+         <font>
+            <Font name="Rockwell" size="20.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
