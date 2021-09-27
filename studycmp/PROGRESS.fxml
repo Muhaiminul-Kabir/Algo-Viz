@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="811.0" xmlns:fx="http://javafx.com/fxml/1">
-    
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studycmp.PROGRESSController">
+   <children>
+      <PieChart fx:id="piChart" layoutX="93.0" layoutY="100.0" />
+      <JFXButton fx:id="piCheck" layoutX="397.0" layoutY="516.0" onAction="#handleButton1Action" prefHeight="60.0" prefWidth="124.0" text="Button" />
+   </children>
 </AnchorPane>
