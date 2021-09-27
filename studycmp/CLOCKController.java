@@ -57,7 +57,7 @@ public class CLOCKController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         try {
-            if (isExam) {
+            if (API.readFileAsString("src/StudyBase/bool.txt").equals("on")) {
                 duration = API.readFileAsString("src/StudyBase/session_duration.txt");
 
                 String[] splited = duration.split(":");
@@ -65,7 +65,10 @@ public class CLOCKController implements Initializable {
                 hours = Integer.parseInt(splited[0]);
                 miniutes = Integer.parseInt(splited[1]);
                 seconds = Integer.parseInt(splited[2]);
+            } else {
+                setBool();
             }
+
             // TODO
             timerLabel.setText(duration);
         } catch (Exception ex) {
@@ -91,7 +94,7 @@ public class CLOCKController implements Initializable {
     @FXML
     private void resetTimer(ActionEvent event) throws Exception {
 
-        if (isExam) {
+        if (API.readFileAsString("src/StudyBase/bool.txt").equals("on")) {
             duration = API.readFileAsString("src/StudyBase/session_duration.txt");
 
         } else {
@@ -132,7 +135,7 @@ public class CLOCKController implements Initializable {
                             + ":" + String.valueOf(new DecimalFormat("00").format(seconds));
                     if (!isFinished) {
                         timerLogic();
-                    
+
                         Platform.runLater(() -> {
 
                             timerLabel.setText(timeStr);
@@ -168,7 +171,7 @@ public class CLOCKController implements Initializable {
 
     private void timerLogic() {
 
-        if (seconds == 0 && miniutes!= 0 && hours != 0) {
+        if (seconds == 0 && miniutes != 0 && hours != 0) {
             miniutes--;
             seconds = 60;
         } else if (miniutes == 0 && hours != 0) {

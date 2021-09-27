@@ -63,13 +63,12 @@ public class STUDYTOPICController implements Initializable {
 
     private void loadTimer() throws IOException, Exception {
       System.out.println("psg");
+      API.overwriteFile("src/StudyBase/bool.txt", "off");
                     FXMLLoader loader = new FXMLLoader(
                             getClass().getResource(
                                     "/studycmp/CLOCK.fxml"
                             ));
                     Parent root = loader.load();
-                    CLOCKController ctrl = loader.getController();
-                    ctrl.setBool();
                     Scene scene = new Scene(root);
                     Stage stage = new Stage();
                     stage.setScene(scene);

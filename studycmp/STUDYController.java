@@ -102,7 +102,7 @@ public class STUDYController implements Initializable {
     private void loadAvaliableTopics() throws Exception {
         String[] avail = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"Study");
 
-        if (avail == null) {
+        if (avail.length == 0) {
             topicList.getItems().add("NO TOPIC ADDED");
             topicList.setMouseTransparent(true);
             topicList.setFocusTraversable(false);
