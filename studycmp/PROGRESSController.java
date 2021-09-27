@@ -30,34 +30,39 @@ public class PROGRESSController implements Initializable {
     @FXML
     private JFXButton piCheck;
     String[] topics = null;
-
+    PieChart.Data[] x;
+        
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            topics = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"Study/");
+            topics = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"Study");
         } catch (Exception ex) {
             Logger.getLogger(PROGRESSController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    PieChart[] x={  new PieChart.Data("", 100)};
     }
 
     @FXML
     private void handleButton1Action(ActionEvent event) {
+        getData();
+        System.out.println(x.length);
         ObservableList<PieChart.Data> pieChartData=
-                FXCollections.observableArrayList();
+                FXCollections.observableArrayList(x);
+        
 
-        piChart.setTitle("Monthly Record");
+        piChart.setTitle("Study Duration");
         piChart.setData(pieChartData);
 
     }
 
-    private void getData(String Path) {
-        topics = API.getAvaliableFilesInDir(Path);
+    private void getData() {
+        
+        x = new PieChart.Data[topics.length];
+        
         for (int i = 0; i < topics.length; i++) {
-            new PieChart.Data(topics[i], 55);
+            x[i] = new PieChart.Data(topics[i], i);
 
         }
     }
