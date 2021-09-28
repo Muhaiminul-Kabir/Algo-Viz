@@ -60,7 +60,7 @@ public class ADDTOPICController extends STUDYController implements Initializable
 
         boolean noTask = false;
 
-        if (API.getAvaliableFilesInDir("src/StudyBase/" + API.getUser() + "Study").length > 0) {
+        if (API.getAvaliableFilesInDir("src/StudyBase/" + API.getUser() + "Study").length == 0) {
             noTask = true;
         }
 
@@ -68,6 +68,7 @@ public class ADDTOPICController extends STUDYController implements Initializable
             temp.getItems().clear();
             noTask = false;
         }
+        temp.getItems().remove("NO TOPIC ADDED");
         temp.getItems().add(topicName.getText());
         temp.setMouseTransparent(false);
         temp.setFocusTraversable(true);
