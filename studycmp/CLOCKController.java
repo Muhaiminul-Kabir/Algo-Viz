@@ -222,14 +222,16 @@ public class CLOCKController extends STUDYTOPICController implements Initializab
 
     private void timerLogic() {
 
-        if (seconds == 0 && miniutes != 0 && hours != 0) {
+        if (seconds == 0 && miniutes > 0) {
             miniutes--;
             seconds = 60;
         } else if (miniutes == 0 && hours != 0) {
             hours--;
             miniutes = 59;
         }
-        seconds--;
+       if(seconds<=60){
+           seconds--;
+       }
 
     }
 
