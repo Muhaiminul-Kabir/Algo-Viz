@@ -91,5 +91,12 @@ public class SETTINGSController implements Initializable {
         stage2.setScene(scene);
         stage2.show();
     }
-
+    @FXML
+    private void usSet(ActionEvent event) throws IOException {
+          Parent root1 = FXMLLoader.load(getClass().getResource("/studycmp/ABOUTUS.fxml"));
+        Stage stage2 = new Stage();
+        Scene scene = new Scene(root1);
+        stage2.setScene(scene);
+        stage2.show();
+    }
 }
