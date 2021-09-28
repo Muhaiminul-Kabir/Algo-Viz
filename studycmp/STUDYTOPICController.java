@@ -67,9 +67,19 @@ public class STUDYTOPICController extends STUDYController implements Initializab
     @FXML
     private void delTopic(ActionEvent event) throws Exception {
         
-        String path2 = "src/StudyBase/" + API.getUser() + "Progress/"+dateToString(LocalDate.now())+"_study/";
+        String path2 = "src/StudyBase/" 
+                + API.getUser()
+                + "Progress/"
+                +dateToString(LocalDate.now())
+                +"_study/";
+        
         String path3 = path2 + API.readFileAsString("src/StudyBase/curr_std.txt");
-        String path4 = "src/StudyBase/"+API.getUser()+"Study/" + API.readFileAsString("src/StudyBase/curr_std.txt");
+        
+        String path4 = "src/StudyBase/"
+                +API.getUser()
+                +"Study/"
+                + API.readFileAsString("src/StudyBase/curr_std.txt");
+        
         API.delete(new File(path3));
         API.delete(new File(path4));
         temp.getItems().remove(API.readFileAsString("src/StudyBase/curr_std.txt"));
@@ -82,8 +92,18 @@ public class STUDYTOPICController extends STUDYController implements Initializab
         API.overwriteFile("src/StudyBase/curr_std.txt", string);
         int c;
         try {
-             String x = "src/StudyBase/" + API.getUser() + "Study/" + API.readFileAsString("src/StudyBase/curr_std.txt") + "/session_no.txt";   
-            c  = Integer.parseInt(API.readFileAsString("src/StudyBase/" + API.getUser() + "Study/" + API.readFileAsString("src/StudyBase/curr_std.txt") + "/did.txt"));
+             String x = "src/StudyBase/"
+                     + API.getUser()
+                     + "Study/" 
+                     + API.readFileAsString("src/StudyBase/curr_std.txt")
+                     + "/session_no.txt";
+             
+            c  = Integer.parseInt(API.readFileAsString("src/StudyBase/"
+                    + API.getUser()
+                    + "Study/" 
+                    + API.readFileAsString("src/StudyBase/curr_std.txt")
+                    + "/did.txt"));
+            
             String h = API.readFileAsString(x);
             double p = c/Double.parseDouble(h);
             realBar.setProgress(p);

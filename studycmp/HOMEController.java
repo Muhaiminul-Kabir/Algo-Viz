@@ -91,19 +91,50 @@ public class HOMEController implements Initializable {
             public void run() {
 
                 try {
-                    File t = new File("src/StudyBase/" + API.getUser() + API.dateToString(LocalDate.now()) + "_complt.txt");
+                    File t = new File("src/StudyBase/"
+                            + API.getUser()
+                            + API.dateToString(LocalDate.now())
+                            + "_complt.txt");
                     if (!t.exists()) {
 
-                        API.dataIn("INIT ", "src/StudyBase/" + API.getUser() + API.dateToString(LocalDate.now()) + "_complt.txt", "0");
+                        API.dataIn("INIT ", "src/StudyBase/"
+                                + API.getUser()
+                                + API.dateToString(LocalDate.now())
+                                + "_complt.txt", "0");
 
                     }
 
-                    String path = "src/StudyBase/" + API.getUser() + "Progress/" + dateToString(LocalDate.now()) + "_study";
+                    String path = "src/StudyBase/"
+                            + API.getUser()
+                            + "Progress/"
+                            + dateToString(LocalDate.now())
+                            + "_study";
+
                     File t1 = new File(path);
                     if (!t1.exists()) {
 
                         API.makeDir(path);
 
+                    }
+
+                    String[] fils = API.getAvaliableFilesInDir("src/StudyBase/"
+                            + API.getUser()
+                            + "Study");
+
+                    File[] is = new File[fils.length];
+
+                    for (int i = 0; i < fils.length; i++) {
+                        is[i] = new File(path
+                                + "/"
+                                + fils[i]
+                                + ".txt");
+
+                        if (!is[i].exists()) {
+                            API.dataIn("reinc", path
+                                    + "/"
+                                    + fils[i]
+                                    + ".txt", "0");
+                        }
                     }
 
                 } catch (IOException ex) {

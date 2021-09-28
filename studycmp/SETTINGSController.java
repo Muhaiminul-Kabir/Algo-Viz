@@ -49,7 +49,7 @@ public class SETTINGSController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        SpinnerValueFactory<Integer> valueFactory = //
-                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1);
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1);
 
         target.setValueFactory(valueFactory);
         

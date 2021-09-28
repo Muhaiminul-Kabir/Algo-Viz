@@ -6,6 +6,7 @@
 package studycmp;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXSpinner;
 import java.net.URL;
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -27,13 +28,17 @@ import static studycmp.API.dateToString;
  * @author new
  */
 public class PROGRESSController implements Initializable {
-
+    
     @FXML
     private PieChart piChart;
     @FXML
     private JFXButton piCheck;
     @FXML
     private Label oLabel;
+    @FXML
+    private Label noTask;
+    @FXML
+    private JFXSpinner prog;
     
     String[] topics = null;
     PieChart.Data[] x;
@@ -44,45 +49,83 @@ public class PROGRESSController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            
+            noTask.setText(API.readFileAsString("src/StudyBase/"
+                    + API.getUser()
+                    + API.dateToString(LocalDate.now())
+                    + "_complt.txt"));
+            
             topics = API.getAvaliableFilesInDir("src/StudyBase/" + API.getUser() + "Study");
             oLabel.setText("Insights");
+            getPer();
         } catch (Exception ex) {
             Logger.getLogger(PROGRESSController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
-
+    
     @FXML
     private void handleButton1Action(ActionEvent event) throws Exception {
         oLabel.setVisible(false);
         getData();
         //System.out.println(x.length);
-        if(topics.length != 0){
-             ObservableList<PieChart.Data> pieChartData
-                = FXCollections.observableArrayList(x);
+        if (topics.length != 0) {
+            ObservableList<PieChart.Data> pieChartData
+                    = FXCollections.observableArrayList(x);
             piChart.setTitle("Study Duration");
             piChart.setData(pieChartData);
-
+            
         }
-    
+        
     }
-
+    
     private void getData() throws Exception {
         System.out.println(topics.length);
         if (topics.length > 0) {
             x = new PieChart.Data[topics.length];
             int[] data = new int[topics.length];
             for (int i = 0; i < topics.length; i++) {
-                String path2 = "src/StudyBase/" + API.getUser() + "Progress/" + dateToString(LocalDate.now()) + "_study/";
-                data[i] = Integer.parseInt(API.readFileAsString(path2 + topics[i] + "/done.txt"));
+                String path2 = "src/StudyBase/"
+                        + API.getUser()
+                        + "Progress/"
+                        + dateToString(LocalDate.now())
+                        + "_study/";
+                
+                data[i] = Integer.parseInt(API.readFileAsString(path2 + topics[i] + ".txt"));
                 x[i] = new PieChart.Data(topics[i], data[i]);
-
+                
             }
-        }
-        else{
+        } else {
             oLabel.setVisible(true);
             oLabel.setText("No Data Avaliable");
-        
+            
         }
     }
-
+    
+    private void getPer() throws Exception {
+        
+        String path2 = "src/StudyBase/"
+                + API.getUser()
+                + API.dateToString(LocalDate.now())
+                + "_complt.txt";
+        
+        String path3 = "src/StudyBase/"
+                + API.getUser()
+                + "/Progress/daily_session.txt";
+        String path4 = "src/StudyBase/"
+                + "/Settings/ss_trgt.txt";
+        
+        double x = Double.parseDouble(API.readFileAsString(path3));
+        double y = Double.parseDouble(API.readFileAsString(path4));
+        
+        double p = (double) (x / y);
+        System.out.println(x);
+        
+        System.out.println(y);
+        
+        System.out.println(p);
+        prog.setProgress(p);
+        
+    }
+    
 }

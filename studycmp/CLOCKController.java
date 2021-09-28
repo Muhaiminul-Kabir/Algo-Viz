@@ -117,25 +117,51 @@ public class CLOCKController extends STUDYTOPICController implements Initializab
     @FXML
     private void finishTimer(ActionEvent event) throws IOException, Exception {
         isFinished = true;
-        String x = API.readFileAsString("src/StudyBase/" + API.getUser() + "Progress/daily_session.txt");
+        String x = API.readFileAsString("src/StudyBase/" 
+                + API.getUser() 
+                + "Progress/daily_session.txt");
+        
         int y = Integer.parseInt(x);
-        API.overwriteFile("src/StudyBase/" + API.getUser() + "Progress/daily_session.txt", String.valueOf(++y));
+        API.overwriteFile("src/StudyBase/" 
+                + API.getUser()
+                + "Progress/daily_session.txt", String.valueOf(++y));
 
         if (API.readFileAsString("src/StudyBase/bool.txt").equals("on")) {
             API.closeWindowOnButton(finishTimerButton);
         } else {
            
             
-            String x1 = API.readFileAsString("src/StudyBase/" + API.getUser() + "Progress/" + API.dateToString(LocalDate.now()) + "_study/" + API.readFileAsString("src/StudyBase/curr_std.txt") + "/done.txt");
+            String x1 = API.readFileAsString("src/StudyBase/" 
+                    + API.getUser() 
+                    + "Progress/" 
+                    + API.dateToString(LocalDate.now()) 
+                    + "_study/" + API.readFileAsString("src/StudyBase/curr_std.txt")
+                    + ".txt");
+            //
             System.out.println(x1);
             int y1 = Integer.parseInt(x1);
-            API.overwriteFile("src/StudyBase/" + API.getUser() + "Progress/" + API.dateToString(LocalDate.now()) + "_study/" + API.readFileAsString("src/StudyBase/curr_std.txt") + "/done.txt", String.valueOf(++y1));
+            API.overwriteFile("src/StudyBase/" 
+                    + API.getUser() 
+                    + "Progress/"
+                    + API.dateToString(LocalDate.now()) 
+                    + "_study/"
+                    + API.readFileAsString("src/StudyBase/curr_std.txt")
+                    + ".txt", String.valueOf(++y1));
 
-            String c = "src/StudyBase/" + API.getUser() + "Study/" + API.readFileAsString("src/StudyBase/curr_std.txt") + "/did.txt";
+            String c = "src/StudyBase/" 
+                    + API.getUser() 
+                    + "Study/" 
+                    + API.readFileAsString("src/StudyBase/curr_std.txt") 
+                    + "/did.txt";
+            //
             int c1 = Integer.parseInt(API.readFileAsString(c));
             API.overwriteFile(c, String.valueOf(++c1));
-            String x2 = "src/StudyBase/" + API.getUser() + "Study/" + API.readFileAsString("src/StudyBase/curr_std.txt") + "/session_no.txt";   
-            //c  = Integer.parseInt(API.readFileAsString("src/StudyBase/" + API.getUser() + "Study/" + API.readFileAsString("src/StudyBase/curr_std.txt") + "/did.txt"));
+            String x2 = "src/StudyBase/" 
+                    + API.getUser()
+                    + "Study/"
+                    + API.readFileAsString("src/StudyBase/curr_std.txt")
+                    + "/session_no.txt";   
+           
             String h = API.readFileAsString(x2);
             double p = c1/Double.parseDouble(h);
             pp.setProgress(p);
