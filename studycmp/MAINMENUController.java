@@ -15,7 +15,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -40,10 +43,9 @@ public class MAINMENUController implements Initializable {
     private JFXButton logOutButton;
     @FXML
     private Pane windowContainer;
-    
-    
+
     public Pane tempPane;
-    private String[] window = {"/studycmp/HOME.fxml","/studycmp/STUDY.fxml","/studycmp/TODO.fxml","/studycmp/NOTES.fxml","/studycmp/SETTINGS.fxml","/studycmp/PROGRESS.fxml"};
+    private String[] window = {"/studycmp/HOME.fxml", "/studycmp/STUDY.fxml", "/studycmp/TODO.fxml", "/studycmp/NOTES.fxml", "/studycmp/SETTINGS.fxml", "/studycmp/PROGRESS.fxml"};
 
     /**
      * Initializes the controller class.
@@ -55,21 +57,20 @@ public class MAINMENUController implements Initializable {
         } catch (IOException ex) {
             System.out.println(ex);
         }
-    }    
+    }
 
     @FXML
     private void loadHome(ActionEvent event) throws IOException {
         loadWindow(0);
     }
 
-    
     @FXML
     private void logOut(ActionEvent event) throws IOException {
-        API.overwriteFile("src/StudyBase/current_user.txt", "");
         API.overwriteFile("src/StudyBase/app_state.txt", "pro_user");
         API.closeWindowOnButton(logOutButton);
+        loginLoad();
     }
-    
+
     @FXML
     private void loadStudy(ActionEvent event) throws IOException {
         loadWindow(1);
@@ -94,19 +95,25 @@ public class MAINMENUController implements Initializable {
     private void loadProgress(ActionEvent event) throws IOException {
         loadWindow(5);
     }
-    
-    
-    public void loadWindow(int index) throws IOException{
+
+    public void loadWindow(int index) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(window[index]));
         Pane newLoadedPane = loader.load();
-        
+
         windowContainer.getChildren().remove(tempPane);
 
         windowContainer.getChildren().add(newLoadedPane);
 
         tempPane = newLoadedPane;
 
-    
-    
+    }
+
+    private void loginLoad() throws IOException {
+         Parent root1 = FXMLLoader.load(getClass().getResource("/studycmp/LOGINPAGE.fxml"));
+        Stage stage2 = new Stage();
+        Scene scene = new Scene(root1);
+        stage2.setScene(scene);
+        stage2.show();
+
     }
 }

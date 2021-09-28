@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="552.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
-    
+<AnchorPane id="AnchorPane" prefHeight="482.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="482.0" fitWidth="689.0">
+         <image>
+            <Image url="@images/Rafid%20Reezwan%20Fahim%20ID%20190204082.jpg" />
+         </image>
+      </ImageView>
+   </children>
 </AnchorPane>

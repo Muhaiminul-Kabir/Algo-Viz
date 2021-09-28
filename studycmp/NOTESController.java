@@ -108,7 +108,7 @@ public class NOTESController implements Initializable {
     private void loadAvaliableNotes() throws Exception {
          String[] avail = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"Notes");
 
-        if (avail == null) {
+        if (avail.length == 0) {
             noteList.getItems().add("NO NOTES ADDED");
             noteList.setMouseTransparent(true);
             noteList.setFocusTraversable(false);

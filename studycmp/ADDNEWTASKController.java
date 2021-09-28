@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXTimePicker;
 import com.sun.jnlp.ApiDialog;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -44,9 +45,6 @@ public class ADDNEWTASKController extends TODOController implements Initializabl
     @FXML
     private JFXComboBox<String> repeatBox;
 
-    
-    
-    
     private Alert a;
     private String dayFolder;
     private String taskFolder;
@@ -57,16 +55,14 @@ public class ADDNEWTASKController extends TODOController implements Initializabl
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        String[] choice = {"Once","Weekly","For a week"};
+        String[] choice = {"Once", "Weekly", "For a week"};
         repeatBox.getItems().addAll(choice);
         repeatBox.setValue("Once");
     }
 
     @FXML
     private void addTask(ActionEvent event) throws Exception {
-        dayFolder = "src/StudyBase/"+API.getUser()+"/To_do/" + API.readFileAsString("src/StudyBase/temp_day.txt");
-        
-        
+        dayFolder = "src/StudyBase/" + API.getUser() + "/To_do/" + API.readFileAsString("src/StudyBase/temp_day.txt");
 
         noTask = API.makeDir(dayFolder);
         System.out.println(noTask);
@@ -93,18 +89,21 @@ public class ADDNEWTASKController extends TODOController implements Initializabl
             a.setContentText("Please enter a valid Task name");
             a.show();
         } else {
-            dayFolder = "src/StudyBase/"+API.getUser()+"To_do/" + API.readFileAsString("src/StudyBase/temp_day.txt");
+            dayFolder = "src/StudyBase/" + API.getUser() + "To_do/" + API.readFileAsString("src/StudyBase/temp_day.txt");
             taskFolder = dayFolder + "/" + taskNameField.getText();
 
             API.makeDir(taskFolder);
 
             API.dataIn("NEW_TASK", taskFolder + "/time.txt", taskTime.getValue().toString());
 
-            if(repeatBox.getValue().equals("For a week"))
-            {
-                
-            }            
-            
+            if (repeatBox.getValue().equals("For a week")) {
+
+                addForWeek();
+
+            } else if (repeatBox.getValue().equals("Weekly")) {
+                addWeekly();
+            }
+
             if (noTask) {
                 temp.getItems().clear();
                 noTask = false;
@@ -118,6 +117,48 @@ public class ADDNEWTASKController extends TODOController implements Initializabl
             a.setContentText("Task added successfully");
             a.show();
             API.closeWindowOnButton(addTaskButton);
+        }
+    }
+
+    private void addForWeek() throws Exception {
+
+        LocalDate tDate = API.strToDate(API.readFileAsString("src/StudyBase/temp_day.txt"));
+
+        LocalDate[] dArr = new LocalDate[7];
+
+        for (int i = 0; i < 7; i++) {
+            dArr[i] = tDate.plusDays(1);
+            tDate = tDate.plusDays(1);
+        }
+
+        for (int i = 0; i < dArr.length; i++) {
+
+            dayFolder = "src/StudyBase/" + API.getUser() + "To_do/" + API.dateToString(dArr[i]);
+            API.makeDir(dayFolder);
+            taskFolder = dayFolder + "/" + taskNameField.getText();
+
+            API.makeDir(taskFolder);
+
+            API.dataIn("NEW_TASK", taskFolder + "/time.txt", taskTime.getValue().toString());
+
+            // System.out.println(repeatBox.getValue());
+        }
+
+    }
+
+    private void addWeekly() throws Exception {
+
+        LocalDate tDate = API.strToDate(API.readFileAsString("src/StudyBase/temp_day.txt"));
+        for (int i = 0; i < 10; i++) {
+
+            tDate = tDate.plusDays(7);
+            dayFolder = "src/StudyBase/" + API.getUser() + "To_do/" + API.dateToString(tDate);
+            API.makeDir(dayFolder);
+            taskFolder = dayFolder + "/" + taskNameField.getText();
+
+            API.makeDir(taskFolder);
+
+            API.dataIn("NEW_TASK", taskFolder + "/time.txt", taskTime.getValue().toString());
         }
     }
 

@@ -27,6 +27,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -40,22 +43,29 @@ import javax.swing.JOptionPane;
  */
 public class API {
 
-    public static void userDir(String user) throws IOException {
+    public static void userDir(String user) throws IOException, Exception {
 
         File f1 = new File("src/StudyBase/" + user + "/To_do");
         File f2 = new File("src/StudyBase/" + user + "/Study");
         File f3 = new File("src/StudyBase/" + user + "/Notes");
         File f4 = new File("src/StudyBase/" + user + "/Progress");
 
-        File[] mainFolder = {f1, f2,f3, f4};
-       
+        File[] mainFolder = {f1, f2, f3, f4};
+
         for (int i = 0; i < mainFolder.length; i++) {
-                mainFolder[i].mkdir();
-               
+            mainFolder[i].mkdir();
+
         }
-        dataIn("INIT", "src/StudyBase/"+user+"/Progress/daily_session.txt", "0");
-            
-        
+
+        String path = "src/StudyBase/"
+                + API.getUser()
+                + "Progress/"
+                + dateToString(LocalDate.now())
+                + "_study";
+
+        dataIn("INIT", "src/StudyBase/" + user + "/Progress/daily_session.txt", "0");
+        makeDir(path);
+
     }
 
     // for creating primary folders
@@ -63,27 +73,25 @@ public class API {
 
         File f0 = new File("src/StudyBase");
 
-        
         File f3 = new File("src/StudyBase/Settings");
-        
+
         boolean bool = f0.mkdir();
         if (bool) {
             System.out.println("FOLDER IS CREATED SUCCESSFULLY");
 
-            
-                f3.mkdir();
-                dataIn("git", "src/StudyBase/Settings/empty.txt", "0");
-            
+            f3.mkdir();
 
-            dataIn("INIT ", "src/StudyBase/session_duration.txt", "00:00:01");
+            dataIn("git", "src/StudyBase/Settings/empty.txt", "0");
+            dataIn("INIT ", "src/StudyBase/session_duration.txt", "00:00:10");
+            dataIn("INIT ", "src/StudyBase/bool.txt", "on");
+            dataIn("INIT ", "src/StudyBase/curr_std.txt", "lol");
+            dataIn("INIT ", "src/StudyBase/Settings/notification.txt", "on");
+            dataIn("INIT ", "src/StudyBase/i.txt", "0");
+            dataIn("INIT ", "src/StudyBase/Settings/ss_trgt.txt", "10");
             dataIn("INIT ", "src/StudyBase/app_state.txt", "pre_user");
             dataIn("INIT ", "src/StudyBase/current_user.txt", "");
-            
-            
-
-            
-
             dataIn("TEMP ", "src/StudyBase/temp_day.txt", dateToString(LocalDate.now()));
+        
         } else {
             System.out.println("EXISTS");
             dataIn("TEMP ", "src/StudyBase/temp_day.txt", dateToString(LocalDate.now()));
@@ -159,7 +167,8 @@ public class API {
         System.out.println(sl + "success...");
 
     }
-/*
+
+    /*
     // creates file path
     public static String createFolderPath(String key, String flName) {
         String path = null;
@@ -176,7 +185,7 @@ public class API {
         return path;
 
     }
-*/
+     */
     // read a file as a whole String
     public static String readFileAsString(String fileName) throws Exception {
         String data = "";
@@ -266,20 +275,19 @@ public class API {
     static String readEveryLine(String path) {
         String line = null;
         BufferedReader reader;
-		try {
-			reader = new BufferedReader(new FileReader(path));
-			line = reader.readLine();
-			while (line != null) {
-				System.out.println(line);
-				
-				line = reader.readLine();
-			}
-			reader.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        
-        
+        try {
+            reader = new BufferedReader(new FileReader(path));
+            line = reader.readLine();
+            while (line != null) {
+                System.out.println(line);
+
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return line;
     }
 
@@ -302,20 +310,36 @@ public class API {
     static String getUser() throws Exception {
         return readFileAsString("src/StudyBase/current_user.txt") + "/";
     }
-    
-    public static Connection connectDb() throws SQLException{
+
+    public static Connection connectDb() throws SQLException {
         Connection con = null;
         con = DriverManager.getConnection("jdbc:derby://localhost:1527/Study", "Base", "12345");
         return con;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    public static void updateDB(String x, String y) throws SQLException, Exception {
+        String z = readFileAsString("src/StudyBase/current_user.txt");
+        Connection conn = connectDb();
+
+        Statement stmt = conn.createStatement();
+
+        String query = "UPDATE USERS SET PASSWORD = '" + y + "', ID = '" + x + "' WHERE ID = '" + z + "'";
+        int num = stmt.executeUpdate(query);
+        System.out.println("Number of records updated are: " + num);
+        rename("src/StudyBase/" + z, "src/StudyBase/" + x);
+        overwriteFile("src/StudyBAse/current_user.txt", x);
+
+    }
+
+    static void delDB(String x) throws SQLException {
+        Connection conn = connectDb();
+
+        Statement stmt = conn.createStatement();
+
+        String query = "DELETE FROM  USERS WHERE ID = '" + x + "'";
+        int num = stmt.executeUpdate(query);
+        System.out.println("Number of records deleted are: " + num);
+
+    }
+
 }

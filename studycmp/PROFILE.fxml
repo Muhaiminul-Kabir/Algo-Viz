@@ -1,11 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="552.0" xmlns:fx="http://javafx.com/fxml/1">
-    
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="552.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studycmp.PROFILEController">
+   <children>
+      <Label layoutX="66.0" layoutY="78.0" prefHeight="57.0" prefWidth="257.0" text="Profile Settings">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="92.0" layoutY="177.0" prefHeight="32.0" prefWidth="89.0" text="Username">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="92.0" layoutY="247.0" prefHeight="32.0" prefWidth="89.0" text="Password">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="92.0" layoutY="336.0" prefHeight="32.0" prefWidth="244.0" text="Delete your account">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="cUser" layoutX="195.0" layoutY="181.0" prefHeight="32.0" prefWidth="170.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField fx:id="cPass" layoutX="195.0" layoutY="247.0" prefHeight="32.0" prefWidth="170.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <JFXButton fx:id="DLT6" layoutX="323.0" layoutY="340.0" onAction="#delF" prefHeight="32.0" prefWidth="89.0" styleClass="session" stylesheets="@button.css" text="DELETE" />
+      <JFXButton fx:id="APPLY" layoutX="391.0" layoutY="247.0" onAction="#applyF" prefHeight="32.0" prefWidth="89.0" styleClass="addButton" stylesheets="@button.css" text="APPLY" />
+   </children>
 </AnchorPane>

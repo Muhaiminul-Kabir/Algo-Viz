@@ -66,7 +66,7 @@ public class INITSETTINGSController implements Initializable {
         saveUser();
     }
 
-    private void doThings() throws IOException {
+    private void doThings() throws IOException, Exception {
 
         API.makeDir("src/StudyBase/" + getNameFld.getText());
         API.userDir(getNameFld.getText());

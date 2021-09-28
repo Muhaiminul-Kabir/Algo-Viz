@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="811.0" xmlns:fx="http://javafx.com/fxml/1">
-    
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="811.0" stylesheets="@button.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studycmp.STUDYController">
+   <children>
+      <JFXListView fx:id="topicList" layoutX="60.0" layoutY="45.0" prefHeight="540.0" prefWidth="517.0" stylesheets="@list.css" />
+      <JFXButton fx:id="addTopic" layoutX="619.0" layoutY="279.0" onAction="#addTopicControl" prefHeight="43.0" prefWidth="97.0" styleClass="addButton" stylesheets="@button.css" text="Add Topic" />
+   </children>
 </AnchorPane>
