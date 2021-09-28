@@ -168,6 +168,7 @@ public class CLOCKController extends STUDYTOPICController implements Initializab
             trp.setText(c1+"/"+h);
             fpp.setVisible(false);
             pp.setVisible(true);
+            API.overwriteFile("src/StudyBase/bool.txt", "on");
             API.closeWindowOnButton(finishTimerButton);
         }
 
