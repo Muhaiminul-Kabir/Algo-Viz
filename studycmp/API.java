@@ -43,7 +43,7 @@ import javax.swing.JOptionPane;
  */
 public class API {
 
-    public static void userDir(String user) throws IOException {
+    public static void userDir(String user) throws IOException, Exception {
 
         File f1 = new File("src/StudyBase/" + user + "/To_do");
         File f2 = new File("src/StudyBase/" + user + "/Study");
@@ -56,7 +56,10 @@ public class API {
             mainFolder[i].mkdir();
 
         }
+        
+                String path = "src/StudyBase/" + API.getUser() + "Progress/"+dateToString(LocalDate.now())+"_study";
         dataIn("INIT", "src/StudyBase/" + user + "/Progress/daily_session.txt", "0");
+        makeDir(path);
 
     }
 

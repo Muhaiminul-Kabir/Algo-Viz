@@ -8,7 +8,10 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studycmp.STUDYTOPICController">
    <children>
-      <Label fx:id="topicName" layoutX="69.0" layoutY="67.0" prefHeight="35.0" prefWidth="168.0" />
+      <Label fx:id="topicName" layoutX="69.0" layoutY="67.0" prefHeight="35.0" prefWidth="168.0" text="gy8tg">
+         <font>
+            <Font size="29.0" />
+         </font></Label>
       <JFXProgressBar fx:id="realBar" layoutX="69.0" layoutY="307.0" prefHeight="20.0" progress="0.0" />
       <JFXProgressBar fx:id="fakeBar" layoutX="69.0" layoutY="307.0" prefHeight="20.0" />
       <JFXButton fx:id="startButton" layoutX="365.0" layoutY="111.0" onAction="#startSession" prefHeight="50.0" prefWidth="154.0" styleClass="setinButton" stylesheets="@button.css" text="LET'S START">
@@ -21,6 +24,10 @@
             <Font name="Impact" size="25.0" />
          </font>
       </JFXButton>
-      <Label fx:id="compSessions" layoutX="69.0" layoutY="190.0" prefHeight="77.0" prefWidth="154.0" text="Label" />
+      <Label fx:id="compSessions" layoutX="69.0" layoutY="190.0" prefHeight="77.0" prefWidth="154.0" text="Label">
+         <font>
+            <Font size="50.0" />
+         </font></Label>
+      <Label fx:id="topicName1" layoutX="69.0" layoutY="155.0" prefHeight="35.0" prefWidth="168.0" text="Session Completion" />
    </children>
 </AnchorPane>
