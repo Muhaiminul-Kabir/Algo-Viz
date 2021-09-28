@@ -27,6 +27,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
 import static studycmp.API.dataIn;
+import static studycmp.API.dateToString;
 import static studycmp.TODOController.temp;
 
 /**
@@ -55,12 +56,12 @@ public class HOMEController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             // TODO
-            get = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"To_do/" + today);
+            get = API.getAvaliableFilesInDir("src/StudyBase/" + API.getUser() + "To_do/" + today);
         } catch (Exception ex) {
             Logger.getLogger(HOMEController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            grettings.setText("Hi, "+API.readFileAsString("src/StudyBase/current_user.txt"));
+            grettings.setText("Hi, " + API.readFileAsString("src/StudyBase/current_user.txt"));
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -72,32 +73,68 @@ public class HOMEController implements Initializable {
         }
         update(new Timer());
     }
-    
-    
+
     @FXML
-    private void startTimer(ActionEvent event) throws IOException{
+    private void startTimer(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/studycmp/CLOCK.fxml"));
 
-            Scene scene = new Scene(root);
-            Stage primaryStage = new Stage();
-            primaryStage.setScene(scene);
-            primaryStage.show();
+        Scene scene = new Scene(root);
+        Stage primaryStage = new Stage();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
-    
-    
-    
 
     void update(Timer timer) {
 
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
+
                 try {
-                    File t = new File("src/StudyBase/"+API.getUser()+ API.dateToString(LocalDate.now()) + "_complt.txt");
+                    File t = new File("src/StudyBase/"
+                            + API.getUser()
+                            + API.dateToString(LocalDate.now())
+                            + "_complt.txt");
                     if (!t.exists()) {
 
-                        API.dataIn("INIT ", "src/StudyBase/"+API.getUser()+ API.dateToString(LocalDate.now()) + "_complt.txt", "0");
+                        API.dataIn("INIT ", "src/StudyBase/"
+                                + API.getUser()
+                                + API.dateToString(LocalDate.now())
+                                + "_complt.txt", "0");
 
+                    }
+
+                    String path = "src/StudyBase/"
+                            + API.getUser()
+                            + "Progress/"
+                            + dateToString(LocalDate.now())
+                            + "_study";
+
+                    File t1 = new File(path);
+                    if (!t1.exists()) {
+
+                        API.makeDir(path);
+
+                    }
+
+                    String[] fils = API.getAvaliableFilesInDir("src/StudyBase/"
+                            + API.getUser()
+                            + "Study");
+
+                    File[] is = new File[fils.length];
+
+                    for (int i = 0; i < fils.length; i++) {
+                        is[i] = new File(path
+                                + "/"
+                                + fils[i]
+                                + ".txt");
+
+                        if (!is[i].exists()) {
+                            API.dataIn("reinc", path
+                                    + "/"
+                                    + fils[i]
+                                    + ".txt", "0");
+                        }
                     }
 
                 } catch (IOException ex) {
@@ -107,7 +144,7 @@ public class HOMEController implements Initializable {
                 }
 
                 try {
-                    get = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"To_do/" + today);
+                    get = API.getAvaliableFilesInDir("src/StudyBase/" + API.getUser() + "To_do/" + today);
                 } catch (Exception ex) {
                     Logger.getLogger(HOMEController.class.getName()).log(Level.SEVERE, null, ex);
                 }

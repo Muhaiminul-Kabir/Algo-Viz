@@ -23,13 +23,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import org.controlsfx.control.Notifications;
+import static studycmp.API.dateToString;
 
 /**
  * FXML Controller class
  *
  * @author ASUS
  */
-public class CLOCKController implements Initializable {
+public class CLOCKController extends STUDYTOPICController implements Initializable {
 
     @FXML
     private JFXSpinner timeBar;
@@ -116,10 +117,60 @@ public class CLOCKController implements Initializable {
     @FXML
     private void finishTimer(ActionEvent event) throws IOException, Exception {
         isFinished = true;
-        String x = API.readFileAsString("src/StudyBase/" + API.getUser() + "Progress/daily_session.txt");
+        String x = API.readFileAsString("src/StudyBase/" 
+                + API.getUser() 
+                + "Progress/daily_session.txt");
+        
         int y = Integer.parseInt(x);
-        API.overwriteFile("src/StudyBase/" + API.getUser() + "Progress/daily_session.txt", String.valueOf(++y));
-        API.closeWindowOnButton(finishTimerButton);
+        API.overwriteFile("src/StudyBase/" 
+                + API.getUser()
+                + "Progress/daily_session.txt", String.valueOf(++y));
+
+        if (API.readFileAsString("src/StudyBase/bool.txt").equals("on")) {
+            API.closeWindowOnButton(finishTimerButton);
+        } else {
+           
+            
+            String x1 = API.readFileAsString("src/StudyBase/" 
+                    + API.getUser() 
+                    + "Progress/" 
+                    + API.dateToString(LocalDate.now()) 
+                    + "_study/" + API.readFileAsString("src/StudyBase/curr_std.txt")
+                    + ".txt");
+            //
+            System.out.println(x1);
+            int y1 = Integer.parseInt(x1);
+            API.overwriteFile("src/StudyBase/" 
+                    + API.getUser() 
+                    + "Progress/"
+                    + API.dateToString(LocalDate.now()) 
+                    + "_study/"
+                    + API.readFileAsString("src/StudyBase/curr_std.txt")
+                    + ".txt", String.valueOf(++y1));
+
+            String c = "src/StudyBase/" 
+                    + API.getUser() 
+                    + "Study/" 
+                    + API.readFileAsString("src/StudyBase/curr_std.txt") 
+                    + "/did.txt";
+            //
+            int c1 = Integer.parseInt(API.readFileAsString(c));
+            API.overwriteFile(c, String.valueOf(++c1));
+            String x2 = "src/StudyBase/" 
+                    + API.getUser()
+                    + "Study/"
+                    + API.readFileAsString("src/StudyBase/curr_std.txt")
+                    + "/session_no.txt";   
+           
+            String h = API.readFileAsString(x2);
+            double p = c1/Double.parseDouble(h);
+            pp.setProgress(p);
+            trp.setText(c1+"/"+h);
+            fpp.setVisible(false);
+            pp.setVisible(true);
+            API.closeWindowOnButton(finishTimerButton);
+        }
+
     }
 
     String timeStr;
