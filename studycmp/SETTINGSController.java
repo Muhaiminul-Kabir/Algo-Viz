@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -25,6 +26,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 import static studycmp.API.dataIn;
 
 /**
@@ -81,6 +83,11 @@ public class SETTINGSController implements Initializable {
          API.overwriteFile("src/StudyBase/Settings/ss_trgt.txt", String.valueOf(target.getValue()));
          API.overwriteFile("src/StudyBase/session_duration.txt",duration.getText());
          API.overwriteFile("src/StudyBase/Settings/notification.txt",noti.getText());
+         
+         Platform.runLater(() -> {
+                            Notifications.create().text("Settings updated").showConfirm();
+                            
+                        });
          
     }
     @FXML
