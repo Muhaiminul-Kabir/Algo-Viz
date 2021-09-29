@@ -50,6 +50,7 @@ public class ADDNEWNOTEController extends NOTESController implements Initializab
         }
         if (!is) {
             API.dataIn("NewNote", "src/StudyBase/" + API.getUser() + "Notes/" + Title + ".txt", noteText.getText());
+            temp.getItems().remove("NO NOTES ADDED");
             temp.getItems().add(Title);
         } else {
             API.rename("src/StudyBase/" + API.getUser() + "Notes/" + noteName + ".txt", "src/StudyBase/" + API.getUser() + "Notes/" + Title + ".txt");

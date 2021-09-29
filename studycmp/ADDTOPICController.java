@@ -18,8 +18,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import static studycmp.API.dateToString;
-import static studycmp.NOTESController.temp;
-import static studycmp.TODOController.temp;
 
 /**
  * FXML Controller class
