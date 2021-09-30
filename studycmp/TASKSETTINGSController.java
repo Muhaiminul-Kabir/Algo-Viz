@@ -101,7 +101,7 @@ public class TASKSETTINGSController extends TODOController implements Initializa
         API.overwriteFile("src/StudyBase/"+API.getUser()+ API.dateToString(LocalDate.now()) + "_complt.txt", String.valueOf(++y));
         String[] get = API.getAvaliableFilesInDir("src/StudyBase/"+API.getUser()+"To_do/" + s);
         
-        if (get.length <= 1) {
+        if (get.length < 1) {
 
             API.delete(new File("src/StudyBase/"+API.getUser()+"To_do/" + s));
  
