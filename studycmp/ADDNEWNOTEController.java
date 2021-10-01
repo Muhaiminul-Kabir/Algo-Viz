@@ -38,13 +38,13 @@ public class ADDNEWNOTEController extends NOTESController implements Initializab
     public void initialize(URL url, ResourceBundle rb) {
         // noteTitle.setText(noteName);
     }
-  
+
     @FXML
     private void addNote(ActionEvent event) throws Exception {
         int i = Integer.parseInt(API.readFileAsString("src/StudyBase/i.txt"));
-        
+
         String Title = noteTitle.getText();
-        if (API.isEqualsLimit(Title, 0)){
+        if (API.isEqualsLimit(Title, 0)) {
             Title = "untitled" + String.valueOf(++i);
             API.overwriteFile("src/StudyBase/i.txt", String.valueOf(i));
         }
@@ -59,17 +59,19 @@ public class ADDNEWNOTEController extends NOTESController implements Initializab
 
             temp.getItems().remove(noteName);
             temp.getItems().add(Title);
+
         }
+        temp.setMouseTransparent(false);
+        temp.setFocusTraversable(true);
         API.closeWindowOnButton(createNoteButton);
     }
-    
-    
+
     @FXML
     private void delNote(ActionEvent event) throws Exception {
         String Title = noteTitle.getText();
-            API.delete(new File("src/StudyBase/" + API.getUser() + "Notes/" + Title + ".txt"));
+        API.delete(new File("src/StudyBase/" + API.getUser() + "Notes/" + Title + ".txt"));
 
-            temp.getItems().remove(Title);
+        temp.getItems().remove(Title);
         API.closeWindowOnButton(createNoteButton);
     }
 

@@ -110,7 +110,7 @@ public class INITSETTINGSController implements Initializable {
 
                     if (API.readFileAsString("src/StudyBase/app_state.txt").equals("pre_user")) {
 
-                        loadMainMenu();
+                        loadLogin();
 
                         API.overwriteFile("src/StudyBase/app_state.txt", "pro_user");
                     } else {
