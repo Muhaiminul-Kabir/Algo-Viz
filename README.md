@@ -10,11 +10,17 @@ Platform: Desktop/PC<br>
 IDE : Netbeans 8.2<br>
 Language: Java 8.0<br>
 Plugins used : 
-- JavaFx 8
-- [JFoenix ]( https://github.com/sshahine/JFoenix )
-- [ControlsFx] ( https://github.com/controlsfx/controlsfx )
+- JavaFX 8
+- [JFoenix]( https://github.com/sshahine/JFoenix )
+- [ControlsFX](https://github.com/controlsfx/controlsfx)
 
-YouTube
+## Features 
+
+
+
+## YouTube
+Demonstration video at<br>
+https://youtube.com/watch?v=6ulpXz6kt4A&feature=youtu.be
 
 
 ## Collaborators
