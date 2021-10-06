@@ -25,10 +25,10 @@ https://youtube.com/watch?v=6ulpXz6kt4A&feature=youtu.be
 
 ## Collaborators
 
-Md. Muhaiminul Kabir <br>
+#### Md. Muhaiminul Kabir <br>
 Dept. of CSE<br>
-Ahsanullah University of Science nd Technology <br>
+Ahsanullah University of Science and Technology <br>
 
-Rafid Reezwan Fahim<br>
+#### Rafid Reezwan Fahim<br>
 Dept. of CSE <br>
-Ahsanullah University of Science nd Technology<br>
+Ahsanullah University of Science and Technology<br>
