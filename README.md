@@ -15,7 +15,7 @@ Plugins used :
 - [ControlsFX](https://github.com/controlsfx/controlsfx)
 
 ## Folder
-StudyBase : Contains data files of tasks, routines and notifications
+StudyBase : Contains data files of tasks, routines and notifications<br>
 StudyCmp : Codebase of the project
 
 ## YouTube
