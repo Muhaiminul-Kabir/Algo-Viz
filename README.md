@@ -14,9 +14,9 @@ Plugins used :
 - [JFoenix]( https://github.com/sshahine/JFoenix )
 - [ControlsFX](https://github.com/controlsfx/controlsfx)
 
-## Features 
-
-
+## Folder
+StudyBase : Contains data files of tasks, routines and notifications
+StudyCmp : Codebase of the project
 
 ## YouTube
 Demonstration video at<br>
